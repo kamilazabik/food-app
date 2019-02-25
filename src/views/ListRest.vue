@@ -6,7 +6,7 @@
           <img :src="require('../assets/img/' + item.img)"  class="card-img restaurant-logo" alt="">
         </div>
         <div class="col-md-8">
-          <div class="card-body">
+          <div class="card-body restaurant-body">
             <router-link :to="{name: 'oneRest', params: {id:  index }}" class="card-title" tag="h5"><a class="restaurant-name">{{item.name}} {{ $route.params.id }}</a></router-link>
             <div class="bg-orange">
               <span class="restaurant-stars icon-star-empty"></span>
@@ -24,10 +24,6 @@
           </div>
         </div>
       </div>
-      {{id}}
-      {{ $route.params.id }}
-
-
     </div>
   </div>
 
@@ -59,7 +55,7 @@
 
 <style lang="scss">
   .card-body {
-    padding: 0;
+
   }
 
   .restaurant {
@@ -68,7 +64,12 @@
     margin: 4px 0;
     position: relative;
     background-color: #fff;
-    cursor: pointer;
+    /*cursor: pointer;*/
+
+    &-body {
+      padding: 0;
+    }
+
 
     &-name {
       font-size: 2.2rem;

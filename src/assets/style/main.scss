@@ -1,9 +1,10 @@
-@import "animation";
-@import "fontello";
-@import "fontello-codes";
-@import "fontello-embedded";
-@import "fontello-ie7";
-@import "fontello-codes";
+@import "fonts/animation.css";
+@import "fonts/fontello.css";
+@import "fonts/fontello-codes.css";
+@import "fonts/fontello-embedded.css";
+@import "fonts/fontello-ie7.css";
+@import "fonts/fontello-codes.css";
+@import "components/basket";
 
 //
 //@font-face {
@@ -20,3 +21,8 @@
 //body {
 //  //background: #000;
 //}
+
+p {
+  margin: 0;
+}
+
