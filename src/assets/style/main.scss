@@ -5,6 +5,7 @@
 @import "fonts/fontello-ie7.css";
 @import "fonts/fontello-codes.css";
 @import "components/basket";
+@import "components/header";
 
 //
 //@font-face {
@@ -24,5 +25,8 @@
 
 p {
   margin: 0;
+}
+
+@media (min-width: 1200px){
 }
 

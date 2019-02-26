@@ -1,7 +1,9 @@
 <template>
   <div class="jumbotron jumbotron-fluid">
       <div class="hero">
-        <router-link to="/restaurants" tag="h1" class="display-4 hero-text"><a class="hero-link">Zamów jedzenie online</a></router-link>
+        <router-link to="/restaurants" tag="h1" class="display-4 hero-text">
+          <a class="hero-link">Zamów jedzenie online</a></router-link>
+
       </div>
   </div>
 </template>
@@ -46,5 +48,12 @@
       text-decoration: none;
     }
   }
+  .header.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+  }
+
 
 </style>

@@ -13,17 +13,17 @@
           </div>
         </div>
       </div>
-      <div class="basket-header">
+      <!--<div class="basket-header">-->
 
-          <h5 class="card-header" v-if="basket.length > 0">Basket 0</h5>
-          <h5 class="card-header" v-else>Basket</h5>
+          <!--<h5 class="card-header" v-if="basket.length > 0">Basket 0</h5>-->
+          <!--<h5 class="card-header" v-else>Basket</h5>-->
 
-      </div>
+      <!--</div>-->
 
-      <div class="basket" >
-        <div class="card">
-          <div class="card-body basket-body" v-if="basket.length > 0">
-            <div class="basket-row py-3" v-for="item in basket">
+      <div class="basket" v-if="ifOpenBasket" >
+        <div class="card" ref="basketCard" :class="{ 'sticky' : ifStickyBasket == true}">
+          <div class="card-body basket-body">
+            <div class="basket-row py-3" v-for="(item, index) in basket" :key="index">
               <span class="basket-quantity">{{item.quantity}} x </span>
               <span class="basket-item"> {{item.name}}</span>
               <div class="basket-icons">
@@ -36,21 +36,22 @@
             <hr>
             <div class="basket-row pb-3">
               <p class="basket-text">Partial amount</p>
-              <p>{{partial}}</p>
+              <p>{{partial}} zł</p>
             </div>
             <div class="basket-row pb-3">
               <p class="basket-text">Delivery costs</p>
-              <p>{{resItem[id].options[0].deliverCost}} zł</p>
+              <p v-if="basket.length > 0">{{resItem[id].options[0].deliverCost}} zł</p>
+              <p v-else>0 zł</p>
             </div>
             <div class="basket-row pb-3">
               <p class="basket-text">Total amount</p>
-              <p>{{partial + resItem[id].options[0].deliverCost}}</p>
+              <p v-if="basket.length > 0">{{total}} zł</p>
+              <p v-else>0 zł</p>
             </div>
             <a href="#" class="btn btn-primary btn-order">Order</a>
           </div>
         </div>
       </div>
-
   </div>
 </template>
 
@@ -63,7 +64,11 @@
             return{
                 height: 30,
                 id: this.$route.params.id,
-                basket: []
+                basket: [],
+                order: [],
+                partialCost: 0,
+                totalCost: 0,
+                sticky: 260
 
             }
         },
@@ -89,6 +94,19 @@
                     this.removeFromBasket(item)
                 }
             },
+            addNewOrder(){
+                this.order.push({
+
+                })
+            },
+            stickHeader () {
+                if (typeof this.$refs["basketCard"] !== 'undefined' && window.pageYOffset > this.sticky ) {
+                    this.$refs["basketCard"].classList.add("sticky");
+                } else if (typeof this.$refs["basketCard"] !== 'undefined' ){
+                    this.$refs["basketCard"].classList.remove("sticky");
+                }
+            }
+
 
         },
         components: {
@@ -97,16 +115,24 @@
         computed: {
             ...mapGetters({
                 resItem: 'resItem',
-                menu: 'oneResMenu'
+                menu: 'oneResMenu',
+                ifOpenBasket: 'checkBasket',
+                ifStickyBasket: 'checkStickyBasket'
             }),
             partial(){
-                var totalCost = 0;
+                this.partialCost = 0;
                 for(var items in this.basket){
                     var individualItem = this.basket[items];
-                    totalCost+= individualItem.quantity * individualItem.price;
+                    this.partialCost += individualItem.quantity * individualItem.price;
                 }
-                return totalCost
+                return this.partialCost
+            },
+            total(){
+                return this.totalCost = this.partial + this.basket[0].delCost
             }
+        },
+        created () {
+            window.addEventListener('scroll', this.stickHeader);
         },
     }
 
@@ -114,13 +140,15 @@
 
 <style scoped lang="scss">
   .menu-con {
-    background-color: #f8f5f2;
+    background-color: #ffffff;
     display: flex;
     position: relative;
   }
 
   .menu {
     padding: 3rem 1rem;
+    max-width: 100%;
+    background-color: #f8f5f2;
   }
 
   .rest{
@@ -162,7 +190,6 @@
       }
     }
   }
-
 
 
 </style>

@@ -1,0 +1,48 @@
+.header {
+  width: 100%;
+  position: absolute;
+  bottom:0;
+  background: rgba(0,0,0,0.2);
+  height: 60px;
+
+  &-basket {
+    height: 60px;
+    display: flex;
+    align-items: center;
+    padding: 0 15px;
+    transition: all ease .3s;
+
+
+
+    &:hover {
+      background-color: #ffffff;
+
+      .header-basket__name {
+        color: #000000;
+      }
+
+    }
+    &__name {
+      color: #ffffff;
+    }
+
+  }
+
+
+  &-col {
+    max-width: 400px;
+  }
+}
+
+.sticky {
+  z-index: 100;
+}
+
+.white {
+  background-color: #ffffff;
+
+
+  .header-basket__name {
+    color: #000;
+  }
+}

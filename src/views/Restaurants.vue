@@ -1,6 +1,7 @@
 <template>
   <div class="bg">
-    <app-hero :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero>
+    <!--<app-hero :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero>-->
+    <app-hero-small :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero-small>
     <div class="container">
       <div class="row">
           <div class="col-md-3"></div>
@@ -14,12 +15,14 @@
 </template>
 
 <script>
-  import Hero from '../components/Hero.vue'
+//  import Hero from '../components/Hero.vue'
+  import HeroSmall from '../components/HeroSmall.vue'
+  import Header from '../components/Header.vue'
 
   export default {
       data(){
           return{
-              height: 30
+              height: 30,
           }
       },
 
@@ -27,8 +30,12 @@
 
       },
       components: {
-          appHero: Hero,
+//          appHero: Hero,
+          appHeroSmall: HeroSmall,
+          appHeader: Header
       },
+
+
   }
 
 </script>
@@ -37,4 +44,7 @@
   .bg {
     background-color: #f8f5f2;
   }
+
+
+
 </style>

@@ -20,16 +20,12 @@
 
 <script>
 
-    import Header from './components/Header.vue'
-    import Footer from './components/Footer.vue'
     import Hero from './components/Hero.vue'
 
 
     export default {
         components: {
-            appHeader: Header,
-            appFooter: Footer,
-            appHero: Hero,
+            appHero: Hero
         },
     }
 </script>

@@ -6,6 +6,8 @@ Vue.use(Vuex);
 
 export const store =  new Vuex.Store({
   state: {
+      openBasket: false,
+      stickyBasket: false,
       restaurantItems: {
           burger: {
               'name': 'Burgers',
@@ -78,7 +80,19 @@ export const store =  new Vuex.Store({
               name: 'Burger Blue Cheese 2',
               price: '18' ,
               ingredients: ['180g beef', 'blue cheese', 'bacon', 'lettuce', 'tomato', 'cucumber', 'red onion', 'sauce']
-          }
+          },
+            {
+                type: 'burgers',
+                name: 'Burger Blue Cheese 3',
+                price: '18' ,
+                ingredients: ['180g beef', 'blue cheese', 'bacon', 'lettuce', 'tomato', 'cucumber', 'red onion', 'sauce']
+            },
+            {
+                type: 'burgers',
+                name: 'Burger Blue Cheese 4',
+                price: '18' ,
+                ingredients: ['180g beef', 'blue cheese', 'bacon', 'lettuce', 'tomato', 'cucumber', 'red onion', 'sauce']
+            }
         ]
       }
   },
@@ -89,12 +103,29 @@ export const store =  new Vuex.Store({
     },
     oneResMenu: state=> {
       return state.menu
+    },
+    checkBasket: state=> {
+        return state.openBasket
+    },
+    checkStickyBasket: state=> {
+        return state.stickyBasket
     }
   },
   mutations: {
+       'BASKET_STATUS'(state){
+           console.log( !state.openBasket);
+           if(!state.openBasket){
+               state.openBasket = true;
+               window.pageYOffset > 300 ? state.stickyBasket = true :  state.stickyBasket = false;
+           }else {
+               state.openBasket = false
 
+           }
+       },
   },
   actions: {
-
+      changeBasket({commit}, getters) {
+          commit('BASKET_STATUS', getters)
+      }
   }
 })
