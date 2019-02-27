@@ -1,100 +1,23 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 
+import menu from './store/menu'
+import restaurantItems from './store/listRest'
 
 Vue.use(Vuex);
 
 export const store =  new Vuex.Store({
+    modules: {
+        menu,
+        restaurantItems
+    },
   state: {
       openBasket: false,
       stickyBasket: false,
-      restaurantItems: {
-          burger: {
-              'name': 'Burgers',
-              'type': 'American',
-              'range': 5,
-              'img': 'burger.png',
-              'options': [{
-                  'deliverCost': 6,
-                  'deliveryTime': 30,
-                  'minCost': 10
-              }]
-          },
-          pizza: {
-              'name': 'Pizza',
-              'type': 'Italian',
-              'range': 4,
-              'img': 'pizza-slice.png',
-              'options': [{
-                  'deliverCost': 5,
-                  'deliveryTime': 45,
-                  'minCost': 30
-              }]
-          },
-          pasta: {
-              'name': 'Pasta',
-              'type': 'Italian',
-              'range': 4,
-              'img': 'spaghetti.png',
-              'options': [{
-                  'deliverCost': 5,
-                  'deliveryTime': 60,
-                  'minCost': 30
-              }]
-          },
-          burgers: {
-              'name': 'Burgers',
-              'type': 'American',
-              'range': 5,
-              'img': 'burger.png',
-              'options': [{
-                  'deliverCost': 5,
-                  'deliveryTime': 35,
-                  'minCost': 50
-              }]
-          },
-      },
-      menu: {
-        burger: [ {
-            type: 'burgers',
-            name: 'Classic Burger',
-            price: '20' ,
-            ingredients: ['180g beef', 'cheddar', 'tomato', 'red onion', 'cucumber', 'sauce', 'lettuce']
-          },
-          {
-            type: 'burgers',
-            name: 'Spicy Burger',
-            price: '18' ,
-            ingredients: ['180g beef', 'cheddar', 'bacon', 'jalapeno peppers', 'tomato', 'cucumber', 'red onion', 'chilli', 'lettuce']
-          }
-          ,
-          {
-            type: 'burgers',
-            name: 'Burger Blue Cheese',
-            price: '18' ,
-            ingredients: ['180g beef', 'blue cheese', 'bacon', 'lettuce', 'tomato', 'cucumber', 'red onion', 'sauce']
-          },
+      basket: [],
 
-          {
-              type: 'burgers',
-              name: 'Burger Blue Cheese 2',
-              price: '18' ,
-              ingredients: ['180g beef', 'blue cheese', 'bacon', 'lettuce', 'tomato', 'cucumber', 'red onion', 'sauce']
-          },
-            {
-                type: 'burgers',
-                name: 'Burger Blue Cheese 3',
-                price: '18' ,
-                ingredients: ['180g beef', 'blue cheese', 'bacon', 'lettuce', 'tomato', 'cucumber', 'red onion', 'sauce']
-            },
-            {
-                type: 'burgers',
-                name: 'Burger Blue Cheese 4',
-                price: '18' ,
-                ingredients: ['180g beef', 'blue cheese', 'bacon', 'lettuce', 'tomato', 'cucumber', 'red onion', 'sauce']
-            }
-        ]
-      }
+
+
   },
 
   getters: {
@@ -109,6 +32,9 @@ export const store =  new Vuex.Store({
     },
     checkStickyBasket: state=> {
         return state.stickyBasket
+    },
+    pushBasket: state=> {
+        return state.basket
     }
   },
   mutations: {
@@ -122,10 +48,31 @@ export const store =  new Vuex.Store({
 
            }
        },
+       'PUSH_BASKET'(state, payload){
+           console.log( payload)
+           state.basket.push({
+               name: payload[0].name,
+               price: payload[0].price,
+               delCost: payload[1],
+               quantity: 1
+               })
+           },
+        'CLEAN_BASKET'(state){
+           state.basket = []
+        }
+
   },
+
+
   actions: {
       changeBasket({commit}, getters) {
           commit('BASKET_STATUS', getters)
+      },
+      addToBasket({commit}, item){
+          commit('PUSH_BASKET', item)
+      },
+      cleanBasket({commit}){
+          commit('CLEAN_BASKET')
       }
   }
 })

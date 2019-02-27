@@ -2,7 +2,7 @@
   <div class="bg">
     <!--<app-hero :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero>-->
     <app-hero-small :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero-small>
-    <div class="container">
+    <div class="container-rest">
       <div class="row">
           <div class="col-md-3"></div>
           <div class="col-md-9">
@@ -44,6 +44,8 @@
   .bg {
     background-color: #f8f5f2;
   }
+
+
 
 
 

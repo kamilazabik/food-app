@@ -1,6 +1,6 @@
 <template>
   <div class="header" ref="header">
-    <div class="container">
+    <div class="container-rest">
       <div class="row justify-content-between">
         <div class="col-md-3"></div>
         <div class="col header-col">

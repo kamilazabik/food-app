@@ -8,11 +8,14 @@
               <span class="card-text rest-card__ing" v-for="ing in item.ingredients">{{ ing }}   </span>
             </div>
             <div class="rest-button">
-              <a href="#" class="btn btn-primary" @click="addToBasket(item)">{{ item.price }} zł | +</a>
+              {{resItem[id].options[0].deliverCost }}
+              <a href="#" class="btn btn-primary" @click="addToBasket([item, resItem[id].options[0].deliverCost ])">{{ item.price }} zł | +</a>
             </div>
           </div>
         </div>
       </div>
+
+
       <!--<div class="basket-header">-->
 
           <!--<h5 class="card-header" v-if="basket.length > 0">Basket 0</h5>-->
@@ -34,21 +37,26 @@
               <span class="" @click="removeFromBasket(item)"><i class="icon-trash-empty"></i></span>
             </div>
             <hr>
-            <div class="basket-row pb-3">
-              <p class="basket-text">Partial amount</p>
-              <p>{{partial}} zł</p>
+            <div v-if="basket.length > 0">
+              <div class="basket-row pb-3">
+                <p class="basket-text">Partial amount</p>
+                <p>{{partial}} zł</p>
+              </div>
+              <div class="basket-row pb-3">
+                <p class="basket-text">Delivery costs</p>
+                <p v-if="basket.length > 0">{{resItem[id].options[0].deliverCost}} zł</p>
+                <p v-else>0 zł</p>
+              </div>
+              <div class="basket-row pb-3">
+                <p class="basket-text">Total amount</p>
+                <p v-if="basket.length > 0">{{total}} zł</p>
+                <p v-else>0 zł</p>
+              </div>
+              <a href="#" class="btn btn-primary btn-order" @click="addNewOrder">Order</a>
             </div>
-            <div class="basket-row pb-3">
-              <p class="basket-text">Delivery costs</p>
-              <p v-if="basket.length > 0">{{resItem[id].options[0].deliverCost}} zł</p>
-              <p v-else>0 zł</p>
+            <div v-else>
+              <p>{{ basketText }}</p>
             </div>
-            <div class="basket-row pb-3">
-              <p class="basket-text">Total amount</p>
-              <p v-if="basket.length > 0">{{total}} zł</p>
-              <p v-else>0 zł</p>
-            </div>
-            <a href="#" class="btn btn-primary btn-order">Order</a>
           </div>
         </div>
       </div>
@@ -57,30 +65,38 @@
 
 <script>
     import {mapGetters} from 'vuex'
+    import {mapActions} from 'vuex'
     import Hero from '../components/Hero.vue'
+    import {dbOrdersRef } from '../firebaseConfig'
 
     export default {
         data(){
             return{
                 height: 30,
                 id: this.$route.params.id,
-                basket: [],
                 order: [],
                 partialCost: 0,
                 totalCost: 0,
-                sticky: 260
+                sticky: 260,
+                basketText: 'Your basket is empty',
+
+
 
             }
         },
 
         methods: {
-            addToBasket(item) {
-                this.basket.push({
-                    name: item.name,
-                    price: item.price,
-                    delCost: this.resItem[this.id].options[0].deliverCost,
-                    quantity: 1
-                })
+            ... mapActions({
+                addItemToBasket: 'addToBasket',
+                cleanBasket: 'cleanBasket',
+            }),
+
+            openBasket(){
+                this.changeBasketAct(this.ifOpenBasket)
+            },
+
+            addToBasket(item,delCost) {
+                this.addItemToBasket(item, delCost)
             },
             removeFromBasket(item){
                 this.basket.splice(this.basket.indexOf(item), 1)
@@ -105,6 +121,12 @@
                 } else if (typeof this.$refs["basketCard"] !== 'undefined' ){
                     this.$refs["basketCard"].classList.remove("sticky");
                 }
+            },
+            addNewOrder(){
+                console.log(this.basket);
+                dbOrdersRef.push(this.basket);
+                this.cleanBasket();
+                this.basketText = 'Thank you, your order has been placed! :)'
             }
 
 
@@ -117,7 +139,8 @@
                 resItem: 'resItem',
                 menu: 'oneResMenu',
                 ifOpenBasket: 'checkBasket',
-                ifStickyBasket: 'checkStickyBasket'
+                ifStickyBasket: 'checkStickyBasket',
+                basket: 'pushBasket'
             }),
             partial(){
                 this.partialCost = 0;
@@ -140,7 +163,7 @@
 
 <style scoped lang="scss">
   .menu-con {
-    background-color: #ffffff;
+    /*background-color: #ffffff;*/
     display: flex;
     position: relative;
   }
