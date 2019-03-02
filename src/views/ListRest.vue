@@ -1,5 +1,6 @@
 <template>
   <div>
+    <!--{{resItem}}-->
     <div class="card mb-3" v-for="(item, index) in resItem" :key="index">
       <div class="row no-gutters restaurant">
         <div class="col-md-4">
@@ -17,7 +18,7 @@
             </div>
 
             <p class="card-text restaurant-type">{{item.type}}    {{index}} </p>
-            <p class="card-text" v-for="option in item.options">
+            <p class="card-text" v-for="(option, index) in item.options" :key="index">
               <small class="text-muted restaurant-option">{{option.deliverCost}} zł</small>
               <small class="text-muted restaurant-option">ok. {{option.deliveryTime}} min</small>
               <small class="text-muted restaurant-option">Min. {{option.minCost}} zł</small></p>
@@ -32,11 +33,11 @@
 <script>
     import {mapGetters} from 'vuex'
 
+
    export default {
        data(){
            return{
                id: this.$route.params.id,
-
            }
        },
        methods: {
@@ -49,6 +50,9 @@
                resItem: 'resItem'
            })
        },
+
+
+
 
    }
 </script>

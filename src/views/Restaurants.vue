@@ -19,6 +19,7 @@
   import HeroSmall from '../components/HeroSmall.vue'
   import Header from '../components/Header.vue'
 
+
   export default {
       data(){
           return{
@@ -34,6 +35,14 @@
           appHeroSmall: HeroSmall,
           appHeader: Header
       },
+
+
+
+
+
+
+
+
 
 
   }

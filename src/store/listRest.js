@@ -1,5 +1,4 @@
-const state = {
-
+const resItem = {
         burger: {
             'name': 'Burgers',
             'type': 'American',
@@ -47,5 +46,5 @@ const state = {
 }
 
 export default {
-    state
+    resItem
 }

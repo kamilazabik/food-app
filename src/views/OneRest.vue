@@ -79,9 +79,6 @@
                 totalCost: 0,
                 sticky: 260,
                 basketText: 'Your basket is empty',
-
-
-
             }
         },
 

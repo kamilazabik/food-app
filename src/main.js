@@ -9,7 +9,7 @@ import "@/assets/style/main.scss"
 Vue.use(VueRouter);
 
 import {routes} from './router'
-import {store} from './store'
+import {store} from './store/store'
 
 Vue.config.productionTip = false
 

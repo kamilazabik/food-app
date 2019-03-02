@@ -27,6 +27,8 @@
         components: {
             appHero: Hero
         },
+
+
     }
 </script>
 
