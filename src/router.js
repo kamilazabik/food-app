@@ -5,6 +5,9 @@ import Hero from './components/Hero.vue'
 import Restaurants from './views/Restaurants.vue'
 import OneRest from './views/OneRest.vue'
 import ListRest from './views/ListRest.vue'
+import Signup from './views/Signup.vue'
+import Signin from './views/Signin.vue'
+import Account from './views/Account.vue'
 
 
 
@@ -27,10 +30,17 @@ export const routes= [
         component: Restaurants,
         children: [
             {path: '/restaurants', component: ListRest, name: 'listRest'},
-            {path: '/restaurants/:id', component: OneRest, name: 'oneRest'}
+            {path: '/restaurants/:id', component: OneRest, name: 'oneRest'},
+            {path: '/signup', component: Signup, name: 'signup'},
+            {path: '/signin', component: Signin, name: 'signin'},
+            {path: '/account', component: Account, name: 'account'}
         ]
     },
-
+    // {
+    //    path: '/signup',
+    //    name: 'signup',
+    //    component: Signup
+    // },
     {
       path: '/about',
       name: 'about',
@@ -41,3 +51,5 @@ export const routes= [
     }
   ]
 // })
+
+

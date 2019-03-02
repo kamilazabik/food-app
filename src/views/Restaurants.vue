@@ -2,13 +2,19 @@
   <div class="bg">
     <!--<app-hero :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero>-->
     <app-hero-small :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero-small>
+
     <div class="container-rest">
       <div class="row">
-          <div class="col-md-3"></div>
+          <div class="col-md-3">
+            <router-view name="account"></router-view>
+          </div>
           <div class="col-md-9">
             <router-view></router-view>
           </div>
       </div>
+      <router-view name="signup"></router-view>
+      <router-view name="signin"></router-view>
+      <router-view name="account"></router-view>
       <!--<router-view name="oneRest"></router-view>-->
     </div>
   </div>
