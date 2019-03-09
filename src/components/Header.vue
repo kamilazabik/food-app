@@ -4,7 +4,7 @@
       <div class="row justify-content-between">
         <div class="col-md-3"></div>
         <div class="col header-col">
-          <div class="header-basket" @click="openBasket" ref="headerBasket" :class="{ 'white' : ifOpenBasket == true}">
+          <div class="header-basket" @click="openBasket" ref="headerBasket" :class="{ 'white' : ifOpenBasket == true, 'blue': basket.length > 0}">
             <h3 class="header-basket__name" >Basket</h3>
           </div>
 
@@ -13,13 +13,13 @@
 
     </div>
 
-
   </div>
 </template>
 
 <script>
     import {mapGetters} from 'vuex'
     import {mapActions} from 'vuex'
+
   export default {
       data(){
           return {
@@ -29,7 +29,8 @@
       computed: {
           ...mapGetters({
               ifOpenBasket: 'checkBasket',
-              ifStickyBasket: 'checkStickyBasket'
+              ifStickyBasket: 'checkStickyBasket',
+              basket: 'pushBasket'
           }),
       },
       methods: {
@@ -44,7 +45,6 @@
                   this.$refs["header"].classList.add("sticky");
               } else {
                   this.$refs["header"].classList.remove("sticky");
-
               }
           }
       },
@@ -54,7 +54,12 @@
   }
 </script>
 
-<style lang="scss">
-
+<style scoped lang="scss">
+  .sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0,0,0,0.5);
+  }
 
 </style>
