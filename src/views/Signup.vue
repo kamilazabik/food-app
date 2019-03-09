@@ -42,7 +42,8 @@
               email: '',
               password: '',
               confirmPassword: '',
-              terms: false
+              terms: false,
+              orders: []
           }
       },
       methods: {
@@ -51,7 +52,8 @@
                   email: this.email,
                   password: this.password,
                   confirmPassword: this.confirmPassword,
-                  terms: this.terms
+                  terms: this.terms,
+                  orders: this.orders
               }
               console.log(formData)
               this.$store.dispatch('signup', formData)

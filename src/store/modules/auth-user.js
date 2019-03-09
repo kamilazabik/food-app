@@ -1,11 +1,16 @@
 import axios from '../../axios-auth';
 import globalAxios from 'axios';
+// import { routes } from '../../router';
 import router from '../../router'
 
 const state = {
     idToken: null,
     userId: null,
-    user:null
+    user:null,
+    iUser: null,
+    idUserDb: null,
+    oneUser: []
+
 }
 
 const mutations = {
@@ -45,6 +50,7 @@ const actions = {
                 localStorage.setItem('token', res.data.idToken)
                 localStorage.setItem('userId', res.data.localId)
                 localStorage.setItem('expirationDate', expirationDate)
+                localStorage.setItem('userEmail', res.data.email)
                 dispatch('storeUser', authData)
                 dispatch('setLogoutTimer', res.data.expiresIn)
             })
@@ -60,14 +66,17 @@ const actions = {
                 console.log(res)
                 commit('authUser', {
                     token: res.data.idToken,
-                    userId: res.data.localId
+                    userId: res.data.localId,
                 })
                 const now = new Date()
                 const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000)
                 localStorage.setItem('token',res.data.idToken )
                 localStorage.setItem('userId',res.data.localId )
                 localStorage.setItem('expirationDate', expirationDate)
+                localStorage.setItem('userEmail', res.data.email)
                 dispatch('setLogoutTimer', res.data.expiresIn)
+                dispatch('fetchUser')
+
             })
             .catch(error => console.log(error))
     },
@@ -89,11 +98,12 @@ const actions = {
 
     },
     logout({commit}){
-        commit('clearAuthData')
-        localStorage.removeItem('expirationDate')
-        localStorage.removeItem('token')
-        localStorage.removeItem('userId')
-        this.$route.replace('./signin')
+        commit('clearAuthData');
+        localStorage.removeItem('expirationDate');
+        localStorage.removeItem('token');
+        localStorage.removeItem('userId');
+        localStorage.removeItem('userEmail');
+        router.replace('./signin')
     },
     storeUser({commit, state}, userData){
         if(!state.idToken){
@@ -112,18 +122,34 @@ const actions = {
                 console.log(res)
                 const data = res.data
                 const users = []
+                console.log(users)
+                const userEmail = localStorage.getItem('userEmail')
                 for(let key in data){
                     const user = data[key]
                     user.id = key
                     users.push(user)
                 }
-                console.log(users)
-                // this.email = users[0].email
-                commit('storeUser', users[0])
+
+                users.forEach(function (e,i) {
+                    for(let k in e){
+                        if(e[k] === userEmail){
+                            state.iUser = i
+                            state.oneUser = users[i]
+                        }
+                    }
+                });
+
+
+                state.idUserDb = users[state.iUser].id;
+                console.log(state.idUserDb);
+                console.log(state.oneUser);
+
+                commit('storeUser', users[state.iUser])
                 }
             )
             .catch(error => console.log(error))
-    }
+    },
+
 }
 
 const getters = {

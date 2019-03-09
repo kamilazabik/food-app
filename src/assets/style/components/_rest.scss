@@ -1,0 +1,49 @@
+.menu-con {
+  display: flex;
+  position: relative;
+}
+
+.menu {
+  padding: 3rem 1rem;
+  max-width: 100%;
+  background-color: #f8f5f2;
+  width: 100%;
+}
+
+.rest{
+  &-body {
+    display: flex;
+    padding: 0;
+  }
+
+  &-desc {
+    width: 80%;
+  }
+
+  &-button {
+    width: 20%;
+    text-align: right;
+
+    a {
+      font-size: 1.8rem;
+    }
+  }
+
+  &-card {
+    margin: 1rem 0;
+    padding: 3rem 2rem;
+
+    &__title {
+      margin: 8px 0 16px;
+      color: #0a3847;
+      font-size: 1.8rem;
+      line-height: 2rem;
+      font-weight: 600;
+      text-align: left;
+    }
+
+    &__ing {
+      font-size: 1.5rem;
+    }
+  }
+}

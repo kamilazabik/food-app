@@ -12,5 +12,6 @@ var config = {
 const firebaseApp = Firebase.initializeApp(config);
 const db = firebaseApp.database();
 
-export const dbOrdersRef = db.ref('orders')
+export const dbOrdersRef = db.ref('orders');
+export const dB = db;
 

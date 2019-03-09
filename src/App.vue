@@ -38,4 +38,6 @@
     font-size: 62.5%;
   }
 
+  @import "./assets/style/main.scss";
+
 </style>

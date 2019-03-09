@@ -1,7 +1,12 @@
+import axios from '../../axios-auth';
+import globalAxios from 'axios';
+import auth from './auth-user'
+
 const state = {
     openBasket: false,
     stickyBasket: false,
     basket: [],
+    order: null
 }
 
 const mutations = {
@@ -21,12 +26,26 @@ const mutations = {
             name: payload[0].name,
             price: payload[0].price,
             delCost: payload[1],
-            quantity: 1
+            quantity: 1,
+            restName: payload[0].type
         })
+
+        console.log( state.basket)
     },
     'CLEAN_BASKET'(state){
         state.basket = []
+    },
+    'ADD_ORDER'(state, payload){
+     state.order= {
+         restName: payload[0][0].restName,
+         total: payload[1],
+         basket: payload[0]
+        }
+            // state.restItem: payload.restName
+
+
     }
+
 }
 
 const actions = {
@@ -38,6 +57,33 @@ const actions = {
     },
     cleanBasket({commit}){
         commit('CLEAN_BASKET')
+    },
+    addOrder({commit}, payload ){
+        commit('ADD_ORDER', payload)
+    },
+    addBasketToDB({commit, state}, basket){
+        if(!auth.state.idToken){
+            return
+        }
+
+        if(typeof auth.state.oneUser.orders !== 'undefined' ){
+            auth.state.oneUser.orders.push(basket)
+        }else {
+            auth.state.oneUser.orders = [];
+            auth.state.oneUser.orders.push(basket)
+        }
+
+        globalAxios.post('/orders.json' + '?auth=' + auth.state.idToken, basket)
+            .then(res=> console.log(res))
+            .catch(error => console.log(error))
+
+        globalAxios.put('/users/'+ auth.state.idUserDb +'.json?auth=' + auth.state.idToken, auth.state.oneUser )
+            .then(res => {
+                console.log(res);
+                console.log(res.data)
+            })
+            .catch(error => console.log(error))
+
     }
 }
 
@@ -50,6 +96,9 @@ const getters = {
     },
     pushBasket: state=> {
         return state.basket
+    },
+    getOrder: state=> {
+        return state.order
     }
 }
 

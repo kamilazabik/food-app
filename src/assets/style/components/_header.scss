@@ -11,6 +11,8 @@
     align-items: center;
     padding: 0 15px;
     transition: all ease .3s;
+    width: 300px;
+    margin-left: auto;
 
 
 
@@ -40,9 +42,25 @@
 
 .white {
   background-color: #ffffff;
-
+  width: 370px;
 
   .header-basket__name {
     color: #000;
+  }
+}
+
+.blue {
+  background-color: #007bff;
+
+  .header-basket__name {
+    color: #fff;
+  }
+
+  &:hover {
+    background-color: #0069d1;
+
+    .header-basket__name {
+      color: #fff;
+    }
   }
 }

@@ -21,10 +21,8 @@
 </template>
 
 <script>
-//  import Hero from '../components/Hero.vue'
   import HeroSmall from '../components/HeroSmall.vue'
   import Header from '../components/Header.vue'
-
 
   export default {
       data(){
@@ -33,24 +31,10 @@
           }
       },
 
-      methods: {
-
-      },
       components: {
-//          appHero: Hero,
           appHeroSmall: HeroSmall,
           appHeader: Header
       },
-
-
-
-
-
-
-
-
-
-
   }
 
 </script>
@@ -59,9 +43,4 @@
   .bg {
     background-color: #f8f5f2;
   }
-
-
-
-
-
 </style>

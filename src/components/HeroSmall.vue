@@ -45,6 +45,7 @@
                 return this.$store.getters.isAuthenticated
             }
         },
+
         methods: {
             onLogout(){
                 this.$store.dispatch('logout')
