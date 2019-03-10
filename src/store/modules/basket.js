@@ -20,6 +20,7 @@ const mutations = {
 
         }
     },
+
     'PUSH_BASKET'(state, payload){
         console.log( payload)
         state.basket.push({
@@ -32,9 +33,11 @@ const mutations = {
 
         console.log( state.basket)
     },
+
     'CLEAN_BASKET'(state){
         state.basket = []
     },
+    
     'ADD_ORDER'(state, payload){
      state.order= {
          restName: payload[0][0].restName,
@@ -52,15 +55,19 @@ const actions = {
     changeBasket({commit}, getters) {
         commit('BASKET_STATUS', getters)
     },
+
     addToBasket({commit}, item){
         commit('PUSH_BASKET', item)
     },
+
     cleanBasket({commit}){
         commit('CLEAN_BASKET')
     },
+
     addOrder({commit}, payload ){
         commit('ADD_ORDER', payload)
     },
+
     addBasketToDB({commit, state}, basket){
         if(!auth.state.idToken){
             return
@@ -91,12 +98,15 @@ const getters = {
     checkBasket: state=> {
         return state.openBasket
     },
+
     checkStickyBasket: state=> {
         return state.stickyBasket
     },
+
     pushBasket: state=> {
         return state.basket
     },
+
     getOrder: state=> {
         return state.order
     }

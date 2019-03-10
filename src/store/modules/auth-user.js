@@ -33,6 +33,7 @@ const actions = {
             commit('clearAuthData')
         }, expirationTime * 1000)
     },
+
     signup({commit, dispatch}, authData){
         axios.post('/signupNewUser?key=AIzaSyAQWC9D-OMe-9CV11HBNAFEo56z8aot4Hc', {
             email: authData.email,
@@ -56,6 +57,7 @@ const actions = {
             })
             .catch(error => console.log(error))
     },
+
     login({commit, dispatch}, authData){
         axios.post('/verifyPassword?key=AIzaSyAQWC9D-OMe-9CV11HBNAFEo56z8aot4Hc', {
             email: authData.email,
@@ -80,6 +82,7 @@ const actions = {
             })
             .catch(error => console.log(error))
     },
+
     tryAutoLogin({commit}){
         const token = localStorage.getItem('token')
         if(!token){
@@ -97,6 +100,7 @@ const actions = {
         })
 
     },
+
     logout({commit}){
         commit('clearAuthData');
         localStorage.removeItem('expirationDate');
@@ -105,6 +109,7 @@ const actions = {
         localStorage.removeItem('userEmail');
         router.replace('./signin')
     },
+
     storeUser({commit, state}, userData){
         if(!state.idToken){
             return
@@ -113,6 +118,7 @@ const actions = {
             .then(res=> console.log(res))
             .catch(error => console.log(error))
     },
+
     fetchUser({commit, state}){
         if(!state.idToken){
             return

@@ -4,7 +4,7 @@ const state = {
             'name': 'Burgers',
             'type': 'American',
             'range': 5,
-            'img': 'burger.png',
+            'img': 'burger_c.png',
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 30,
@@ -15,7 +15,7 @@ const state = {
             'name': 'Pizza',
             'type': 'Italian',
             'range': 4,
-            'img': 'pizza-slice.png',
+            'img': 'pizza-slice_c.png',
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 45,
@@ -26,22 +26,44 @@ const state = {
             'name': 'Pasta',
             'type': 'Italian',
             'range': 4,
-            'img': 'spaghetti.png',
+            'img': 'spaghetti_c.png',
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 60,
                 'minCost': 30
             }]
         },
-        burgers: {
-            'name': 'Burgers',
+        american_burgers: {
+            'name': 'American Burgers',
             'type': 'American',
             'range': 5,
-            'img': 'burger.png',
+            'img': 'burger_c.png',
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 35,
                 'minCost': 50
+            }]
+        },
+        chinese_food: {
+            'name': 'Chinese Food',
+            'type': 'Chinese',
+            'range': 5,
+            'img': 'rice_c.png',
+            'options': [{
+                'deliverCost': 6,
+                'deliveryTime': 45,
+                'minCost': 40
+            }]
+        },
+        sushi: {
+            'name': 'Sushi',
+            'type': 'Shusi',
+            'range': 5,
+            'img': 'sushi_c.png',
+            'options': [{
+                'deliverCost': 6,
+                'deliveryTime': 55,
+                'minCost': 30
             }]
         },
     },
