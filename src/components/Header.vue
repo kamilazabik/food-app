@@ -17,6 +17,7 @@
 </template>
 
 <script>
+    import * as types from '../store/types';
     import {mapGetters} from 'vuex'
     import {mapActions} from 'vuex'
 
@@ -28,14 +29,14 @@
       },
       computed: {
           ...mapGetters({
-              ifOpenBasket: 'checkBasket',
-              ifStickyBasket: 'checkStickyBasket',
-              basket: 'pushBasket'
+              ifOpenBasket: types.GET_BASKET_STATUS,
+              ifStickyBasket: types.GET_STICKY_BASKET,
+              basket: types.GET_BASKET
           }),
       },
       methods: {
           ... mapActions({
-                  changeBasketAct: 'changeBasket',
+                  changeBasketAct: types.ACT_OPEN_BASKET,
           }),
           openBasket(){
               this.changeBasketAct(this.ifOpenBasket)

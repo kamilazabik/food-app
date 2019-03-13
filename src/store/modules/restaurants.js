@@ -1,3 +1,5 @@
+import * as types from '../types';
+
 const state = {
     filteredRestaurants: [],
     filteredData:[],
@@ -160,40 +162,28 @@ const state = {
 };
 
 const getters = {
-    resItem: state=> {
-        console.log(state.restaurantItems)
+    [types.GET_REST_LIST]: state=> {
+        console.log(state.restaurantItems);
         return state.restaurantItems
     },
-    oneResMenu: state=> {
+    [types.GET_MENU]: state=> {
         return state.menu
     },
-    filteredRestaurants: state=> {
-        return state.filteredRestaurants
-    },
-    filteredData: state=> {
+    [types.GET_FILTERED_REST]: state=> {
         return state.filteredData
     },
-    filters: state=> {
+    [types.GET_FILTERS]: state=> {
         return state.filters
     }
-
 };
 
 const mutations = {
-    filterRestaurants(state, type){
-        console.log(state.restaurantItems);
-        state.filteredRestaurants = state.restaurantItems.filter(function (item) {
-            return item.type === type
-        })
-    },
-
-    selectedFilters(state,type) {
+    [types.MUTATE_SELECT_FILTER](state,type) {
         state.filters= [];
         let checkedFiters = state.restaurantItems.filter(obj => obj.type === type);
-        console.log(checkedFiters)
+        console.log(checkedFiters);
         checkedFiters.forEach(element => {
             state.filters.push(element.type);
-
             console.log(state.filters)
         });
         return state.filters;
@@ -201,30 +191,24 @@ const mutations = {
 };
 
 const actions = {
-    filterRestaurants({commit}, type) {
-        commit('filterRestaurants', type)
-    },
-    selectedFilters({commit}, type){
-        commit('selectedFilters', type)
+    [types.ACT_SELECT_FILTER]({commit}, type){
+        commit(types.MUTATE_SELECT_FILTER, type)
     },
 
-    getFilteredData({commit, dispatch, state},type) {
+    [types.ACT_GET_FILTERED_DATA]({dispatch, state},type) {
         state.filteredData = state.restaurantItems;
         let filteredDataByfilters = [];
-        console.log(type)
-        console.log(state.filters)
-        // state.selectedFilters(type)
-        dispatch('selectedFilters', type)
+        console.log(type);
+        console.log(state.filters);
+
+        dispatch(types.ACT_SELECT_FILTER, type);
 
 
-        // first check if filters where selected
         if (state.filters.length > 0) {
 
             filteredDataByfilters= state.filteredData.filter(obj => state.filters.every(val => obj.type.indexOf(val) >= 0));
             state.filteredData = filteredDataByfilters;
         }
-        // then filter according to keyword, for now this only affects the name attribute of each data
-
 
         console.log(state.filteredData)
         console.log(filteredDataByfilters)

@@ -30,7 +30,10 @@
 </template>
 
 <script>
+    import {mapGetters} from 'vuex'
+    import * as types from '../store/types';
     import Header from '../components/Header.vue'
+
     export default {
         data(){
             return {
@@ -41,14 +44,17 @@
             appHeader: Header,
         },
         computed: {
+            ...mapGetters({
+                isAuthenticated: types.GET_IS_AUTHENTICATED
+            }),
             auth(){
-                return this.$store.getters.isAuthenticated
+                return this.isAuthenticated
             }
         },
 
         methods: {
             onLogout(){
-                this.$store.dispatch('logout')
+                this.$store.dispatch(types.ACT_LOGOUT)
             }
         }
     }

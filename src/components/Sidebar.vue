@@ -10,6 +10,7 @@
 </template>
 
 <script>
+    import * as types from '../store/types';
     import {mapGetters} from 'vuex'
     import {mapActions} from 'vuex'
 
@@ -24,14 +25,14 @@
 
       computed: {
           ...mapGetters({
-              restItems: 'resItem'
+              restItems: types.GET_REST_LIST
           }),
       },
 
       methods: {
           ... mapActions({
               filterRestaurants1: 'filterRestaurants',
-              getFilteredData: 'getFilteredData'
+              getFilteredData: types.ACT_GET_FILTERED_DATA
           }),
 
           filter(type){
@@ -39,7 +40,7 @@
           }
       },
       mounted() {
-          this.$store.dispatch('getFilteredData')
+          this.$store.dispatch(types.ACT_GET_FILTERED_DATA)
       }
   }
 

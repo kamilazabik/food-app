@@ -2,6 +2,7 @@ import axios from '../../axios-auth';
 import globalAxios from 'axios';
 // import { routes } from '../../router';
 import router from '../../router'
+import * as types from '../types';
 
 const state = {
     idToken: null,
@@ -11,98 +12,96 @@ const state = {
     idUserDb: null,
     oneUser: []
 
-}
+};
 
 const mutations = {
-    authUser(state, userData){
+    [types.MUTATE_AUTH_USER](state, userData){
         state.idToken = userData.token
         state.userId = userData.userId
     },
-    storeUser(state, user){
+    [types.MUTATE_STORE_USER](state, user){
         state.user = user
     },
-    clearAuthData(state){
-        state.idToken = null,
+    [types.MUTATE_CLEAR_AUTH_DATA](state){
+        state.idToken = null
         state.userId = null
     }
-}
+};
 
 const actions = {
-    setLogoutTimer({commit}, expirationTime){
+    [types.ACT_SET_LOGOUT_TIMER]({commit}, expirationTime){
         setTimeout(() => {
-            commit('clearAuthData')
+            commit(types.MUTATE_CLEAR_AUTH_DATA)
         }, expirationTime * 1000)
     },
 
-    signup({commit, dispatch}, authData){
+    [types.ACT_SIGN_UP]({commit, dispatch}, authData){
         axios.post('/signupNewUser?key=AIzaSyAQWC9D-OMe-9CV11HBNAFEo56z8aot4Hc', {
             email: authData.email,
             password: authData.password,
             returnSecureToken: true
         })
             .then(res => {
-                console.log(res)
-                commit('authUser', {
+                commit(types.MUTATE_AUTH_USER, {
                     token: res.data.idToken,
                     userId: res.data.localId
-                })
-                const now = new Date()
-                const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000)
-                localStorage.setItem('token', res.data.idToken)
-                localStorage.setItem('userId', res.data.localId)
-                localStorage.setItem('expirationDate', expirationDate)
-                localStorage.setItem('userEmail', res.data.email)
-                dispatch('storeUser', authData)
-                dispatch('setLogoutTimer', res.data.expiresIn)
+                });
+                const now = new Date();
+                const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
+                localStorage.setItem('token', res.data.idToken);
+                localStorage.setItem('userId', res.data.localId);
+                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userEmail', res.data.email);
+                dispatch(types.ACT_STORE_USER, authData);
+                dispatch(types.ACT_SET_LOGOUT_TIMER, res.data.expiresIn)
             })
             .catch(error => console.log(error))
     },
 
-    login({commit, dispatch}, authData){
+    [types.ACT_LOGIN]({commit, dispatch}, authData){
         axios.post('/verifyPassword?key=AIzaSyAQWC9D-OMe-9CV11HBNAFEo56z8aot4Hc', {
             email: authData.email,
             password: authData.password,
             returnSecureToken: true
         })
             .then(res => {
-                console.log(res)
-                commit('authUser', {
+                console.log(res);
+                commit(types.MUTATE_AUTH_USER, {
                     token: res.data.idToken,
                     userId: res.data.localId,
-                })
-                const now = new Date()
-                const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000)
-                localStorage.setItem('token',res.data.idToken )
-                localStorage.setItem('userId',res.data.localId )
-                localStorage.setItem('expirationDate', expirationDate)
-                localStorage.setItem('userEmail', res.data.email)
-                dispatch('setLogoutTimer', res.data.expiresIn)
-                dispatch('fetchUser')
+                });
+                const now = new Date();
+                const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
+                localStorage.setItem('token',res.data.idToken );
+                localStorage.setItem('userId',res.data.localId );
+                localStorage.setItem('expirationDate', expirationDate);
+                localStorage.setItem('userEmail', res.data.email);
+                dispatch(types.ACT_SET_LOGOUT_TIMER, res.data.expiresIn);
+                dispatch(types.ACT_FETCH_USER)
 
             })
             .catch(error => console.log(error))
     },
 
-    tryAutoLogin({commit}){
-        const token = localStorage.getItem('token')
+    [types.ACT_TRY_AUTO_LOGIN]({commit}){
+        const token = localStorage.getItem('token');
         if(!token){
             return
         }
-        const expirationDate = localStorage.getItem('expirationDate')
-        const now = new Date()
+        const expirationDate = localStorage.getItem('expirationDate');
+        const now = new Date();
         if(now >= expirationDate){
             return
         }
-        const userId = localStorage.getItem('userId')
-        commit('authUser', {
+        const userId = localStorage.getItem('userId');
+        commit(types.MUTATE_AUTH_USER, {
             token: token,
             userId: userId
         })
-
     },
 
-    logout({commit}){
-        commit('clearAuthData');
+    [types.ACT_LOGOUT]({commit}){
+        commit(types.MUTATE_CLEAR_AUTH_DATA);
         localStorage.removeItem('expirationDate');
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
@@ -110,7 +109,7 @@ const actions = {
         router.replace('./signin')
     },
 
-    storeUser({commit, state}, userData){
+    [types.ACT_STORE_USER]({commit, state}, userData){
         if(!state.idToken){
             return
         }
@@ -119,54 +118,48 @@ const actions = {
             .catch(error => console.log(error))
     },
 
-    fetchUser({commit, state}){
+    [types.ACT_FETCH_USER]({commit, state}){
         if(!state.idToken){
             return
         }
         globalAxios.get('/users.json' + '?auth=' + state.idToken)
             .then(res => {
-                console.log(res)
-                const data = res.data
-                const users = []
-                console.log(users)
+                console.log(res);
+                const data = res.data;
+                const users = [];
                 const userEmail = localStorage.getItem('userEmail')
                 for(let key in data){
-                    const user = data[key]
-                    user.id = key
+                    const user = data[key];
+                    user.id = key;
                     users.push(user)
                 }
 
                 users.forEach(function (e,i) {
                     for(let k in e){
                         if(e[k] === userEmail){
-                            state.iUser = i
+                            state.iUser = i;
                             state.oneUser = users[i]
                         }
                     }
                 });
 
-
                 state.idUserDb = users[state.iUser].id;
-                console.log(state.idUserDb);
-                console.log(state.oneUser);
-
-                commit('storeUser', users[state.iUser])
+                commit(types.MUTATE_STORE_USER, users[state.iUser])
                 }
             )
             .catch(error => console.log(error))
     },
 
-}
+};
 
 const getters = {
-    user(state){
+    [types.GET_USER](state){
         return state.user
     },
-    isAuthenticated(state){
+    [types.GET_IS_AUTHENTICATED](state){
         return state.idToken !==null
     }
-
-}
+};
 
 export default {
     state,

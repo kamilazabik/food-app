@@ -35,6 +35,7 @@
 
 <script>
     import axios from '../axios-auth'
+    import * as types from '../store/types';
 
   export default {
       data(){
@@ -56,7 +57,7 @@
                   orders: this.orders
               }
               console.log(formData)
-              this.$store.dispatch('signup', formData)
+              this.$store.dispatch(types.ACT_SIGN_UP, formData)
           }
       }
   }

@@ -10,17 +10,18 @@
 <script>
   import axios from 'axios'
   import {mapGetters} from 'vuex'
+  import * as types from '../store/types';
   export default {
       computed: {
           email(){
-              return !this.$store.getters.user ? false : this.$store.getters.user.email
+              return !this.user ? false : this.user.email
           },
           ...mapGetters({
-              user: 'user'
+              user: types.GET_USER
           }),
       },
       created(){
-          this.$store.dispatch('fetchUser')
+          this.$store.dispatch(types.ACT_FETCH_USER)
       }
   }
 

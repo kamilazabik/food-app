@@ -34,6 +34,7 @@
 </template>
 
 <script>
+    import * as types from '../store/types';
     import {mapGetters} from 'vuex'
     import {mapActions} from 'vuex'
     import Basket from '../components/Basket.vue'
@@ -45,36 +46,22 @@
                id: this.$route.params.id,
                type: this.$route.params.type,
                arr: [],
-
            }
        },
        methods: {
-           ... mapActions({
-//               setFilterRestaurants: 'setFilterRestaurants'
-           }),
            getPic(index) {
                return require('../assets/img/'+index)
            },
-//           setFilterRestaurants (){
-//               this.setFilterRestaurants()
-//           }
        },
        computed: {
            ...mapGetters({
-               resItem: 'resItem',
-               filteredRestaurants: 'filteredRestaurants',
-               filteredData: 'filteredData'
-//               setFilterRestaurants: 'setFilterRestaurants'
+               resItem: types.GET_REST_LIST,
+               filteredData: types.GET_FILTERED_REST
            })
        },
        components: {
            appBasket: Basket
        }
-
-
-
-
-
    }
 </script>
 

@@ -12,17 +12,14 @@
               <a href="#" class="btn btn-primary" @click="addToBasket([item, '6' ])">{{ item.price }} zł | +</a>
             </div>
           </div>
-
         </div>
-
       </div>
-
       <app-basket :id ='link'></app-basket>
-
   </div>
 </template>
 
 <script>
+    import * as types from '../store/types';
     import {mapGetters} from 'vuex'
     import {mapActions} from 'vuex'
     import Basket from '../components/Basket.vue'
@@ -38,13 +35,13 @@
 
         methods: {
             ... mapActions({
-                addItemToBasket: 'addToBasket',
-                cleanBasket: 'cleanBasket'
+                addItemToBasket: types.ACT_ADD_TO_BASKET,
+                cleanBasket: types.ACT_CLEAN_BASKET
             }),
 
-            openBasket(){
-                this.changeBasketAct(this.ifOpenBasket)
-            },
+//            openBasket(){
+//                this.changeBasketAct(this.ifOpenBasket)
+//            },
 
             addToBasket(item,delCost) {
                 this.addItemToBasket(item, delCost)
@@ -55,8 +52,8 @@
         },
         computed: {
             ...mapGetters({
-                resItem: 'resItem',
-                menu: 'oneResMenu',
+                resItem: types.GET_REST_LIST,
+                menu: types.GET_MENU,
             }),
         },
         created () {

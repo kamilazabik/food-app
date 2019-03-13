@@ -1,3 +1,4 @@
+import * as types from '../types';
 import axios from '../../axios-auth';
 import globalAxios from 'axios';
 import auth from './auth-user'
@@ -7,10 +8,10 @@ const state = {
     stickyBasket: false,
     basket: [],
     order: null
-}
+};
 
 const mutations = {
-    'BASKET_STATUS'(state){
+    [types.MUTATE_OPEN_BASKET](state){
         console.log( !state.openBasket);
         if(!state.openBasket){
             state.openBasket = true;
@@ -21,54 +22,50 @@ const mutations = {
         }
     },
 
-    'PUSH_BASKET'(state, payload){
-        console.log( payload)
+    [types.MUTATE_ADD_TO_BASKET](state, payload){
+        console.log( payload);
         state.basket.push({
             name: payload[0].name,
             price: payload[0].price,
             delCost: payload[1],
             quantity: 1,
             restName: payload[0].type
-        })
+        });
 
-        console.log( state.basket)
+        console.log(state.basket)
     },
 
-    'CLEAN_BASKET'(state){
+    [types.MUTATE_CLEAN_BASKET](state){
         state.basket = []
     },
 
-    'ADD_ORDER'(state, payload){
+    [types.MUTATE_ADD_ORDER](state, payload){
      state.order= {
          restName: payload[0][0].restName,
          total: payload[1],
          basket: payload[0]
         }
-            // state.restItem: payload.restName
-
-
     }
-
-}
+};
 
 const actions = {
-    changeBasket({commit}, getters) {
-        commit('BASKET_STATUS', getters)
+    [types.ACT_OPEN_BASKET]({commit}, getters) {
+        commit(types.MUTATE_OPEN_BASKET, getters)
     },
 
-    addToBasket({commit}, item){
-        commit('PUSH_BASKET', item)
+    [types.ACT_ADD_TO_BASKET]({commit}, item){
+        commit(types.MUTATE_ADD_TO_BASKET, item)
     },
 
-    cleanBasket({commit}){
-        commit('CLEAN_BASKET')
+    [types.ACT_CLEAN_BASKET]({commit}){
+        commit(types.MUTATE_CLEAN_BASKET)
     },
 
-    addOrder({commit}, payload ){
-        commit('ADD_ORDER', payload)
+    [types.ACT_ADD_ORDER]({commit}, payload ){
+        commit(types.MUTATE_ADD_ORDER, payload)
     },
 
-    addBasketToDB({commit, state}, basket){
+    [types.ACT_BASKET_TO_DB]({commit, state}, basket){
         if(!auth.state.idToken){
             return
         }
@@ -92,25 +89,25 @@ const actions = {
             .catch(error => console.log(error))
 
     }
-}
+};
 
 const getters = {
-    checkBasket: state=> {
+    [types.GET_BASKET_STATUS]: state=> {
         return state.openBasket
     },
 
-    checkStickyBasket: state=> {
+    [types.GET_STICKY_BASKET]: state=> {
         return state.stickyBasket
     },
 
-    pushBasket: state=> {
+    [types.GET_BASKET]: state=> {
         return state.basket
     },
 
-    getOrder: state=> {
+    [types.GET_ORDER]: state=> {
         return state.order
     }
-}
+};
 
 export default {
     state,

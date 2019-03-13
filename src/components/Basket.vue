@@ -43,6 +43,7 @@
 </template>
 
 <script>
+    import * as types from '../store/types';
     import {mapGetters} from 'vuex'
     import {mapActions} from 'vuex'
 
@@ -62,8 +63,8 @@
 
         methods: {
             ... mapActions({
-                addItemToBasket: 'addToBasket',
-                cleanBasket: 'cleanBasket',
+                addItemToBasket: types.ACT_ADD_TO_BASKET,
+                cleanBasket: types.ACT_CLEAN_BASKET,
             }),
 
             openBasket() {
@@ -92,10 +93,10 @@
             },
             addNewOrder() {
 
-                this.$store.dispatch('addOrder', [this.basket, this.totalCost])
+                this.$store.dispatch(types.ACT_ADD_ORDER, [this.basket, this.totalCost])
                 console.log(this.order)
 
-                this.$store.dispatch('addBasketToDB', this.order);
+                this.$store.dispatch(types.ACT_BASKET_TO_DB, this.order);
                 this.cleanBasket();
                 this.basketText = 'Thank you, your order has been placed! :)'
             }
@@ -103,10 +104,10 @@
 
         computed: {
             ...mapGetters({
-                ifOpenBasket: 'checkBasket',
-                ifStickyBasket: 'checkStickyBasket',
-                basket: 'pushBasket',
-                order: 'getOrder'
+                ifOpenBasket: types.GET_BASKET_STATUS,
+                ifStickyBasket: types.GET_STICKY_BASKET,
+                basket: types.GET_BASKET,
+                order: types.GET_ORDER
 
             }),
             partial() {

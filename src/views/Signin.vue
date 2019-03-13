@@ -23,7 +23,7 @@
 </template>
 
 <script>
-
+    import * as types from '../store/types';
     import axios from '../axios-auth'
 
     export default {
@@ -40,7 +40,7 @@
                     password: this.password,
                 }
                 console.log(formData)
-                this.$store.dispatch('login', {email: formData.email, password: formData.password})
+                this.$store.dispatch(types.ACT_LOGIN, {email: formData.email, password: formData.password})
 
             }
         }
