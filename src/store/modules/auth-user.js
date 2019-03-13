@@ -11,7 +11,6 @@ const state = {
     iUser: null,
     idUserDb: null,
     oneUser: []
-
 };
 
 const mutations = {
@@ -127,7 +126,7 @@ const actions = {
                 console.log(res);
                 const data = res.data;
                 const users = [];
-                const userEmail = localStorage.getItem('userEmail')
+                const userEmail = localStorage.getItem('userEmail');
                 for(let key in data){
                     const user = data[key];
                     user.id = key;
@@ -149,7 +148,6 @@ const actions = {
             )
             .catch(error => console.log(error))
     },
-
 };
 
 const getters = {

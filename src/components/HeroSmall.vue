@@ -43,10 +43,12 @@
         components: {
             appHeader: Header,
         },
+
         computed: {
             ...mapGetters({
                 isAuthenticated: types.GET_IS_AUTHENTICATED
             }),
+
             auth(){
                 return this.isAuthenticated
             }
@@ -59,8 +61,6 @@
         }
     }
 </script>
-
-
 
 <style lang="scss">
   .jumbotron-small {

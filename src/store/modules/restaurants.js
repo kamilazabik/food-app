@@ -75,12 +75,13 @@ const state = {
         },
     ],
     menu: {
-        'burger': [ {
-            type: 'burgers',
-            name: 'Classic Burger',
-            price: '20' ,
-            ingredients: ['180g beef', 'cheddar', 'tomato', 'red onion', 'cucumber', 'sauce', 'lettuce']
-        },
+        'burger': [
+            {
+                type: 'burgers',
+                name: 'Classic Burger',
+                price: '20' ,
+                ingredients: ['180g beef', 'cheddar', 'tomato', 'red onion', 'cucumber', 'sauce', 'lettuce']
+            },
             {
                 type: 'burgers',
                 name: 'Spicy Burger',
@@ -203,17 +204,14 @@ const actions = {
 
         dispatch(types.ACT_SELECT_FILTER, type);
 
-
         if (state.filters.length > 0) {
 
             filteredDataByfilters= state.filteredData.filter(obj => state.filters.every(val => obj.type.indexOf(val) >= 0));
             state.filteredData = filteredDataByfilters;
         }
-
         console.log(state.filteredData)
         console.log(filteredDataByfilters)
     }
-
 };
 
 

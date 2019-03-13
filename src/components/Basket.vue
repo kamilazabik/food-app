@@ -74,9 +74,11 @@
             removeFromBasket(item) {
                 this.basket.splice(this.basket.indexOf(item), 1)
             },
+
             increaseQuantity(item) {
                 item.quantity++;
             },
+
             decreaseQuantity(item) {
                 item.quantity--;
                 if (item.quantity === 0) {
@@ -91,6 +93,7 @@
                     this.$refs["basketCard"].classList.remove("sticky");
                 }
             },
+
             addNewOrder() {
 
                 this.$store.dispatch(types.ACT_ADD_ORDER, [this.basket, this.totalCost])
@@ -118,6 +121,7 @@
                 }
                 return this.partialCost
             },
+
             total() {
                 return this.totalCost = this.partial + this.basket[0].delCost
             }
@@ -125,6 +129,5 @@
         created() {
             window.addEventListener('scroll', this.stickHeader);
         },
-
     }
 </script>

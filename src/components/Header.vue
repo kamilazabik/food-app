@@ -38,9 +38,11 @@
           ... mapActions({
                   changeBasketAct: types.ACT_OPEN_BASKET,
           }),
+
           openBasket(){
               this.changeBasketAct(this.ifOpenBasket)
           },
+
           stickHeader () {
               if (window.pageYOffset > this.sticky) {
                   this.$refs["header"].classList.add("sticky");
@@ -49,6 +51,7 @@
               }
           }
       },
+
       created () {
           window.addEventListener('scroll', this.stickHeader);
       },

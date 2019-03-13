@@ -18,7 +18,6 @@ const mutations = {
             window.pageYOffset > 300 ? state.stickyBasket = true :  state.stickyBasket = false;
         }else {
             state.openBasket = false
-
         }
     },
 
@@ -31,7 +30,6 @@ const mutations = {
             quantity: 1,
             restName: payload[0].type
         });
-
         console.log(state.basket)
     },
 
@@ -69,14 +67,12 @@ const actions = {
         if(!auth.state.idToken){
             return
         }
-
         if(typeof auth.state.oneUser.orders !== 'undefined' ){
             auth.state.oneUser.orders.push(basket)
         }else {
             auth.state.oneUser.orders = [];
             auth.state.oneUser.orders.push(basket)
         }
-
         globalAxios.post('/orders.json' + '?auth=' + auth.state.idToken, basket)
             .then(res=> console.log(res))
             .catch(error => console.log(error))

@@ -12,7 +12,6 @@ export const GET_STICKY_BASKET = 'basket/GET_STICKY_BASKET';
 export const GET_BASKET = 'basket/GET_BASKET';
 export const GET_ORDER = 'basket/GET_ORDER';
 
-
 //Mutations
 export const MUTATE_AUTH_USER = 'auth-user/MUTATE_AUTH_USER';
 export const MUTATE_STORE_USER = 'auth-user/MUTATE_STORE_USER';
@@ -34,10 +33,8 @@ export const ACT_LOGOUT = 'auth-user/ACT_LOGOUT';
 export const ACT_STORE_USER = 'auth-user/ACT_STORE_USER';
 export const ACT_FETCH_USER = 'auth-user/ACT_FETCH_USER';
 
-
 export const ACT_SELECT_FILTER = 'restaurants/ACT_SELECT_FILTER';
 export const ACT_GET_FILTERED_DATA = 'restaurants/ACT_GET_FILTERED_DATA';
-
 
 export const ACT_OPEN_BASKET = 'basket/ACT_OPEN_BASKET';
 export const ACT_ADD_TO_BASKET = 'basket/ACT_ADD_TO_BASKET';
