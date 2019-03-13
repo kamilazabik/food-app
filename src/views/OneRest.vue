@@ -1,11 +1,11 @@
 <template>
   <div class="menu-con">
       <div class="menu">
-        <div class="card rest-card" v-for="item in menu[link]">
+        <div class="card rest-card" v-for="(item, index) in menu[link]" :key="index">
           <div class="card-body rest-body">
             <div class="rest-desc">
               <h5 class="card-title rest-card__title">{{ item.name }}</h5>
-              <span class="card-text rest-card__ing" v-for="ing in item.ingredients">{{ ing }}   </span>
+              <span class="card-text rest-card__ing" v-for="(ing, index) in item.ingredients" :key="index">{{ ing }}   </span>
             </div>
             <div class="rest-button">
               <!--<a href="#" class="btn btn-primary" @click="addToBasket([item, resItem[link].options[0].deliverCost ])">{{ item.price }} zł | +</a>-->

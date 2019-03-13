@@ -34,7 +34,6 @@
 </template>
 
 <script>
-    import axios from '../axios-auth'
     import * as types from '../store/types';
 
   export default {

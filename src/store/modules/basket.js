@@ -1,5 +1,4 @@
 import * as types from '../types';
-import axios from '../../axios-auth';
 import globalAxios from 'axios';
 import auth from './auth-user'
 
@@ -63,7 +62,7 @@ const actions = {
         commit(types.MUTATE_ADD_ORDER, payload)
     },
 
-    [types.ACT_BASKET_TO_DB]({commit, state}, basket){
+    [types.ACT_BASKET_TO_DB](basket){
         if(!auth.state.idToken){
             return
         }

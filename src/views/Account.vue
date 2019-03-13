@@ -8,7 +8,6 @@
 </template>
 
 <script>
-  import axios from 'axios'
   import {mapGetters} from 'vuex'
   import * as types from '../store/types';
   export default {

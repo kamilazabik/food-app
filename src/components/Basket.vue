@@ -95,10 +95,8 @@
             },
 
             addNewOrder() {
-
                 this.$store.dispatch(types.ACT_ADD_ORDER, [this.basket, this.totalCost])
                 console.log(this.order)
-
                 this.$store.dispatch(types.ACT_BASKET_TO_DB, this.order);
                 this.cleanBasket();
                 this.basketText = 'Thank you, your order has been placed! :)'

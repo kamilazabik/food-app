@@ -1,7 +1,7 @@
 <template>
   <div class="rest-con ">
     <div class="listRest">
-      <div class="card mb-3" v-if="" v-for="(item, index) in filteredData" :key="index">
+      <div class="card mb-3" v-for="(item, index) in filteredData" :key="index">
         <div class="row no-gutters restaurant">
           <div class="col-md-4">
             <img :src="require('../assets/img/' + item.img)"  class="card-img restaurant-logo" alt="">
@@ -36,7 +36,6 @@
 <script>
     import * as types from '../store/types';
     import {mapGetters} from 'vuex'
-    import {mapActions} from 'vuex'
     import Basket from '../components/Basket.vue'
 
 

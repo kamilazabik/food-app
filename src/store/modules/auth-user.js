@@ -108,7 +108,7 @@ const actions = {
         router.replace('./signin')
     },
 
-    [types.ACT_STORE_USER]({commit, state}, userData){
+    [types.ACT_STORE_USER]({state}, userData){
         if(!state.idToken){
             return
         }

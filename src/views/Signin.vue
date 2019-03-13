@@ -24,7 +24,6 @@
 
 <script>
     import * as types from '../store/types';
-    import axios from '../axios-auth'
 
     export default {
         data () {

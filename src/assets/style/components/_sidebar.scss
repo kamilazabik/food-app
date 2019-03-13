@@ -14,11 +14,13 @@
     border-radius: 3px;
     font-size: 15px;
     color: #666;
+    cursor: pointer;
   }
 }
 
+
 .btn-blue {
-  color: #fff;
+  color: #fff !important;
   background-color: #007bff;
   border-color: #007bff;
 }
