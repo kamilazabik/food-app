@@ -33,7 +33,7 @@ const routes= [
         component: Restaurants,
         children: [
             {path: '/restaurants', component: ListRest, name: 'listRest'},
-            {path: '/restaurants/:id', component: OneRest, name: 'oneRest'},
+            {path: '/restaurants/:link', component: OneRest, name: 'oneRest'},
             {path: '/signup', component: Signup, name: 'signup'},
             {path: '/signin', component: Signin, name: 'signin'},
             {path: '/account', component: Account, name: 'account'}

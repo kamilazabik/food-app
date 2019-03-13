@@ -1,74 +1,79 @@
 const state = {
-    restaurantItems: {
-        burger: {
+    filteredRestaurants: [],
+    filteredData:[],
+    filters: [],
+    restaurantItems: [
+        {
             'name': 'Burgers',
             'type': 'American',
+            'link': 'burger',
             'range': 5,
-            'img': 'burger_c.png',
+            'img': 'burger.png',
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 30,
                 'minCost': 10
             }]
         },
-        pizza: {
-            'name': 'Pizza',
+         {
+            'name': 'Sky Pizza',
             'type': 'Italian',
+            'link': 'sky-pizza',
             'range': 4,
-            'img': 'pizza-slice_c.png',
+            'img': 'pizza-slice.png',
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 45,
                 'minCost': 30
             }]
         },
-        pasta: {
+       {
             'name': 'Pasta',
             'type': 'Italian',
             'range': 4,
-            'img': 'spaghetti_c.png',
+            'img': 'spaghetti.png',
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 60,
                 'minCost': 30
             }]
         },
-        american_burgers: {
+        {
             'name': 'American Burgers',
             'type': 'American',
             'range': 5,
-            'img': 'burger_c.png',
+            'img': 'burger.png',
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 35,
                 'minCost': 50
             }]
         },
-        chinese_food: {
+         {
             'name': 'Chinese Food',
             'type': 'Chinese',
             'range': 5,
-            'img': 'rice_c.png',
+            'img': 'rice.png',
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 45,
                 'minCost': 40
             }]
         },
-        sushi: {
+        {
             'name': 'Sushi',
             'type': 'Shusi',
             'range': 5,
-            'img': 'sushi_c.png',
+            'img': 'sushi.png',
             'options': [{
                 'deliverCost': 6,
-                'deliveryTime': 55,
-                'minCost': 30
+                'deliveryTime': 5,
+                'minCost': 40
             }]
         },
-    },
+    ],
     menu: {
-        burger: [ {
+        'burger': [ {
             type: 'burgers',
             name: 'Classic Burger',
             price: '20' ,
@@ -107,7 +112,7 @@ const state = {
                 ingredients: ['180g beef', 'blue cheese', 'bacon', 'lettuce', 'tomato', 'cucumber', 'red onion', 'sauce']
             }
         ],
-        pizza: [
+        'sky-pizza': [
             {
                 type: 'pizzas',
                 name: 'Mexicana Pizza',
@@ -143,9 +148,16 @@ const state = {
                 price: '22' ,
                 ingredients: [' spicy tomato sauce', 'cheese', 'ham', 'pineapple']
             },
+            {
+                type: 'pizzas',
+                name: 'Farmhouse',
+                kind: 'Classic',
+                price: '22' ,
+                ingredients: [' olives', 'sweetcorn', 'mushrooms', 'red onion', 'mixed peppers']
+            },
         ]
     }
-}
+};
 
 const getters = {
     resItem: state=> {
@@ -155,9 +167,75 @@ const getters = {
     oneResMenu: state=> {
         return state.menu
     },
-}
+    filteredRestaurants: state=> {
+        return state.filteredRestaurants
+    },
+    filteredData: state=> {
+        return state.filteredData
+    },
+    filters: state=> {
+        return state.filters
+    }
+
+};
+
+const mutations = {
+    filterRestaurants(state, type){
+        console.log(state.restaurantItems);
+        state.filteredRestaurants = state.restaurantItems.filter(function (item) {
+            return item.type === type
+        })
+    },
+
+    selectedFilters(state,type) {
+        state.filters= [];
+        let checkedFiters = state.restaurantItems.filter(obj => obj.type === type);
+        console.log(checkedFiters)
+        checkedFiters.forEach(element => {
+            state.filters.push(element.type);
+
+            console.log(state.filters)
+        });
+        return state.filters;
+    },
+};
+
+const actions = {
+    filterRestaurants({commit}, type) {
+        commit('filterRestaurants', type)
+    },
+    selectedFilters({commit}, type){
+        commit('selectedFilters', type)
+    },
+
+    getFilteredData({commit, dispatch, state},type) {
+        state.filteredData = state.restaurantItems;
+        let filteredDataByfilters = [];
+        console.log(type)
+        console.log(state.filters)
+        // state.selectedFilters(type)
+        dispatch('selectedFilters', type)
+
+
+        // first check if filters where selected
+        if (state.filters.length > 0) {
+
+            filteredDataByfilters= state.filteredData.filter(obj => state.filters.every(val => obj.type.indexOf(val) >= 0));
+            state.filteredData = filteredDataByfilters;
+        }
+        // then filter according to keyword, for now this only affects the name attribute of each data
+
+
+        console.log(state.filteredData)
+        console.log(filteredDataByfilters)
+    }
+
+};
+
 
 export default {
     state,
-    getters
+    getters,
+    mutations,
+    actions
 }

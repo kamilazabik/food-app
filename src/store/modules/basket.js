@@ -37,7 +37,7 @@ const mutations = {
     'CLEAN_BASKET'(state){
         state.basket = []
     },
-    
+
     'ADD_ORDER'(state, payload){
      state.order= {
          restName: payload[0][0].restName,

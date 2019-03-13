@@ -2,7 +2,7 @@
   <div class="jumbotron jumbotron-fluid">
       <div class="hero">
         <router-link to="/restaurants" tag="h1" class="display-4 hero-text">
-          <a class="hero-link">Zamów jedzenie online</a></router-link>
+          <a class="hero-link">Order Your Favourite Dishes Online!</a></router-link>
 
       </div>
   </div>

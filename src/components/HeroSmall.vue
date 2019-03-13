@@ -22,7 +22,7 @@
     </div>
     <div class="hero">
       <router-link to="/restaurants" tag="h1" class="display-4 hero-text">
-        <a class="hero-link">Zamów jedzenie online</a>
+        <a class="hero-link">Order Your Favourite Dishes Online!</a>
       </router-link>
     </div>
     <app-header></app-header>
