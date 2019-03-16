@@ -25,9 +25,9 @@ const mutations = {
         state.basket.push({
             name: payload[0].name,
             price: payload[0].price,
-            delCost: payload[1],
+            delCost: payload[1].options[0].deliverCost,
             quantity: 1,
-            restName: payload[0].type
+            restName: payload[1].name
         });
         console.log(state.basket)
     },
@@ -62,15 +62,19 @@ const actions = {
         commit(types.MUTATE_ADD_ORDER, payload)
     },
 
-    [types.ACT_BASKET_TO_DB](basket){
+    [types.ACT_BASKET_TO_DB]({commit},basket){
         if(!auth.state.idToken){
             return
         }
         if(typeof auth.state.oneUser.orders !== 'undefined' ){
             auth.state.oneUser.orders.push(basket)
+            console.log(basket)
+            console.log(auth.state.oneUser.orders)
         }else {
             auth.state.oneUser.orders = [];
             auth.state.oneUser.orders.push(basket)
+            console.log(basket)
+            console.log(auth.state.oneUser.orders)
         }
         globalAxios.post('/orders.json' + '?auth=' + auth.state.idToken, basket)
             .then(res=> console.log(res))

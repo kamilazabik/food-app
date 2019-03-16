@@ -38,6 +38,7 @@ const actions = {
         axios.post('/signupNewUser?key=AIzaSyAQWC9D-OMe-9CV11HBNAFEo56z8aot4Hc', {
             email: authData.email,
             password: authData.password,
+            name: authData.name,
             returnSecureToken: true
         })
             .then(res => {
@@ -45,19 +46,22 @@ const actions = {
                     token: res.data.idToken,
                     userId: res.data.localId
                 });
+                console.log(res.data)
+                console.log(authData.name)
                 const now = new Date();
                 const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
                 localStorage.setItem('token', res.data.idToken);
                 localStorage.setItem('userId', res.data.localId);
                 localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userEmail', res.data.email);
+                localStorage.setItem('name', authData.name);
                 dispatch(types.ACT_STORE_USER, authData);
                 dispatch(types.ACT_SET_LOGOUT_TIMER, res.data.expiresIn)
             })
             .catch(error => console.log(error))
     },
 
-    [types.ACT_LOGIN]({commit, dispatch}, authData){
+    [types.ACT_LOGIN]({commit, dispatch, state}, authData){
         axios.post('/verifyPassword?key=AIzaSyAQWC9D-OMe-9CV11HBNAFEo56z8aot4Hc', {
             email: authData.email,
             password: authData.password,
@@ -69,17 +73,36 @@ const actions = {
                     token: res.data.idToken,
                     userId: res.data.localId,
                 });
+                // console.log(authData.name)
+                // console.log(res.data)
+                // console.log(state.user.name)
                 const now = new Date();
                 const expirationDate = new Date(now.getTime() + res.data.expiresIn * 1000);
                 localStorage.setItem('token',res.data.idToken );
                 localStorage.setItem('userId',res.data.localId );
                 localStorage.setItem('expirationDate', expirationDate);
                 localStorage.setItem('userEmail', res.data.email);
+
                 dispatch(types.ACT_SET_LOGOUT_TIMER, res.data.expiresIn);
                 dispatch(types.ACT_FETCH_USER)
 
+
             })
             .catch(error => console.log(error))
+
+        // globalAxios.get('/users.json' + '?auth=' + state.idToken)
+        //     .then(res => {
+        //             console.log(res);
+        //             const data = res.data;
+        //             const users = [];
+        //         }
+        //     )
+        //     .catch(error => console.log(error))
+
+
+
+
+            router.replace('/account')
     },
 
     [types.ACT_TRY_AUTO_LOGIN]({commit}){
@@ -105,6 +128,7 @@ const actions = {
         localStorage.removeItem('token');
         localStorage.removeItem('userId');
         localStorage.removeItem('userEmail');
+        localStorage.removeItem('name');
         router.replace('./signin')
     },
 
@@ -123,14 +147,18 @@ const actions = {
         }
         globalAxios.get('/users.json' + '?auth=' + state.idToken)
             .then(res => {
-                console.log(res);
+                console.log(res.data);
                 const data = res.data;
                 const users = [];
                 const userEmail = localStorage.getItem('userEmail');
+                localStorage.setItem('name', res.data.name);
+
                 for(let key in data){
                     const user = data[key];
                     user.id = key;
                     users.push(user)
+                    localStorage.setItem('name', data[key].name);
+                    console.log(data[key].name)
                 }
 
                 users.forEach(function (e,i) {

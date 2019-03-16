@@ -3,6 +3,12 @@
     <div class="signup-form">
       <form @submit.prevent="onSubmit" class="form">
         <div class="form-group">
+          <label for="name">Name</label>
+          <input type="name"
+                 class="form-control"
+                 id="name"  v-model="name">
+        </div>
+        <div class="form-group">
           <label for="email">Email address</label>
           <input type="email"
                  class="form-control"
@@ -34,7 +40,7 @@
 </template>
 
 <script>
-    import * as types from '../store/types';
+    import * as types from '../../store/types';
 
   export default {
       data(){
@@ -42,6 +48,7 @@
               email: '',
               password: '',
               confirmPassword: '',
+              name: '',
               terms: false,
               orders: []
           }
@@ -53,7 +60,8 @@
                   password: this.password,
                   confirmPassword: this.confirmPassword,
                   terms: this.terms,
-                  orders: this.orders
+                  orders: this.orders,
+                  name: this.name
               }
               console.log(formData)
               this.$store.dispatch(types.ACT_SIGN_UP, formData)

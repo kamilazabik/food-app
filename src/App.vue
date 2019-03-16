@@ -1,35 +1,26 @@
 <template>
   <div id="app">
-    <div class="container-nav">
-      <!--<div class="container">-->
-        <!--<app-header></app-header>-->
-      <!--</div>-->
-
-
-    </div>
     <router-view></router-view>
-    <!--<div id="nav">-->
-      <!--<router-link to="/">Home</router-link> |-->
-      <!--<router-link to="/about">About</router-link>-->
-    <!--</div>-->
-
-
   </div>
+
 </template>
 
 
 <script>
+  import {mapActions} from 'vuex'
+  import * as types from './store/types';
 
-    import Hero from './components/Hero.vue'
-
-
-    export default {
-        components: {
-            appHero: Hero
+  export default {
+        methods: {
+            ...mapActions({
+                tryAutoLogin: types.ACT_TRY_AUTO_LOGIN
+            })
         },
+      created(){
+          this.tryAutoLogin()
+      }
+}
 
-
-    }
 </script>
 
 <style lang="scss">

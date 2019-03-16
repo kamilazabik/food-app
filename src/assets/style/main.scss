@@ -1,3 +1,4 @@
+@import 'components/variables';
 @import "fonts/animation";
 @import "fonts/fontello";
 @import "fonts/fontello-codes";
@@ -11,6 +12,9 @@
 @import "components/listRest";
 @import "components/smallHero";
 @import "components/sidebar";
+@import "components/bigHero";
+@import "components/account";
+@import "components/typo";
 
 
 p {
@@ -28,5 +32,10 @@ p {
 }
 
 @media (min-width: 1200px){
+}
+
+.bg {
+  background-color: #f8f5f2;
+  min-height: 100vh;
 }
 
