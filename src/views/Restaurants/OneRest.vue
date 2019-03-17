@@ -33,7 +33,8 @@
                 height: 30,
                 id: this.$route.params.id,
                 link: this.$route.params.link,
-                params: this.$route.params
+                params: this.$route.params,
+                ids: []
             }
         },
 
@@ -46,9 +47,18 @@
             getParam(param){
                 return this.param(param)
             },
-//            openBasket(){
-//                this.changeBasketAct(this.ifOpenBasket)
-//            },
+
+            findId(){
+                let ids = [];
+                this.resItem.forEach(function (el) {
+                    ids.push(el.link)
+                });
+                this.ids = ids;
+                if(typeof this.id === 'undefined'){
+                    this.id = this.ids.indexOf(this.params.link);
+                    return this.id
+                }
+            },
 
             addToBasket(item,delCost) {
                 this.addItemToBasket(item, delCost)
@@ -60,12 +70,13 @@
         computed: {
             ...mapGetters({
                 resItem: types.GET_REST_LIST,
+                paramsStore: types.GET_PARAM
             }),
         },
         created () {
             window.addEventListener('scroll', this.stickHeader);
-              this.getParam(this.params)
-
+            this.findId();
+            this.getParam([this.params, this.id])
         },
     }
 

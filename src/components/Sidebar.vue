@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar">
+  <div class="sidebar" v-if="$route.path == '/restaurants'">
     <a class="sidebar-btn btn-blue" @click="filter()" >All</a>
     <a class="sidebar-btn" @click="filter('Italian')">Italian</a>
     <a class="sidebar-btn" @click="filter('Polish')">Polish</a>

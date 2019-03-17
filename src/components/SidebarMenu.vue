@@ -1,8 +1,11 @@
 <template>
-  <div class="sidebar" >
-    <div v-for="(item, index) in this.resItem[param.id].types" :key="index">
+  <div>
+    <div class="sidebar" v-if="typeof params.id != 'undefined' && $route.path == '/restaurants/' + params.link">
+      <div v-for="(item, index) in this.resItem[params.id].types" :key="index">
         <a class="sidebar-btn">{{item}}</a>
+      </div>
     </div>
+    {{$route.path}}
   </div>
 </template>
 
@@ -15,7 +18,7 @@
       computed: {
           ...mapGetters({
               resItem: types.GET_REST_LIST,
-              param: types.GET_PARAM
+              params: types.GET_PARAM
           }),
       },
       methods: {
@@ -24,7 +27,7 @@
           },
       },
       created(){
-          console.log(this.param)
+          console.log(this.params)
       }
   }
 </script>

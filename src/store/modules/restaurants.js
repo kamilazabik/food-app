@@ -4,7 +4,9 @@ const state = {
     filteredRestaurants: [],
     filteredData:[],
     filters: [],
-    param: '',
+    paramID: '',
+    paramLink: '',
+    params: {},
     restaurantItems: [
         {
             'name': 'Burgers',
@@ -72,6 +74,7 @@ const state = {
             'name': 'Sky Pizza',
             'type': 'Italian',
             'link': 'sky-pizza',
+             "types": ['pizza', 'drinks'],
             'range': 4,
             'img': 'pizza-slice.png',
             'options': [{
@@ -129,6 +132,7 @@ const state = {
        {
             'name': 'Pasta',
             'type': 'Italian',
+            'link': 'italian',
             'range': 4,
             'img': 'spaghetti.png',
             'options': [{
@@ -140,6 +144,7 @@ const state = {
         {
             'name': 'American Burgers',
             'type': 'American',
+            'link': 'american-burgers',
             'range': 5,
             'img': 'burger.png',
             'options': [{
@@ -151,6 +156,7 @@ const state = {
          {
             'name': 'Chinese Food',
             'type': 'Chinese',
+            'link': 'chinese-food',
             'range': 5,
             'img': 'rice.png',
             'options': [{
@@ -162,6 +168,7 @@ const state = {
         {
             'name': 'Sushi',
             'type': 'Shusi',
+            'link': 'sushi-house',
             'range': 5,
             'img': 'sushi.png',
             'options': [{
@@ -177,7 +184,6 @@ const state = {
 
 const getters = {
     [types.GET_REST_LIST]: state=> {
-        console.log(state.restaurantItems);
         return state.restaurantItems
     },
     [types.GET_FILTERED_REST]: state=> {
@@ -187,8 +193,8 @@ const getters = {
         return state.filters
     },
     [types.GET_PARAM]: state=> {
-        console.log(state.param)
-        return state.param
+        console.log(state.params)
+        return state.params
     }
 };
 
@@ -199,14 +205,15 @@ const mutations = {
         console.log(checkedFiters);
         checkedFiters.forEach(element => {
             state.filters.push(element.type);
-            console.log(state.filters)
         });
         return state.filters;
     },
     [types.MUTATE_PARAM](state,param){
-        state.param = param
-        console.log(state.param)
-        return state.param
+        state.params = {};
+        state.params.id = param[1];
+        state.params.link = param[0].link;
+        // state.paramID = param.id;
+        return state.params
     }
 };
 
@@ -222,9 +229,6 @@ const actions = {
     [types.ACT_GET_FILTERED_DATA]({dispatch, state},type) {
         state.filteredData = state.restaurantItems;
         let filteredDataByfilters = [];
-        console.log(type);
-        console.log(state.filters);
-
         dispatch(types.ACT_SELECT_FILTER, type);
 
         if (state.filters.length > 0) {
@@ -232,8 +236,7 @@ const actions = {
             filteredDataByfilters= state.filteredData.filter(obj => state.filters.every(val => obj.type.indexOf(val) >= 0));
             state.filteredData = filteredDataByfilters;
         }
-        console.log(state.filteredData)
-        console.log(filteredDataByfilters)
+
     }
 };
 

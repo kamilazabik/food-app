@@ -8,14 +8,12 @@
           <div class="col-md-3">
             <app-sidebar></app-sidebar>
             <app-sidebar-menu :params="this.$route.params.link"></app-sidebar-menu>
- {{params}}
           </div>
           <div class="col-md-9">
             <router-view></router-view>
           </div>
       </div>
 
-      <!--<router-view name="oneRest"></router-view>-->
     </div>
   </div>
 </template>
@@ -52,8 +50,6 @@
               return this.isAuthenticated
           }
       },
-
-
 
       components: {
           appHeroSmall: HeroSmall,
