@@ -39,3 +39,26 @@ p {
   min-height: 100vh;
 }
 
+
+.sidebar.sticky {
+  position: fixed;
+  top: 60px;
+  width: 270px;
+}
+
+.mgt-10 {
+  margin-top: 1rem;
+}
+
+.invalid {
+  input {
+    border: 1px solid red;
+  }
+
+  p {
+    color: #FF0000;
+  }
+}
+
+
+

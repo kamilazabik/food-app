@@ -6,7 +6,10 @@ const state = {
     openBasket: false,
     stickyBasket: false,
     basket: [],
-    order: null
+    order: null,
+    total: 0,
+    partial: '',
+    basketItems:''
 };
 
 const mutations = {
@@ -19,9 +22,7 @@ const mutations = {
             state.openBasket = false
         }
     },
-
     [types.MUTATE_ADD_TO_BASKET](state, payload){
-        console.log( payload);
         state.basket.push({
             name: payload[0].name,
             price: payload[0].price,
@@ -29,7 +30,6 @@ const mutations = {
             quantity: 1,
             restName: payload[1].name
         });
-        console.log(state.basket)
     },
 
     [types.MUTATE_CLEAN_BASKET](state){
@@ -42,26 +42,28 @@ const mutations = {
          total: payload[1],
          basket: payload[0]
         }
+    },
+    [types.MUTATE_TOTAL](state,payload){
+        console.log(state.total)
+        return state.total = payload[0] + payload[1]
+    },
+    [types.MUTATE_RESET_TOTAL](){
+        state.total = 0
+    },
+    [types.MUTATE_PARTIAL](state){
+        state.partial = 0;
+        console.log(state.basket)
+        for (var items in state.basket) {
+            console.log(items)
+            var individualItem = state.basket[items];
+            state.partial += individualItem.quantity * individualItem.price;
+            console.log(individualItem.quantity)
+        }
+        return state.partial
     }
 };
 
 const actions = {
-    [types.ACT_OPEN_BASKET]({commit}, getters) {
-        commit(types.MUTATE_OPEN_BASKET, getters)
-    },
-
-    [types.ACT_ADD_TO_BASKET]({commit}, item){
-        commit(types.MUTATE_ADD_TO_BASKET, item)
-    },
-
-    [types.ACT_CLEAN_BASKET]({commit}){
-        commit(types.MUTATE_CLEAN_BASKET)
-    },
-
-    [types.ACT_ADD_ORDER]({commit}, payload ){
-        commit(types.MUTATE_ADD_ORDER, payload)
-    },
-
     [types.ACT_BASKET_TO_DB]({commit},basket){
         if(!auth.state.idToken){
             return
@@ -105,6 +107,12 @@ const getters = {
 
     [types.GET_ORDER]: state=> {
         return state.order
+    },
+    [types.GET_TOTAL]: state=> {
+        return state.total
+    },
+    [types.GET_PARTIAL]: state=> {
+        return state.partial
     }
 };
 

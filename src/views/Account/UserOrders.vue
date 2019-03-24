@@ -1,7 +1,7 @@
 <template>
  <div class="account-orders">
    <h2 class="pb-5">Your orders:</h2>
-    <div v-if="user.orders">
+    <div v-if="getUserData()">
       <div class="card mb-3"  v-for="(item, index) in user.orders" :key="index">
         <div class="row no-gutters restaurant">
           <div class="col-sm-3">
@@ -51,6 +51,20 @@
     import * as types from '../../store/types';
 
     export default {
+        data(){
+            return{
+                userData: ''
+            }
+        },
+        methods: {
+            getUserData(){
+                if(this.user === null){
+                    return
+                }else {
+                    return this.user.orders
+                }
+            }
+        },
         computed: {
             ...mapGetters({
                 restItem: types.GET_REST_LIST,

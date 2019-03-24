@@ -14,7 +14,7 @@ const state = {
             'link': 'burgers',
             'range': 5,
             'img': 'burger.png',
-            "types": ['burgers', 'drinks'],
+            "types": ['burgers', 'fries', 'drinks' ],
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 30,
@@ -61,11 +61,50 @@ const state = {
                         ingredients: ['180g beef', 'blue cheese', 'bacon', 'lettuce', 'tomato', 'cucumber', 'red onion', 'sauce']
                     }
                 ],
+                'fries': [
+                    {
+                        type: 'fries',
+                        name: 'Original Fries',
+                        price: '8',
+                        ingredients: ['French fries, thickly cut from the finest potatoes.']
+                    },
+                    {
+                        type: 'fries',
+                        name: 'Chilli Fries',
+                        price: '8',
+                        ingredients: ['Homemade french fries, stir fried in chilli sauce.']
+                    },
+                    {
+                        type: 'fries',
+                        name: 'Garlic Fries',
+                        price: '8',
+                        ingredients: ['Homemade french fries, stir fried in garlic sauce.']
+                    },
+                    {
+                        type: 'fries',
+                        name: 'Cheesy Fries',
+                        price: '8',
+                        ingredients: ['Homemade french fries, stir fried with melted cheese.']
+                    }
+                ],
                 'drinks': [
                     {
                         type: 'drinks',
                         name: 'Coca-Cola',
-                        price: '5'
+                        price: '5',
+                        ingredients: ['300 ml bottle']
+                    },
+                    {
+                        type: 'drinks',
+                        name: 'Coke Zero',
+                        price: '5',
+                        ingredients: ['300 ml bottle']
+                    },
+                    {
+                        type: 'drinks',
+                        name: 'Sprite',
+                        price: '5',
+                        ingredients: ['300 ml bottle']
                     }
                 ]
             }
@@ -83,7 +122,7 @@ const state = {
                 'minCost': 30
             }],
              'menu':{
-                 'sky-pizza': [
+                 'pizza': [
                      {
                          type: 'pizzas',
                          name: 'Mexicana Pizza',

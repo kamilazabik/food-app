@@ -2,6 +2,7 @@
   <div class="menu-con">
       <div class="menu">
         <div v-for="(item, index) in resItem[id].menu" :key="index">
+          <h2 class="menu-title" :id="index">{{index | capitalize}}</h2>
           <div class="card rest-card" v-for="(it, index) in item" >
             <div class="card-body rest-body" >
               <div class="rest-desc">
@@ -15,6 +16,7 @@
             </div>
           </div>
         </div>
+
       </div>
       <app-basket :id ='link'></app-basket>
   </div>
@@ -24,6 +26,7 @@
     import * as types from '../../store/types';
     import {mapGetters} from 'vuex'
     import {mapActions} from 'vuex'
+    import {mapMutations} from 'vuex'
     import Basket from '../../components/Basket.vue'
 
     export default {
@@ -39,10 +42,10 @@
         },
 
         methods: {
-            ... mapActions({
-                addItemToBasket: types.ACT_ADD_TO_BASKET,
-                cleanBasket: types.ACT_CLEAN_BASKET,
-                param: types.ACT_PARAM
+            ... mapMutations({
+                addItemToBasket: types.MUTATE_ADD_TO_BASKET,
+                cleanBasket: types.MUTATE_CLEAN_BASKET,
+                param: types.MUTATE_PARAM
             }),
             getParam(param){
                 return this.param(param)
@@ -62,7 +65,10 @@
 
             addToBasket(item,delCost) {
                 this.addItemToBasket(item, delCost)
-            }
+                this.$store.commit(types.MUTATE_PARTIAL)
+                this.$store.commit(types.MUTATE_TOTAL, [this.partial, this.basket[0].delCost])
+            },
+
         },
         components: {
             appBasket: Basket
@@ -70,7 +76,9 @@
         computed: {
             ...mapGetters({
                 resItem: types.GET_REST_LIST,
-                paramsStore: types.GET_PARAM
+                paramsStore: types.GET_PARAM,
+                partial: types.GET_PARTIAL,
+                basket: types.GET_BASKET
             }),
         },
         created () {
@@ -78,6 +86,8 @@
             this.findId();
             this.getParam([this.params, this.id])
         },
+
+
     }
 
 </script>

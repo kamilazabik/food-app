@@ -8,10 +8,14 @@ export const GET_FILTERED_REST = 'restaurants/GET_FILTERED_REST';
 export const GET_FILTERS = 'restaurants/GET_FILTERS';
 export const GET_PARAM = 'restaurants/GET_PARAM';
 
+
 export const GET_BASKET_STATUS = 'basket/GET_BASKET_STATUS';
 export const GET_STICKY_BASKET = 'basket/GET_STICKY_BASKET';
 export const GET_BASKET = 'basket/GET_BASKET';
 export const GET_ORDER = 'basket/GET_ORDER';
+export const GET_TOTAL = 'basket/GET_TOTAL';
+export const GET_PARTIAL = 'basket/GET_PARTIAL';
+export const GET_BASKET_ITEMS = 'basket/GET_BASKET_ITEMS';
 
 export const GET_SHOW_ORDERS = 'account/GET_SHOW_ORDERS';
 
@@ -27,6 +31,9 @@ export const MUTATE_OPEN_BASKET = 'basket/MUTATE_OPEN_BASKET';
 export const MUTATE_ADD_TO_BASKET = 'basket/MUTATE_ADD_TO_BASKET';
 export const MUTATE_CLEAN_BASKET = 'basket/MUTATE_CLEAN_BASKET';
 export const MUTATE_ADD_ORDER = 'basket/MUTATE_ADD_ORDER';
+export const MUTATE_TOTAL = 'basket/MUTATE_TOTAL';
+export const MUTATE_RESET_TOTAL = 'basket/MUTATE_RESET_TOTAL';
+export const MUTATE_PARTIAL = 'basket/MUTATE_PARTIAL';
 
 export const MUTATE_SHOW_ORDERS = 'account/MUTATE_SHOW_ORDERS';
 
@@ -48,5 +55,8 @@ export const ACT_ADD_TO_BASKET = 'basket/ACT_ADD_TO_BASKET';
 export const ACT_CLEAN_BASKET = 'basket/ACT_CLEAN_BASKET';
 export const ACT_ADD_ORDER = 'basket/ACT_ADD_ORDER';
 export const ACT_BASKET_TO_DB = 'basket/ACT_BASKET_TO_DB';
+export const ACT_TOTAL = 'basket/ACT_TOTAL';
+export const ACT_RESET_TOTAL = 'basket/ACT_RESET_TOTAL';
+export const ACT_PARTIAL = 'basket/ACT_PARTIAL';
 
 export const ACT_SHOW_ORDERS = 'account/ACT_SHOW_ORDERS';

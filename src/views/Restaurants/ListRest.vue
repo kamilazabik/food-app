@@ -16,8 +16,6 @@
                 <span class="restaurant-stars icon-star-empty"></span>
                 <span class="restaurant-stars icon-star-empty"></span>
               </div>
-              {{index}}
-              {{id}}
               <p class="card-text restaurant-type">{{item.type}} </p>
               <p class="card-text" v-for="(option, index) in item.options" :key="index">
                 <small class="text-muted restaurant-option">{{option.deliverCost}} zł</small>

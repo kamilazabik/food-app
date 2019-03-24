@@ -1,6 +1,6 @@
 <template>
   <div class="account">
-    <h1>Wellcome {{userName}} </h1>
+    <h1>Wellcome {{name}} </h1>
     <router-view></router-view>
 
 
@@ -33,7 +33,7 @@
           }),
       },
       created(){
-          this.userName = localStorage.getItem('name');
+//          this.userName = localStorage.getItem('name');
           console.log(this.userName);
           this.fetchUser()
       },

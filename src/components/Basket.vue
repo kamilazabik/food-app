@@ -16,20 +16,18 @@
         <div v-if="basket.length > 0">
           <div class="basket-row pb-3">
             <p class="basket-text">Partial amount</p>
-            <p>{{partial}} zł</p>
+            <p>{{partialCost}} zł</p>
           </div>
           <div class="basket-row pb-3">
             <p class="basket-text">Delivery costs</p>
-
-            <p v-if="basket.length > 0">{{basket[0].delCost}}zł</p>
-            <!--<p v-if="basket.length > 0">{{resItem[id].options[0].deliverCost}} zł</p>-->
+            <p v-if="basket.length > 0">{{basket[0].delCost}} zł</p>
             <p v-else>0 zł</p>
           </div>
           <div class="basket-row pb-3">
             <p class="basket-text">Total amount</p>
-            <p v-if="basket.length > 0">{{total}} zł</p>
+            <p v-if="basket.length > 0" >{{totalCost}} zł</p>
+            <p v-if="basket.length > 0" >{{total}}</p>
             <p v-else>0 zł</p>
-
           </div>
           <a href="#" class="btn btn-primary btn-order" @click="addNewOrder">Order</a>
         </div>
@@ -46,6 +44,7 @@
     import * as types from '../store/types';
     import {mapGetters} from 'vuex'
     import {mapActions} from 'vuex'
+    import {mapMutations} from 'vuex'
 
     export default {
         data() {
@@ -53,8 +52,8 @@
                 height: 30,
 //                id: this.$route.params.id,
 //                order: [],
-                partialCost: 0,
-                totalCost: 0,
+//                partialCost: 0,
+//                totalCost: 0,
                 sticky: 260,
                 basketText: 'Your basket is empty',
                 info: 'Please.login'
@@ -62,10 +61,12 @@
         },
 
         methods: {
-            ... mapActions({
-                addItemToBasket: types.ACT_ADD_TO_BASKET,
-                cleanBasket: types.ACT_CLEAN_BASKET,
+            ... mapMutations({
+                addItemToBasket: types.MUTATE_ADD_TO_BASKET,
+                cleanBasket: types.MUTATE_CLEAN_BASKET,
+                getTotal: types.MUTATE_TOTAL
             }),
+
 
             openBasket() {
                 this.changeBasketAct(this.ifOpenBasket)
@@ -77,6 +78,7 @@
 
             increaseQuantity(item) {
                 item.quantity++;
+                this.$store.commit(types.MUTATE_PARTIAL)
             },
 
             decreaseQuantity(item) {
@@ -84,7 +86,14 @@
                 if (item.quantity === 0) {
                     this.removeFromBasket(item)
                 }
+                this.$store.commit(types.MUTATE_PARTIAL)
+
             },
+//            total(payload) {
+////                console.log([partial, basket[0].delCost])
+//                this.getTotal([this.partial, this.basket[0].delCost])
+////                return this.totalCost = this.partial + this.basket[0].delCost
+//            },
 
             stickHeader() {
                 if (typeof this.$refs["basketCard"] !== 'undefined' && window.pageYOffset > this.sticky) {
@@ -95,11 +104,18 @@
             },
 
             addNewOrder() {
-                this.$store.dispatch(types.ACT_ADD_ORDER, [this.basket, this.totalCost])
-                console.log(this.order)
+                this.$store.commit(types.MUTATE_ADD_ORDER, [this.basket, this.totalCost])
+                console.log(this.order);
                 this.$store.dispatch(types.ACT_BASKET_TO_DB, this.order);
+                this.$store.commit(types.MUTATE_RESET_TOTAL);
                 this.cleanBasket();
-                this.basketText = 'Thank you, your order has been placed! :)'
+
+                if(this.auth){
+                    this.basketText = 'Thank you, your order has been placed! :)'
+                }else {
+                    this.basketText = 'Please sign in first'
+                }
+
             }
         },
 
@@ -108,20 +124,22 @@
                 ifOpenBasket: types.GET_BASKET_STATUS,
                 ifStickyBasket: types.GET_STICKY_BASKET,
                 basket: types.GET_BASKET,
-                order: types.GET_ORDER
+                order: types.GET_ORDER,
+                totalCost: types.GET_TOTAL,
+                partialCost: types.GET_PARTIAL,
+                isAuthenticated: types.GET_IS_AUTHENTICATED
 
             }),
             partial() {
-                this.partialCost = 0;
-                for (var items in this.basket) {
-                    var individualItem = this.basket[items];
-                    this.partialCost += individualItem.quantity * individualItem.price;
-                }
-                return this.partialCost
+                this.$store.commit(types.MUTATE_PARTIAL)
             },
 
             total() {
-                return this.totalCost = this.partial + this.basket[0].delCost
+                console.log(this.totalCost);
+                this.$store.commit(types.MUTATE_TOTAL, [this.partialCost, this.basket[0].delCost])
+            },
+            auth(){
+                return this.isAuthenticated
             }
         },
         created() {

@@ -5,16 +5,92 @@
   background: rgba(0,0,0,0.2);
   height: 60px;
 
+  &-nav {
+    cursor: pointer;
+    display: flex;
+    align-items: flex-end;
+    padding: 15px;
+    height: 60px;
+    transition: all ease .3s;
+    z-index: 101;
+
+    &-icon {
+      color: #fff;
+      font-size: 1.8rem;
+    }
+
+    &__text {
+      color: #ffffff;
+      font-size: 1.75rem;
+      font-weight: 500;
+      line-height: 2.8rem;
+    }
+
+    &:hover {
+      background-color: #ffffff;
+      
+      .header-nav {
+        &-icon {
+          color: #000;
+        }
+        &__text {
+          color: #000;
+        }
+      }
+    }
+  }
+
   &-basket {
     height: 60px;
     display: flex;
     align-items: center;
-    padding: 0 15px;
+    padding: 0 25px 0 15px;
     transition: all ease .3s;
     width: 300px;
     margin-left: auto;
 
+    &-price {
+      margin-right: auto;
+      color: #fff;
+      font-weight: 500;
 
+      p {
+        font-size: 1.6rem;
+      }
+    }
+
+    .icon-basket-1 {
+        font-size: 2.4rem;
+        color: #fff;
+      }
+
+    .basket{
+      &-icon{
+        position: absolute;
+        top: 10px;
+        right: 25px;
+        display: block;
+        width: 22px;
+        height: 22px;
+        font-size: 1em;
+        text-transform: uppercase;
+        text-align: center;
+        line-height: 21px;
+        letter-spacing: -1px;
+        color: #1574f5;
+        border: none;
+        border-radius: 22px;
+        background: #fff;
+        cursor: pointer;
+        box-shadow: 0 0 0 0 rgba(90,153,212,.5);
+      }
+
+      &-amount {
+        font-size: 1.6rem;
+        font-weight: 700;
+        padding-right: 2px;
+      }
+    }
 
     &:hover {
       background-color: #ffffff;
