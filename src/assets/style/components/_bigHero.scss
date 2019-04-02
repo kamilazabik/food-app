@@ -3,7 +3,7 @@
   padding: 10px;
 
   &-text {
-    font-size: 4rem;
+    font-size: 3.5rem;
     font-weight: 500;
   }
 
@@ -14,9 +14,4 @@
     text-decoration: none;
   }
 }
-.header.sticky {
-  position: fixed;
-  top: 0;
-  width: 100%;
-  background-color: rgba(0,0,0,0.5);
-}
+

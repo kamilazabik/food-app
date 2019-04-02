@@ -9,30 +9,30 @@
             <span class="icon-box" @click="decreaseQuantity(item)"><i class="icon-minus"></i></span>
             <span  class="icon-box" @click="increaseQuantity(item)"><i class="icon-plus"></i></span>
           </div>
-          <p>{{item.price}}</p>
+          <p class="basket-text">{{item.price}}</p>
           <span class="" @click="removeFromBasket(item)"><i class="icon-trash-empty"></i></span>
         </div>
         <hr>
         <div v-if="basket.length > 0">
           <div class="basket-row pb-3">
-            <p class="basket-text">Partial amount</p>
-            <p>{{partialCost}} zł</p>
+            <p class="basket-text mgr-auto">Partial amount</p>
+            <p class="basket-text">{{partialCost}} zł</p>
           </div>
           <div class="basket-row pb-3">
-            <p class="basket-text">Delivery costs</p>
-            <p v-if="basket.length > 0">{{basket[0].delCost}} zł</p>
-            <p v-else>0 zł</p>
+            <p class="basket-text mgr-auto">Delivery costs</p>
+            <p class="basket-text" v-if="basket.length > 0">{{basket[0].delCost}} zł</p>
+            <p class="basket-text" v-else>0 zł</p>
           </div>
           <div class="basket-row pb-3">
-            <p class="basket-text">Total amount</p>
-            <p v-if="basket.length > 0" >{{totalCost}} zł</p>
-            <p v-if="basket.length > 0" >{{total}}</p>
-            <p v-else>0 zł</p>
+            <p class="basket-text mgr-auto">Total amount</p>
+            <p class="basket-text" v-if="basket.length > 0" >{{totalCost}} zł</p>
+            <p class="basket-text" v-if="basket.length > 0" >{{total}}</p>
+            <p class="basket-text" v-else>0 zł</p>
           </div>
           <a href="#" class="btn btn-primary btn-order" @click="addNewOrder">Order</a>
         </div>
         <div v-else>
-          <p>{{ basketText }}</p>
+          <p class="basket-text">{{ basketText }}</p>
         </div>
       </div>
     </div>
@@ -66,7 +66,6 @@
                 cleanBasket: types.MUTATE_CLEAN_BASKET,
                 getTotal: types.MUTATE_TOTAL
             }),
-
 
             openBasket() {
                 this.changeBasketAct(this.ifOpenBasket)

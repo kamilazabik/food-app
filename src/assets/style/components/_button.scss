@@ -1,0 +1,45 @@
+.btn {
+  &-order {
+    position: relative;
+    border-radius: 3px;
+    padding: 0 16px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    color: #fff;
+    box-shadow: 0 2px 2px rgba(0,0,0,.2);
+    background-color: #1574f5;
+    height: 50px;
+    line-height: 50px;
+    text-transform: uppercase;
+    width: 100%;
+    margin-bottom: 4px;
+    font-size: 2rem;
+    margin-top: 2rem;
+  }
+
+  &-blue {
+    color: #fff !important;
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+
+  &-sign{
+    font-size: 1.6rem;
+    padding: 0.6rem 2rem;
+
+    &:first-child{
+      margin-right: 1rem;
+    }
+  }
+}
+
+@media only screen and (min-width: $bp-small){
+
+
+
+}
+

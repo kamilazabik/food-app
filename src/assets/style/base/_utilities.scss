@@ -1,0 +1,100 @@
+.bg {
+  background-color: #f8f5f2;
+  min-height: 100vh;
+}
+
+p {
+  margin: 0;
+}
+
+
+.mgt-10 {
+  margin-top: 1rem;
+}
+
+.invalid {
+  input {
+    border: 1px solid red;
+  }
+
+  p {
+    color: #FF0000;
+  }
+}
+
+.mgr-auto{
+  margin-right: auto;
+}
+
+.container-hero {
+  max-width: 1240px;
+  width: 100%;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+
+  @media only screen and (min-width: $bp-large){
+    font-size: 62.5%;
+  }
+}
+
+
+.container-rest{
+  @extend .container-hero;
+  padding-top: 250px;
+
+  @media only screen and (min-width: $bp-small){
+    padding-top: 0px;
+  }
+}
+
+@media (min-width: 1200px){
+}
+
+.hidden-mid {
+  //display: none !important;
+  position: absolute;
+  //right: -300px;
+  transform: translateX(-150px);
+
+}
+
+.hidden-right {
+  position: absolute;
+  transform: translateX(150px);
+}
+
+
+.hidden-left {
+  position: absolute;
+  transform: translateX(-300px);
+}
+
+
+.mobile-hidden2 {
+visibility: hidden;
+
+@media only screen and (min-width: $bp-small){
+visibility: visible;
+}
+}
+
+.mobile-hidden {
+display: none;
+
+@media only screen and (min-width: $bp-small){
+display: block;
+}
+}
+
+.desktop-hidden {
+display: block;
+
+@media only screen and (min-width: $bp-small){
+display: none;
+}
+}
+
+
+

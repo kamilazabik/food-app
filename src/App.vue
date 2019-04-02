@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{'fullscreen': fullScreen == true}">
     <router-view></router-view>
   </div>
 
@@ -8,6 +8,7 @@
 
 <script>
   import {mapActions} from 'vuex'
+  import {mapGetters} from 'vuex'
   import * as types from './store/types';
 
   export default {
@@ -16,6 +17,12 @@
                 tryAutoLogin: types.ACT_TRY_AUTO_LOGIN
             })
         },
+      computed: {
+          ...mapGetters({
+              fullScreen: types.GET_FULL_SCREEN
+          }),
+
+      },
       created(){
           this.tryAutoLogin()
       }
@@ -29,6 +36,6 @@
     font-size: 62.5%;
   }
 
-  @import "./assets/style/main.scss";
+  /*@import "./assets/style/main.scss";*/
 
 </style>

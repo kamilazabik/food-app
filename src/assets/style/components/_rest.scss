@@ -1,13 +1,15 @@
-.menu-con {
-  display: flex;
-  position: relative;
-}
-
 .menu {
-  padding: 3rem 1rem;
-  max-width: 100%;
-  background-color: #f8f5f2;
-  width: 100%;
+  &-container {
+    display: flex;
+    position: relative;
+  }
+
+  &-list{
+    padding: 3rem 1rem;
+    max-width: 100%;
+    background-color: #f8f5f2;
+    width: 100%;
+  }
 
   &-title {
     font-size: 2.6rem;
@@ -16,7 +18,8 @@
   }
 }
 
-.rest{
+.rest {
+
   &-body {
     display: flex;
     padding: 0;

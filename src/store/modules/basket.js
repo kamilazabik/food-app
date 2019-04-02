@@ -13,15 +13,10 @@ const state = {
 };
 
 const mutations = {
-    [types.MUTATE_OPEN_BASKET](state){
-        console.log( !state.openBasket);
-        if(!state.openBasket){
-            state.openBasket = true;
-            window.pageYOffset > 300 ? state.stickyBasket = true :  state.stickyBasket = false;
-        }else {
-            state.openBasket = false
-        }
+    [types.MUTATE_CLOSE_BASKET](state){
+        return state.openBasket = false;
     },
+
     [types.MUTATE_ADD_TO_BASKET](state, payload){
         state.basket.push({
             name: payload[0].name,
@@ -89,6 +84,39 @@ const actions = {
             })
             .catch(error => console.log(error))
 
+    },
+
+    [types.ACT_OPEN_BASKET]({ state, dispatch, commit, getters, rootState }, payload){
+        let max700 = window.matchMedia("(max-width: 700px)"),
+            pageOffset = window.pageYOffset;
+
+        rootState.sidebar.stickyHeader = false;
+
+        console.log(rootState)
+
+        if(!state.openBasket){
+            state.openBasket = true;
+
+            pageOffset > 300 ? state.stickyBasket = true :  state.stickyBasket = false;
+
+            if(max700.matches){
+                rootState.sidebar.fullScreen = true;
+                rootState.header.stickyHeader = true;
+                rootState.sidebar.showNavHeader = false;
+                rootState.sidebar.showSidebarHeader = false;
+                rootState.sidebar.showBasketHeader = true;
+            }
+        }else {
+            if(max700.matches){
+                rootState.header.stickyHeader = false;
+                rootState.sidebar.showNavHeader = true;
+                rootState.sidebar.showSidebarHeader = true;
+            }
+
+            rootState.sidebar.fullScreen = false;
+            state.openBasket = false;
+            document.documentElement.scrollTop = payload
+        }
     }
 };
 

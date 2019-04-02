@@ -13,7 +13,7 @@ const state = {
             'type': 'American',
             'link': 'burgers',
             'range': 5,
-            'img': 'burger.png',
+            'img': 'burger.jpg',
             "types": ['burgers', 'fries', 'drinks' ],
             'options': [{
                 'deliverCost': 6,
@@ -115,7 +115,7 @@ const state = {
             'link': 'sky-pizza',
              "types": ['pizza', 'drinks'],
             'range': 4,
-            'img': 'pizza-slice.png',
+            'img': 'pizza.jpg',
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 45,
@@ -173,7 +173,7 @@ const state = {
             'type': 'Italian',
             'link': 'italian',
             'range': 4,
-            'img': 'spaghetti.png',
+            'img': 'pasta.jpg',
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 60,
@@ -185,7 +185,7 @@ const state = {
             'type': 'American',
             'link': 'american-burgers',
             'range': 5,
-            'img': 'burger.png',
+            'img': 'burger2.jpg',
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 35,
@@ -197,7 +197,7 @@ const state = {
             'type': 'Chinese',
             'link': 'chinese-food',
             'range': 5,
-            'img': 'rice.png',
+            'img': 'chinese.jpg',
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 45,
@@ -205,11 +205,50 @@ const state = {
             }]
         },
         {
-            'name': 'Sushi',
+            'name': 'You Me Sushi',
             'type': 'Shusi',
-            'link': 'sushi-house',
+            'link': 'you-me-sushi',
             'range': 5,
-            'img': 'sushi.png',
+            'img': 'sushi.jpg',
+            'options': [{
+                'deliverCost': 6,
+                'deliveryTime': 5,
+                'minCost': 40
+            }]
+
+        },
+        {
+            'name': 'Mexico City',
+            'type': 'Mexican',
+            'link': 'mexico-city',
+            'range': 5,
+            'img': 'mexican.jpg',
+            'options': [{
+                'deliverCost': 6,
+                'deliveryTime': 5,
+                'minCost': 40
+            }]
+
+        },
+        {
+            'name': 'Thai City',
+            'type': 'Asian',
+            'link': 'thai-city',
+            'range': 5,
+            'img': 'thai.jpg',
+            'options': [{
+                'deliverCost': 6,
+                'deliveryTime': 5,
+                'minCost': 40
+            }]
+
+        },
+        {
+            'name': 'Pizza East',
+            'type': 'Italian',
+            'link': 'pizza-east',
+            'range': 5,
+            'img': 'pizza2.jpg',
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 5,

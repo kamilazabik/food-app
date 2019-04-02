@@ -33,7 +33,6 @@
           }),
       },
       created(){
-//          this.userName = localStorage.getItem('name');
           console.log(this.userName);
           this.fetchUser()
       },

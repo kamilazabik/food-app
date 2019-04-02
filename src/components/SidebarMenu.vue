@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div class="sidebar" ref="sidebar" v-if="typeof params.id != 'undefined' && $route.path == '/restaurants/' + params.link">
+  <div >
+    <div class="sidebar" :class="{'open': ifOpenSidebar == true}" ref="sidebar" v-if="typeof params.id != 'undefined' && $route.path == '/restaurants/' + params.link">
       <div v-for="(item, index) in this.resItem[params.id].types" :key="index">
         <a class="sidebar-btn" :href="'#' +item">{{item}}</a>
       </div>
@@ -11,6 +11,7 @@
 <script>
     import * as types from '../store/types';
     import {mapGetters} from 'vuex'
+    import {mapMutations} from 'vuex'
 
   export default {
 
@@ -25,16 +26,16 @@
       computed: {
           ...mapGetters({
               resItem: types.GET_REST_LIST,
-              params: types.GET_PARAM
+              params: types.GET_PARAM,
+              ifOpenSidebar: types.GET_OPEN_SIDEBAR
           }),
       },
       methods: {
-          showParam(){
-
-          },
+          ...mapMutations({
+              setSidebar: types.MUTATE_SIDEBAR_VIS
+          }),
 
           stickHeader() {
-              console.log(window.pageYOffset)
               if (typeof this.$refs["sidebar"] !== 'undefined' && window.pageYOffset > this.sticky) {
                   this.$refs["sidebar"].classList.add("sticky");
               } else if (typeof this.$refs["sidebar"] !== 'undefined') {
@@ -77,6 +78,7 @@
               const distanceY = endY - startY;
               const startTime = new Date().getTime();
 
+
               duration = typeof duration !== 'undefined' ? duration : 400;
 
               const easeInOutQuart = (time, from, distance, duration) => {
@@ -92,16 +94,26 @@
                       clearInterval(timer);
                   window.scroll(newX, newY);
               }, 100 / 60);
+          },
+          manageSidebar(e){
+              if (typeof this.$refs["sidebar"] !== 'undefined' && window.innerWidth < 700) {
+                  this.$refs["sidebar"].classList.remove('sticky')
+              }else if (window.innerWidth > 600){
+                  console.log(this.$refs["sidebar"])
+              }
+
           }
+
     },
      created() {
-
+         addEventListener('resize', this.manageSidebar)
     },
       mounted() {
           window.addEventListener('scroll', this.stickHeader);
           const menuItems = document.querySelectorAll('.sidebar-btn[href^="#"]');
           console.log(menuItems)
           menuItems.forEach(item => {
+              console.log(item)
               item.addEventListener('click', this.scrollToIdOnClick);
           });
       }

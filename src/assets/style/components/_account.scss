@@ -1,8 +1,7 @@
-@import 'variables';
+@import '../abstract/variables';
 
 .account {
   padding-top: 3rem;
-
 
   &-orders{
     padding-top: 3rem;
@@ -17,7 +16,6 @@
         flex: 0 0 25%;
         max-width: 25%;
       }
-
     }
   }
 }

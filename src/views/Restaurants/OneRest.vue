@@ -1,6 +1,6 @@
 <template>
-  <div class="menu-con">
-      <div class="menu">
+  <div class="menu-container">
+      <div class="menu-list">
         <div v-for="(item, index) in resItem[id].menu" :key="index">
           <h2 class="menu-title" :id="index">{{index | capitalize}}</h2>
           <div class="card rest-card" v-for="(it, index) in item" >

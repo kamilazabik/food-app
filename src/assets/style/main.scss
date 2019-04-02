@@ -1,64 +1,33 @@
-@import 'components/variables';
+@import 'abstract/variables';
 @import "fonts/animation";
 @import "fonts/fontello";
 @import "fonts/fontello-codes";
 @import "fonts/fontello-embedded";
 @import "fonts/fontello-ie7";
 @import "fonts/fontello-ie7-codes";
+
+@import "base/typo";
+@import "base/utilities";
+@import "base/base";
+
+
 @import "components/basket";
-@import "components/header";
 @import "components/form";
 @import "components/rest";
 @import "components/listRest";
 @import "components/smallHero";
-@import "components/sidebar";
 @import "components/bigHero";
 @import "components/account";
-@import "components/typo";
+@import "components/button";
+
+@import "layout/sidebar";
+@import "layout/header";
 
 
-p {
-  margin: 0;
-}
 
 
-.container-rest{
-  max-width: 1240px;
-  width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-}
-
-@media (min-width: 1200px){
-}
-
-.bg {
-  background-color: #f8f5f2;
-  min-height: 100vh;
-}
 
 
-.sidebar.sticky {
-  position: fixed;
-  top: 60px;
-  width: 270px;
-}
-
-.mgt-10 {
-  margin-top: 1rem;
-}
-
-.invalid {
-  input {
-    border: 1px solid red;
-  }
-
-  p {
-    color: #FF0000;
-  }
-}
 
 
 

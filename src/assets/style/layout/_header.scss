@@ -1,0 +1,327 @@
+.header {
+  width: 100%;
+  position: absolute;
+  bottom:0;
+  background: $blue;
+  height: 50px;
+  z-index: 100;
+  padding: 0 15px;
+
+  .col-4 {
+    padding: 0;
+  }
+
+  &-nav {
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    height: 50px;
+    transition: all ease .3s;
+    z-index: 101;
+
+    &-col {
+      left:0;
+      position: absolute;
+      width: 33%;
+      transition: all .3s ease;
+    }
+
+
+    &-icon {
+      color: $white;
+      font-size: 1.8rem;
+    }
+
+    &__text {
+      color: $white;
+      font-size: 1.75rem;
+      font-weight: 500;
+      line-height: 2.8rem;
+    }
+
+    &:hover {
+      background-color: $white;
+      
+      .header-nav {
+        &-icon {
+          color: $blue;;
+        }
+        &__text {
+          color: $black;
+        }
+      }
+    }
+  }
+
+  &-sidebar {
+    cursor: pointer;
+    padding: 15px;
+    color: $white;
+    font-size: 2.4rem;
+    line-height: 1;
+    text-align: center;
+
+    &-col {
+      position: absolute;
+      width: 33%;
+      transition: all .3s ease;
+    }
+
+    &:hover {
+      background-color: $white;
+      color: $blue;
+    }
+  }
+
+  &.sticky {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 100;
+    left: 0;
+    right: 0;
+  }
+
+  .icon-basket-1 {
+    font-size: 2.4rem;
+    color: #fff;
+  }
+
+  &-basket {
+    cursor: pointer;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    padding: 0 30px 0 15px;
+    transition: all ease .3s;
+    margin-left: auto;
+
+    &-col {
+      margin-left: auto;
+      position: absolute;
+      width: 33%;
+      right: 0;
+      transition: all .3s ease;
+    }
+
+    &-price {
+      margin-right: auto;
+      color: $white;
+      font-weight: 500;
+    }
+
+    &__price {
+      color: $white;
+      font-size: 1.8rem;
+    }
+
+    &-icon{
+      position: absolute;
+      top: 5px;
+      right: 15px;
+      display: block;
+      width: 22px;
+      height: 22px;
+      font-size: 1em;
+      text-transform: uppercase;
+      text-align: center;
+      line-height: 21px;
+      letter-spacing: -1px;
+      color: $blue;
+      border: none;
+      border-radius: 22px;
+      background: $white;
+      cursor: pointer;
+      box-shadow: 0 0 0 0 rgba(90,153,212,.5);
+    }
+
+    &-amount {
+      font-size: 1.6rem;
+      font-weight: 700;
+      padding-right: 2px;
+    }
+
+
+    &:hover {
+      background-color: $white;
+
+      .icon-basket-1 {
+        color: $blue;
+      }
+
+      .header-basket {
+        &__name {
+          color: $black;
+        }
+        &-icon {
+          background-color: $blue;
+          color: $white;
+        }
+
+        &-amount {
+          color: $white;
+        }
+      }
+    }
+
+    &__name {
+      color: $white;
+    }
+  }
+}
+
+
+.white {
+  background-color: $white;
+  //position: absolute;
+
+
+  .header-basket{
+    &__name {
+      color: $black;
+    }
+    &-icon {
+      background-color: $blue;
+      color: $white;
+    }
+
+    &__price {
+      color: $blue;
+    }
+
+    &-amount {
+      color: $white;
+    }
+  }
+
+  .icon-basket-1 {
+    color: $blue;
+  }
+}
+
+.blue {
+  background-color: $blue;
+
+  .header-basket{
+    &__name,
+    &__price{
+      color: $white
+    }
+  }
+
+  &:hover {
+    background-color: $dark-blue;
+
+    .header-basket{
+      &__name {
+        color: $white;
+      }
+      &-icon {
+        background-color: $white;
+        color: $blue;
+      }
+
+      &-amount {
+        color: $blue;
+      }
+    }
+    .icon-basket-1 {
+      color: $white;
+    }
+  }
+}
+
+
+
+
+.full-width {
+  max-width: 100%;
+  width: 100%;
+  flex: 0 0 100%;
+  right: 0;
+  position: absolute;
+}
+
+@media only screen and (min-width: $bp-small){
+  .header {
+    background: rgba(0, 0, 0, 0.2);
+    height: 60px;
+
+    .col-4 {
+      padding: 0 15px;
+    }
+
+    &-col {
+      max-width: 400px;
+    }
+
+    &.sticky {
+      background-color: rgba(0,0,0,0.5);
+    }
+
+   &-nav {
+     height: 60px;
+     &:hover {
+       background-color: #ffffff;
+
+       .header-nav {
+         &-icon,
+         &__text {
+           color: $black;;
+         }
+       }
+     }
+   }
+
+    &-basket {
+      padding: 0 25px 0 15px;
+      width: 300px;
+      height: 60px;
+
+      &-icon {
+        right: 25px;
+        top: 10px;
+      }
+
+      &__price {
+        color: $black;
+      }
+
+      &:hover {
+        background-color: #ffffff;
+
+        .header-basket{
+          &__name,
+          &__price{
+            color: $black;
+          }
+
+          &-icon {
+            background-color: $blue;
+            color: $white;
+          }
+
+          &-amount {
+            color: $white;
+          }
+        }
+        .icon-basket-1 {
+          color: $blue;
+        }
+      }
+    }
+  }
+
+  .white {
+    background-color: #ffffff;
+    width: 370px;
+
+    .header-basket{
+      &__name,
+      &__price{
+        color: $black;
+      }
+    }
+  }
+}

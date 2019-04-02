@@ -1,7 +1,22 @@
 .jumbotron-small {
-  height: 30rem;
-  position: relative;
+  //height: 30rem;
+  position: fixed;
+  z-index: 102;
+  width: 100%;
+
+  .hero {
+    margin: 2rem;
+    &-text {
+      font-size: 2.5rem;
+      text-align: center;
+    }
+  }
+
+
 }
+
+
+
 .buttons {
   position: absolute;
   top: 2rem;
@@ -19,11 +34,19 @@
   }
 }
 
-.btn-sign {
-  font-size: 1.6rem;
-  padding: 0.6rem 2rem;
+@media only screen and (min-width: $bp-small){
+  .jumbotron-small {
+    //height: 30rem;
+    position: relative;
 
-  &:first-child{
-    margin-right: 1rem;
+    .hero {
+      margin: 0;
+      &-text {
+        font-size: 3.5rem;
+      }
+    }
   }
+
+
 }
+

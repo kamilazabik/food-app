@@ -1,0 +1,26 @@
+* {
+  margin:0;
+  padding: 0;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: inherit;
+}
+
+html {
+  font-size: 50%; // 1rem =10px, 10px/16px = 62.5%
+
+  @media only screen and (min-width: $bp-large){
+    font-size: 62.5%;
+  }
+}
+
+
+.fullscreen {
+  overflow: hidden;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+}

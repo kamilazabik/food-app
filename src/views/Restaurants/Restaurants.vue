@@ -1,7 +1,8 @@
 <template>
   <div class="bg">
     <!--<app-hero :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero>-->
-    <app-hero-small :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero-small>
+    <!--<app-hero-small :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero-small>-->
+    <app-hero-small ></app-hero-small>
 
     <div class="container-rest">
       <div class="row">
@@ -32,14 +33,13 @@
       data(){
           return{
               height: 30,
-              params:  this.$route.params.link
+              params:  this.$route.params.link,
           }
       },
       methods: {
           ...mapActions({
 //              param: types.ACT_PARAM
           }),
-
       },
       computed: {
           ...mapGetters({
@@ -48,7 +48,7 @@
 
           auth(){
               return this.isAuthenticated
-          }
+          },
       },
 
       components: {
