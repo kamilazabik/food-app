@@ -25,6 +25,7 @@ export const GET_SHOW_NAV_HEADER = 'sidebar/GET_SHOW_NAV_HEADER';
 export const GET_SHOW_BASKET_HEADER = 'sidebar/GET_SHOW_BASKET_HEADER';
 export const GET_SHOW_SIDEBAR_HEADER = 'sidebar/GET_SHOW_SIDEBAR_HEADER';
 export const GET_FULL_SCREEN = 'sidebar/GET_FULL_SCREEN';
+export const GET_STICKY_SIDEBAR = 'sidebar/GET_STICKY_SIDEBAR';
 // export const GET_STICKY_HEADER = 'sidebar/GET_STICKY_HEADER';
 
 export const GET_STICKY_HEADER = 'header/GET_STICKY_HEADER';
@@ -54,6 +55,7 @@ export const MUTATE_OPEN_SIDEBAR = 'sidebar/MUTATE_OPEN_SIDEBAR';
 export const MUTATE_SET_SIDEBAR_OPEN = 'sidebar/MUTATE_SET_SIDEBAR_OPEN';
 export const MUTATE_SET_SIDEBAR_CLOSE = 'sidebar/MUTATE_SET_SIDEBAR_CLOSE';
 export const MUTATE_SIDEBAR_VIS = 'sidebar/MUTATE_SIDEBAR_VIS';
+export const MUTATE_STICKY_SIDEBAR = 'sidebar/MUTATE_STICKY_SIDEBAR';
 
 
 export const MUTATE_STICKY_HEADER = 'sidebar/MUTATE_STICKY_HEADER';
@@ -85,3 +87,7 @@ export const ACT_PARTIAL = 'basket/ACT_PARTIAL';
 export const ACT_SHOW_ORDERS = 'account/ACT_SHOW_ORDERS';
 
 export const ACT_OPEN_SIDEBAR = 'sidebar/ACT_OPEN_SIDEBAR';
+
+
+export const ACT_HERO_HEIGHT = 'header/ACT_HERO_HEIGHT';
+export const ACT_RESIZE_HERO = 'header/ACT_RESIZE_HERO';

@@ -37,17 +37,19 @@ const mutations = {
 };
 
 const actions = {
-    [types.ACT_HERO_HEIGHT]({state}, payload ){
-        let hero = document.getElementsByClassName('jumbotron-small')[0];
-        hero.style.height = 30 + 'rem';
+    [types.ACT_HERO_HEIGHT]({state} ){
+        state.height = 300
             state.stickyHeader = false;
 
     },
-    [types.ACT_RESIZE_HERO]({state, dispatch,rootState},payload){
+    [types.ACT_RESIZE_HERO]({state, dispatch,rootState}){
         if (window.innerWidth > 700) {
-            dispatch(types.ACT_HERO_HEIGHT, payload);
+            dispatch(types.ACT_HERO_HEIGHT);
         }else if(window.innerWidth <= 700 && rootState.basket.openBasket === true){
+            state.height = 270
             dispatch(types.ACT_OPEN_BASKET, null, { root: true })
+        }else {
+            state.height = 270
         }
     }
 };

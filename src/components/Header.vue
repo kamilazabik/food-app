@@ -115,8 +115,7 @@
 
       created(){
           addEventListener('resize', () => {
-              let hero = document.getElementsByClassName('jumbotron-small')[0];
-              this.setHeroSize(hero)
+              this.setHeroSize()
           })
       },
 
