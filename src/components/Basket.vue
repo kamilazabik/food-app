@@ -88,13 +88,8 @@
                 this.$store.commit(types.MUTATE_PARTIAL)
 
             },
-//            total(payload) {
-////                console.log([partial, basket[0].delCost])
-//                this.getTotal([this.partial, this.basket[0].delCost])
-////                return this.totalCost = this.partial + this.basket[0].delCost
-//            },
 
-            stickHeader() {
+            stickyBasket() {
                 if (typeof this.$refs["basketCard"] !== 'undefined' && window.pageYOffset > this.sticky) {
                     this.$refs["basketCard"].classList.add("sticky");
                 } else if (typeof this.$refs["basketCard"] !== 'undefined') {
@@ -142,7 +137,7 @@
             }
         },
         created() {
-            window.addEventListener('scroll', this.stickHeader);
+            window.addEventListener('scroll', this.stickyBasket);
         },
     }
 </script>

@@ -7,13 +7,24 @@ const state = {
     showBasketHeader: true,
     showSidebarHeader: true,
     fullScreen: false,
-    // stickyHeader: false,
-    fullWidth: false
+    fullWidth: false,
+    sticky: 270,
+    stickySidebar: false
 };
 
 const mutations = {
     [types.MUTATE_SIDEBAR_VIS](state, payload){
         return state.visibleSidebar = payload
+    },
+
+    [types.MUTATE_STICKY_SIDEBAR](state){
+        if(window.matchMedia("(min-width: 700px)").matches){
+            if (window.pageYOffset > state.sticky) {
+                state.stickySidebar = true
+            } else {
+                state.stickySidebar = false
+            }
+        }
     }
 };
 
@@ -61,11 +72,11 @@ const getters = {
     [types.GET_FULL_SCREEN]: state => {
         return state.fullScreen
     },
-    // [types.GET_STICKY_HEADER]: state => {
-    //     return state.stickyHeader
-    // },
     [types.GET_OPEN_SIDEBAR]: state => {
         return state.openSidebar
+    },
+    [types.GET_STICKY_SIDEBAR]: state => {
+        return state.stickySidebar
     }
 };
 

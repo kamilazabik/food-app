@@ -45,13 +45,11 @@
   export default {
       data(){
           return {
-            sticky: 270,
             pathAccount: '/account',
             pathOrders: '/account/your-orders',
             pathSignin: '/signin',
             pathSignup: '/signup',
             offset: '0',
-//            sidebar: document.getElementsByClassName('sidebar')[0]
           }
       },
       computed: {
@@ -78,51 +76,21 @@
           ... mapActions({
               changeBasketAct: types.ACT_OPEN_BASKET,
               openSidebar: types.ACT_OPEN_SIDEBAR,
+              resizeHero: types.ACT_RESIZE_HERO,
           }),
-
 
           openBasket(){
               this.changeBasketAct(this.offset)
-//              this.changeBasketAct(this.offset);
           },
           openSidebarMenu(){
-//              let sidebar = document.getElementsByClassName('sidebar')[0]
-//              console.log(sidebar);
               this.openSidebar(this.offset);
           },
           stickHeader () {
               this.getStickHeader()
-
-//              let header = this.$refs["header"],
-//              pageOffset = window.pageYOffset,
-//              max700 = window.matchMedia("(max-width: 700px)");
-//
-//              if(max700.matches){
-//                  if (typeof header !== 'undefined' && pageOffset < this.sticky && pageOffset !== 0 ) {
-//                      this.offset = pageOffset;
-//                      header.classList.remove("sticky");
-//                      header.parentNode.style.height = 270 - pageOffset + 'px';
-//
-//                      if(header.parentNode.offsetHeight < 50 ){
-//                          header.parentNode.style.height = 50 + 'px'
-//                      }
-//                  } else if(typeof header !== 'undefined' && pageOffset >  220){
-//                      header.classList.add("sticky");
-//                  }
-//
-//              }else {
-//               if  (pageOffset > this.sticky && typeof header !== 'undefined') {
-//                   header.classList.add("sticky");
-//                  } else if(pageOffset < this.sticky && typeof header !== 'undefined'){
-//                   header.classList.remove("sticky");
-//                  }
-//              }
           },
-          heroHeight() {
-              if(typeof this.$refs["header"] !== 'undefined' ){
-                  this.$refs["header"].parentNode.style.height = 30 + 'rem';
-                  this.$refs["header"].classList.remove('sticky')
-              }
+
+          setHeroSize(hero){
+              this.resizeHero(hero)
           },
 
           comparePath(){
@@ -147,13 +115,8 @@
 
       created(){
           addEventListener('resize', () => {
-              if (window.innerWidth > 700) {
-                  this.heroHeight();
-              }else if(this.ifOpenBasket == true){
-                  let doc = document.getElementsByTagName('HTML')[0];
-                  doc.classList = 'fullscreen'
-                  this.$refs["header"].classList.add("sticky");
-              }
+              let hero = document.getElementsByClassName('jumbotron-small')[0];
+              this.setHeroSize(hero)
           })
       },
 
@@ -164,11 +127,5 @@
 </script>
 
 <style scoped lang="scss">
-  .sticky {
-    /*position: fixed;*/
-    /*top: 0;*/
-    /*width: 100%;*/
-    /*background-color: rgba(0,0,0,0.5);*/
-  }
 
 </style>

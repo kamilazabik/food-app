@@ -4,42 +4,50 @@ const state = {
     stickyHeader: false,
     sticky: 270,
     offset: 0,
-    height: 30
+    height: 270
 };
 
 const mutations = {
     [types.MUTATE_STICKY_HEADER](state, payload){
-        let header = document.getElementsByClassName('header')[0],
+        let hero = document.getElementsByClassName('jumbotron-small')[0],
             pageOffset = window.pageYOffset,
             max700 = window.matchMedia("(max-width: 700px)");
 
         if(max700.matches){
             if (pageOffset < state.sticky && pageOffset !== 0 ) {
                 state.offset = pageOffset;
-                // header.classList.remove("sticky");
                 state.stickyHeader = false;
-                // header.parentNode.style.height = 270 - pageOffset + 'px';
-                // state.height = 270 - pageOffset + 'px';
-                state.height = 49 - pageOffset ;
+                state.height = 270 - pageOffset ;
 
-                console.log(state.height)
-
-                if(header.parentNode.offsetHeight < 50 ){
-                    header.parentNode.style.height = 50 + 'px'
+                if(hero.offsetHeight < 50 ){
+                    state.height = 50;
                 }
-            } else if(typeof header !== 'undefined' && pageOffset >  220){
-                // header.classList.add("sticky");
+            } else if(pageOffset >  220){
                 state.stickyHeader = true;
             }
 
         }else {
-            if  (pageOffset > state.sticky && typeof header !== 'undefined') {
-                // header.classList.add("sticky");
+            if  (pageOffset > state.sticky) {
                 state.stickyHeader = true;
-            } else if(pageOffset < state.sticky && typeof header !== 'undefined'){
+            } else if(pageOffset < state.sticky){
                 state.stickyHeader = false;
-                // header.classList.remove("sticky");
             }
+        }
+    }
+};
+
+const actions = {
+    [types.ACT_HERO_HEIGHT]({state}, payload ){
+        let hero = document.getElementsByClassName('jumbotron-small')[0];
+        hero.style.height = 30 + 'rem';
+            state.stickyHeader = false;
+
+    },
+    [types.ACT_RESIZE_HERO]({state, dispatch,rootState},payload){
+        if (window.innerWidth > 700) {
+            dispatch(types.ACT_HERO_HEIGHT, payload);
+        }else if(window.innerWidth <= 700 && rootState.basket.openBasket === true){
+            dispatch(types.ACT_OPEN_BASKET, null, { root: true })
         }
     }
 };
@@ -56,6 +64,7 @@ const getters = {
 export default {
     state,
     mutations,
-    getters
+    getters,
+    actions
 }
 

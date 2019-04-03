@@ -1,9 +1,6 @@
 <template>
   <div class="bg">
-    <!--<app-hero :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero>-->
-    <!--<app-hero-small :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero-small>-->
     <app-hero-small ></app-hero-small>
-
     <div class="container-rest">
       <div class="row">
           <div class="col-md-3">
@@ -14,14 +11,12 @@
             <router-view></router-view>
           </div>
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
   import {mapGetters} from 'vuex'
-  import {mapActions} from 'vuex'
   import * as types from '../../store/types';
   import HeroSmall from '../../components/HeroSmall.vue'
   import Header from '../../components/Header.vue'
@@ -32,14 +27,8 @@
   export default {
       data(){
           return{
-              height: 30,
               params:  this.$route.params.link,
           }
-      },
-      methods: {
-          ...mapActions({
-//              param: types.ACT_PARAM
-          }),
       },
       computed: {
           ...mapGetters({

@@ -1,6 +1,6 @@
 <template>
   <div >
-    <div class="sidebar" :class="{'open': ifOpenSidebar == true}" ref="sidebar" v-if="typeof params.id != 'undefined' && $route.path == '/restaurants/' + params.link">
+    <div class="sidebar" :class="{'open': ifOpenSidebar == true, 'sticky': ifStickySidebar == true}" ref="sidebar" v-if="typeof params.id != 'undefined' && $route.path == '/restaurants/' + params.link">
       <div v-for="(item, index) in this.resItem[params.id].types" :key="index">
         <a class="sidebar-btn" :href="'#' +item">{{item}}</a>
       </div>
@@ -27,27 +27,23 @@
           ...mapGetters({
               resItem: types.GET_REST_LIST,
               params: types.GET_PARAM,
-              ifOpenSidebar: types.GET_OPEN_SIDEBAR
+              ifOpenSidebar: types.GET_OPEN_SIDEBAR,
+              ifStickySidebar: types.GET_STICKY_SIDEBAR
           }),
       },
       methods: {
           ...mapMutations({
-              setSidebar: types.MUTATE_SIDEBAR_VIS
+              stickSidebar: types.MUTATE_STICKY_SIDEBAR
           }),
 
-          stickHeader() {
-              if (typeof this.$refs["sidebar"] !== 'undefined' && window.pageYOffset > this.sticky) {
-                  this.$refs["sidebar"].classList.add("sticky");
-              } else if (typeof this.$refs["sidebar"] !== 'undefined') {
-                  this.$refs["sidebar"].classList.remove("sticky");
-              }
+          stickySidebar() {
+              this.stickSidebar()
           },
 
           getScrollTopByHref(element) {
               const id = element.getAttribute('href');
               console.log(id)
               return document.querySelector(id).offsetTop;
-
           },
 
           scrollTopPosition(to) {
@@ -109,11 +105,9 @@
          addEventListener('resize', this.manageSidebar)
     },
       mounted() {
-          window.addEventListener('scroll', this.stickHeader);
+          window.addEventListener('scroll', this.stickySidebar);
           const menuItems = document.querySelectorAll('.sidebar-btn[href^="#"]');
-          console.log(menuItems)
           menuItems.forEach(item => {
-              console.log(item)
               item.addEventListener('click', this.scrollToIdOnClick);
           });
       }
