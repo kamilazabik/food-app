@@ -7,11 +7,10 @@
   height: 100%;
   top: 50px;
   left: 0;
-  padding: 15px;
-
-  //right: 0;
   display: none;
-  //visibility: hidden;
+
+  &-content {
+  }
 
   &-btn {
     height: 40px;
@@ -27,14 +26,20 @@
     font-size: 15px;
     color: #666;
     cursor: pointer;
+    transition: all .3s ease;
+
+    &:hover {
+      color: #007bff !important;
+      text-decoration: none;
+    }
   }
 
   &.sticky {
     position: fixed;
     top: 60px;
-    width: 270px;
     z-index: 100;
     display: block;
+    left: 15px;
   }
 
   &.open {
@@ -44,25 +49,57 @@
 
 @media only screen and (min-width: $bp-small){
   .sidebar{
-    width: 270px;
+    width: 235px;
     position: relative;
     display: block;
     padding: 0;
+    background-color: transparent;
+    top: 3rem;
+
+    &-content {
+      width: 235px;
+    }
 
     &-btn {
-      height: 40px;
-      line-height: 37px;
-      white-space: nowrap;
-      margin-bottom: 4px;
       box-shadow: 0 2px 2px #cfcac4;
-      display: inline-block;
-      background-color: #fff;
-      padding: 0 16px;
-      width: 100%;
-      border-radius: 3px;
-      font-size: 15px;
-      color: #666;
-      cursor: pointer;
+
+      &--blue {
+        background-color: #007bff;
+        color: $white !important;
+        transition: all .3s ease;
+
+        &:hover {
+            background-color: #0069d9;
+            color: $white !important;
+        }
+      }
+    }
+
+    &.sticky {
+      position: fixed;
+      top: 80px;
+      //width: 270px;
+      z-index: 100;
+      display: block;
+      left: 15px;
+    }
+
+  }
+}
+
+@media only screen and (min-width: $bp-largest){
+  .sidebar{
+    width: 270px;
+
+    &-content {
+      width: 270px;
+      padding-left: 0px;
+    }
+
+    &.sticky {
+      position: fixed;
+      left: calc((100% - 1240px)/2);
+
     }
 
   }

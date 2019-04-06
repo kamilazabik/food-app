@@ -1,9 +1,7 @@
 <template>
   <div class="account">
-    <h1>Wellcome {{name}} </h1>
+    <h1 v-if="name">Wellcome {{name}} </h1>
     <router-view></router-view>
-
-
   </div>
 </template>
 
@@ -21,19 +19,19 @@
       methods: {
           ...mapActions({
               fetchUser: types.ACT_FETCH_USER
-          })
+          }),
       },
       computed: {
           name(){
-              console.log(this.user.name);
-              return !this.user.name ? false : this.user.name
+              return !this.user ? localStorage.getItem('name') : this.user.name
           },
+
           ...mapGetters({
-              user: types.GET_USER
+              user: types.GET_USER,
           }),
       },
       created(){
-          console.log(this.userName);
+          console.log( localStorage.getItem('name'));
           this.fetchUser()
       },
   }

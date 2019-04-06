@@ -1,17 +1,57 @@
 .hero {
-  background-color: #ffffff;
+  //background-color: #ffffff;
   padding: 10px;
+  margin: 0 0 6rem 0;
+  text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
 
-  &-text {
-    font-size: 3.5rem;
+
+  &-title {
+    font-size: 4rem;
     font-weight: 500;
+  }
+
+  &-pretitle {
+    font-size: 2.6rem;
+    text-align: center;
+    margin-bottom: 3rem;
+    padding: 0.5rem 1rem;
+    background-color: $white;
   }
 
   &-link,
   &-link:hover {
     text-transform: uppercase;
-    color: #000;
+    color: #fff;
     text-decoration: none;
   }
+  &-col {
+    width: auto;
+    margin: 0 auto;
+  }
+
+  &-box {
+    background-color: rgba(255,255,255, 0.8);
+    border-radius: 8px;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    img {
+      max-width: 8rem;
+    }
+
+    h3 {
+      font-size: 2.4rem;
+      margin: 1.5rem 0 0.5rem;
+    }
+    p {
+      font-weight: 500;
+      color: $dark-blue;
+    }
+  }
+
 }
 

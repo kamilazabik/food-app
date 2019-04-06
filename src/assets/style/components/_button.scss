@@ -11,7 +11,7 @@
     appearance: none;
     color: #fff;
     box-shadow: 0 2px 2px rgba(0,0,0,.2);
-    background-color: #1574f5;
+    background-color: $blue;
     height: 50px;
     line-height: 50px;
     text-transform: uppercase;
@@ -22,9 +22,9 @@
   }
 
   &-blue {
-    color: #fff !important;
-    background-color: #007bff;
-    border-color: #007bff;
+    color: $white !important;
+    background-color: $blue;
+    border-color: $blue;
   }
 
   &-sign{
@@ -36,10 +36,3 @@
     }
   }
 }
-
-@media only screen and (min-width: $bp-small){
-
-
-
-}
-

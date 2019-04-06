@@ -13,9 +13,9 @@ const state = {
 };
 
 const mutations = {
-    [types.MUTATE_SIDEBAR_VIS](state, payload){
-        return state.visibleSidebar = payload
-    },
+    // [types.MUTATE_SIDEBAR_VIS](state, payload){
+    //     return state.visibleSidebar = payload
+    // },
 
     [types.MUTATE_STICKY_SIDEBAR](state){
         if(window.matchMedia("(min-width: 700px)").matches){
@@ -24,6 +24,11 @@ const mutations = {
             } else {
                 state.stickySidebar = false
             }
+        }
+    },
+    [types.MUTATE_MOBILE_SIDEBAR](state){
+        if (window.innerWidth < 700) {
+            state.stickySidebar = false;
         }
     }
 };

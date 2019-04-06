@@ -15,6 +15,7 @@ const mutations = {
 
         if(max700.matches){
             if (pageOffset < state.sticky && pageOffset !== 0 ) {
+                console.log(pageOffset)
                 state.offset = pageOffset;
                 state.stickyHeader = false;
                 state.height = 270 - pageOffset ;
@@ -38,15 +39,15 @@ const mutations = {
 
 const actions = {
     [types.ACT_HERO_HEIGHT]({state} ){
-        state.height = 300
-            state.stickyHeader = false;
+        state.height = 300;
+        state.stickyHeader = false;
 
     },
     [types.ACT_RESIZE_HERO]({state, dispatch,rootState}){
         if (window.innerWidth > 700) {
             dispatch(types.ACT_HERO_HEIGHT);
         }else if(window.innerWidth <= 700 && rootState.basket.openBasket === true){
-            state.height = 270
+            state.height = 270;
             dispatch(types.ACT_OPEN_BASKET, null, { root: true })
         }else {
             state.height = 270

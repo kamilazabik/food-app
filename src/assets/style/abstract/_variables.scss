@@ -1,5 +1,5 @@
 // RESPONSIVE BREAKPOINTS
-$bp-largest: 75em;   // 1200px
+$bp-largest: 78.125em;   // 1250px
 $bp-large: 62.5em;   // 1000px
 $bp-medium: 50em;    // 800px;
 $bp-small: 43.75em;    // 700px;
@@ -10,5 +10,21 @@ $white: #fff;
 $black: #000;
 $blue: #007bff;
 $dark-blue: #0069d1;
+$light-grey: #f8f5f2;
+$dark-grey: #343b46;
 
-//
+//WIDTH
+$xs-width: 255px;
+$md-width: 270px;
+$lg-width: 370px;
+$con-width: 1240px;
+
+//HEIGHT
+$xxs-height: 30px;
+$xs-height: 40px;
+$sm-height: 50px;
+$md-height: 60px;
+$lg-height: 70px;
+
+//TRANSITION
+$transition: all .3s ease;

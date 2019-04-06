@@ -33,7 +33,8 @@
       },
       methods: {
           ...mapMutations({
-              stickSidebar: types.MUTATE_STICKY_SIDEBAR
+              stickSidebar: types.MUTATE_STICKY_SIDEBAR,
+              mobileSidebar: types.MUTATE_MOBILE_SIDEBAR
           }),
 
           stickySidebar() {
@@ -53,7 +54,6 @@
                 top: to,
                 behavior: 'smooth',
               });
-
 
               // function for old browsers
               this.smoothScroll(0, to);
@@ -92,12 +92,7 @@
               }, 100 / 60);
           },
           manageSidebar(e){
-              if (typeof this.$refs["sidebar"] !== 'undefined' && window.innerWidth < 700) {
-                  this.$refs["sidebar"].classList.remove('sticky')
-              }else if (window.innerWidth > 600){
-                  console.log(this.$refs["sidebar"])
-              }
-
+              this.mobileSidebar()
           }
 
     },

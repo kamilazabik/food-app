@@ -1,6 +1,6 @@
 <template>
   <div class="sidebar"  :class="{'open': ifOpenSidebar == true, 'sticky': ifStickySidebar == true}" ref="sidebar" v-if="$route.path == '/restaurants'">
-    <a class="sidebar-btn btn-blue" @click="filter()" >All</a>
+    <a class="sidebar-btn sidebar-btn--blue" @click="filter()" >All</a>
     <a class="sidebar-btn" @click="filter('Italian')">Italian</a>
     <a class="sidebar-btn" @click="filter('Polish')">Polish</a>
     <a class="sidebar-btn" @click="filter('American')">American</a>
@@ -16,13 +16,13 @@
     import {mapMutations} from 'vuex'
 
   export default {
-        data(){
-            return{
-              filteredData:[],
-              filters: [],
-              sticky: 260
-            }
-        },
+      data(){
+          return{
+            filteredData:[],
+            filters: [],
+            sticky: 260
+          }
+      },
 
       computed: {
           ...mapGetters({
@@ -39,7 +39,8 @@
           }),
 
           ...mapMutations({
-              stickSidebar: types.MUTATE_STICKY_SIDEBAR
+              stickSidebar: types.MUTATE_STICKY_SIDEBAR,
+              mobileSidebar: types.MUTATE_MOBILE_SIDEBAR
           }),
 
           stickySidebar() {
@@ -51,11 +52,7 @@
           },
 
           manageSidebar(e){
-              if (typeof this.$refs["sidebar"] !== 'undefined' && window.innerWidth > 700) {
-                  this.$refs["sidebar"].classList.remove('open')
-              }else if (window.innerWidth > 600){
-
-              }
+              this.mobileSidebar()
           }
       },
 

@@ -4,14 +4,13 @@
   background-color: $white;
   z-index: 102;
   height: 100%;
-  top: 50px;
+  top: $sm-height;
   right: 0;
-
 
   .sticky {
     position: fixed;
     width: 100%;
-    top: 40px;
+    top: $xs-height;
   }
 
   .card {
@@ -26,8 +25,8 @@
     position: absolute;
     top: -90px;
     right: 0;
-    height: 70px;
-    width: 370px;
+    height: $lg-height;
+    width: $lg-width;
     display: flex;
     align-items: center;
 
@@ -42,7 +41,7 @@
 
   &-body {
     padding: 25px 15px;
-    font-size: 2.4rem;
+    font-size: 2rem;
     width: 100%;
   }
 
@@ -66,7 +65,7 @@
 
   &-item {
     padding-right: 2rem;
-    max-width: 24rem;
+    max-width: 20rem;
     width: 100%;
   }
 
@@ -91,17 +90,17 @@
   }
 }
 
-
 @media only screen and (min-width: $bp-small){
   .basket {
-    width: 370px;
-    position: relative;
-    min-width: 370px;
-    height: auto;
+    width: $lg-width;
+    position: absolute;
+    min-width: $lg-width;
+    height: 100%;
     top: auto;
+    z-index: 1;
 
     &-body {
-      width: 370px;
+      width: $lg-width;
       font-size: 1.4rem;
       padding: 5px 15px;
     }
@@ -118,9 +117,15 @@
     }
 
   }
-
 }
 
+@media only screen and (min-width: $bp-large){
+  .basket {
+    position: relative;
+    height: auto;
+    margin-left: 1.5rem;
+  }
+}
 
 
 

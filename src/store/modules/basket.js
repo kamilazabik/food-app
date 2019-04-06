@@ -90,6 +90,8 @@ const actions = {
         let max700 = window.matchMedia("(max-width: 700px)"),
             pageOffset = window.pageYOffset;
 
+            console.log(pageOffset)
+
         rootState.sidebar.stickyHeader = false;
 
         console.log(rootState)
@@ -108,14 +110,16 @@ const actions = {
             }
         }else {
             if(max700.matches){
+
                 rootState.header.stickyHeader = false;
                 rootState.sidebar.showNavHeader = true;
                 rootState.sidebar.showSidebarHeader = true;
             }
-
+            // window.pageYOffset = pageOffset
             rootState.sidebar.fullScreen = false;
             state.openBasket = false;
-            document.documentElement.scrollTop = payload
+            // document.documentElement.scrollTop = payload
+            document.documentElement.scrollTop = pageOffset
         }
     }
 };

@@ -1,14 +1,22 @@
 .jumbotron-small {
-  //height: 30rem;
-  height: 270px;
+  height: $md-width;
   position: fixed;
   z-index: 102;
   width: 100%;
-
+  background-image: url(/img/asian-chopsticks-cooking-697058.63a12b54.jpg);
+  background-size: cover;
+  background-position: 100% 60%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
 
   .hero {
     margin: 2rem;
-    &-text {
+    &-title {
       font-size: 2.5rem;
       text-align: center;
     }
@@ -20,7 +28,7 @@
   top: 2rem;
   background-color: transparent;
   text-align: right;
-  max-width: 1240px;
+  max-width: $con-width;
 
   .row {
     background-color: transparent;
@@ -28,25 +36,21 @@
     li {
       display: inline-block;
     }
-
   }
 }
 
 @media only screen and (min-width: $bp-small){
   .jumbotron-small {
     height: 30rem;
-    //height: 30rem;
     position: relative;
     margin: 0;
 
     .hero {
       margin: 0;
-      &-text {
+      &-title {
         font-size: 3.5rem;
       }
     }
   }
-
-
 }
 

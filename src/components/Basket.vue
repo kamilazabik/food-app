@@ -90,6 +90,7 @@
             },
 
             stickyBasket() {
+
                 if (typeof this.$refs["basketCard"] !== 'undefined' && window.pageYOffset > this.sticky) {
                     this.$refs["basketCard"].classList.add("sticky");
                 } else if (typeof this.$refs["basketCard"] !== 'undefined') {

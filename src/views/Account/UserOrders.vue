@@ -4,22 +4,22 @@
     <div v-if="getUserData()">
       <div class="card mb-3"  v-for="(item, index) in user.orders" :key="index">
         <div class="row no-gutters restaurant">
-          <div class="col-sm-3">
-            <div v-for = "rest in restItem" v-if="rest.name == item.basket[0].restName">
-                <img :src="require('../../assets/img/' + rest.img)"  class="card-img restaurant-logo" alt="">
+          <div class="col-3">
+            <div v-for = "rest in restItem" v-if="rest.name == item.basket[0].restName" :style="{backgroundImage: 'url('+require('../../assets/img/' + rest.img) + ')'}"  class="card-img restaurant-logo">
+                <!--<img :src="require('../../assets/img/' + rest.img)"  class="card-img restaurant-logo" alt="">-->
             </div>
           </div>
-          <div class="col-sm-9">
+          <div class="col-9">
             <div class="card-body restaurant-body">
               <h5 class="card-title rest-card__title restaurant-name">
                 {{item.basket[0].restName}}
               </h5>
               <p class="card-text fs-2 my-3">Total:  {{item.total}} zł </p>
               <div class="row">
-                <div class="col-3 account-orders-col">
+                <div class="col-sm-3 ">
                   <p>Details: </p>
                 </div>
-                <div class="col-9">
+                <div class="col-sm-9">
                   <div class="row" v-for="order in item.basket">
                     <div class="col-6">
                       <p>{{order.name}}</p>
