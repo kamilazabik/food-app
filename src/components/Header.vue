@@ -81,7 +81,7 @@
           }),
 
           openBasket(){
-              this.changeBasketAct(this.offset)
+              this.changeBasketAct(200)
           },
           openSidebarMenu(){
               this.openSidebar(this.offset);
@@ -123,6 +123,7 @@
 
       mounted () {
               window.addEventListener('scroll', this.stickHeader);
+
       },
   }
 </script>

@@ -13,10 +13,6 @@ const state = {
 };
 
 const mutations = {
-    // [types.MUTATE_SIDEBAR_VIS](state, payload){
-    //     return state.visibleSidebar = payload
-    // },
-
     [types.MUTATE_STICKY_SIDEBAR](state){
         if(window.matchMedia("(min-width: 700px)").matches){
             if (window.pageYOffset > state.sticky) {
@@ -56,10 +52,10 @@ const actions = {
                 rootState.header.stickyHeader = false;
                 state.showNavHeader = true;
                 state.showBasketHeader = true;
+                rootState.header.height = 270;
             }
             state.fullScreen = false;
             state.openSidebar = false;
-            document.documentElement.scrollTop = payload
         }
     },
 }

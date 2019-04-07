@@ -49,12 +49,7 @@
     export default {
         data() {
             return {
-                height: 30,
-//                id: this.$route.params.id,
-//                order: [],
-//                partialCost: 0,
-//                totalCost: 0,
-                sticky: 260,
+//                height: 30,
                 basketText: 'Your basket is empty',
                 info: 'Please.login'
             }
@@ -64,7 +59,8 @@
             ... mapMutations({
                 addItemToBasket: types.MUTATE_ADD_TO_BASKET,
                 cleanBasket: types.MUTATE_CLEAN_BASKET,
-                getTotal: types.MUTATE_TOTAL
+                getTotal: types.MUTATE_TOTAL,
+                stickBasket: types.MUTATE_STICKY_BASKET
             }),
 
             openBasket() {
@@ -90,12 +86,7 @@
             },
 
             stickyBasket() {
-
-                if (typeof this.$refs["basketCard"] !== 'undefined' && window.pageYOffset > this.sticky) {
-                    this.$refs["basketCard"].classList.add("sticky");
-                } else if (typeof this.$refs["basketCard"] !== 'undefined') {
-                    this.$refs["basketCard"].classList.remove("sticky");
-                }
+              this.stickBasket();
             },
 
             addNewOrder() {

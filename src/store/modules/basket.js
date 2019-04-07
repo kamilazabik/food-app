@@ -9,7 +9,8 @@ const state = {
     order: null,
     total: 0,
     partial: '',
-    basketItems:''
+    basketItems:'',
+    sticky: 260
 };
 
 const mutations = {
@@ -39,7 +40,7 @@ const mutations = {
         }
     },
     [types.MUTATE_TOTAL](state,payload){
-        console.log(state.total)
+        console.log(state.total);
         return state.total = payload[0] + payload[1]
     },
     [types.MUTATE_RESET_TOTAL](){
@@ -47,14 +48,17 @@ const mutations = {
     },
     [types.MUTATE_PARTIAL](state){
         state.partial = 0;
-        console.log(state.basket)
+        console.log(state.basket);
         for (var items in state.basket) {
-            console.log(items)
+            console.log(items);
             var individualItem = state.basket[items];
             state.partial += individualItem.quantity * individualItem.price;
             console.log(individualItem.quantity)
         }
         return state.partial
+    },
+    [types.MUTATE_STICKY_BASKET](state){
+        window.pageYOffset > state.sticky ?  state.stickyBasket = true : state.stickyBasket = false;
     }
 };
 
@@ -64,18 +68,18 @@ const actions = {
             return
         }
         if(typeof auth.state.oneUser.orders !== 'undefined' ){
-            auth.state.oneUser.orders.push(basket)
-            console.log(basket)
+            auth.state.oneUser.orders.push(basket);
+            console.log(basket);
             console.log(auth.state.oneUser.orders)
         }else {
             auth.state.oneUser.orders = [];
-            auth.state.oneUser.orders.push(basket)
-            console.log(basket)
+            auth.state.oneUser.orders.push(basket);
+            console.log(basket);
             console.log(auth.state.oneUser.orders)
         }
         globalAxios.post('/orders.json' + '?auth=' + auth.state.idToken, basket)
             .then(res=> console.log(res))
-            .catch(error => console.log(error))
+            .catch(error => console.log(error));
 
         globalAxios.put('/users/'+ auth.state.idUserDb +'.json?auth=' + auth.state.idToken, auth.state.oneUser )
             .then(res => {
@@ -90,11 +94,8 @@ const actions = {
         let max700 = window.matchMedia("(max-width: 700px)"),
             pageOffset = window.pageYOffset;
 
-            console.log(pageOffset)
-
         rootState.sidebar.stickyHeader = false;
 
-        console.log(rootState)
 
         if(!state.openBasket){
             state.openBasket = true;
@@ -107,6 +108,7 @@ const actions = {
                 rootState.sidebar.showNavHeader = false;
                 rootState.sidebar.showSidebarHeader = false;
                 rootState.sidebar.showBasketHeader = true;
+
             }
         }else {
             if(max700.matches){
@@ -114,12 +116,13 @@ const actions = {
                 rootState.header.stickyHeader = false;
                 rootState.sidebar.showNavHeader = true;
                 rootState.sidebar.showSidebarHeader = true;
+                rootState.header.height = 270;
             }
-            // window.pageYOffset = pageOffset
+
+
             rootState.sidebar.fullScreen = false;
             state.openBasket = false;
             // document.documentElement.scrollTop = payload
-            document.documentElement.scrollTop = pageOffset
         }
     }
 };
