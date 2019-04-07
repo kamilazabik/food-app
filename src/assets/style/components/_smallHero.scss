@@ -1,7 +1,21 @@
-.jumbotron-small {
+.hero-container {
+  margin: auto;
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  max-width: 1240px;
+  //height: 100%;
+  z-index: 1;
   height: $md-width;
-  position: fixed;
-  z-index: 102;
+  top:0;
+}
+
+
+.jumbotron-small {
+  //height: $md-width;
+  height: 100%;
+  //position: fixed;
+  //z-index: 102;
   width: 100%;
   background-image: url(/img/asian-chopsticks-cooking-697058.63a12b54.jpg);
   background-size: cover;
@@ -40,6 +54,19 @@
 }
 
 @media only screen and (min-width: $bp-small){
+
+  .hero-container {
+    margin: auto;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    max-width: 1240px;
+    //height: 100%;
+    z-index: 1;
+    height: $md-width;
+    top:0;
+  }
+
   .jumbotron-small {
     height: 30rem;
     position: relative;

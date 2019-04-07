@@ -16,6 +16,7 @@ const mutations = {
         if(max700.matches){
             if (pageOffset < state.sticky && pageOffset !== 0 ) {
                 console.log(pageOffset)
+                console.log(window.scrollY)
                 state.offset = pageOffset;
                 state.stickyHeader = false;
                 state.height = 270 - pageOffset ;
