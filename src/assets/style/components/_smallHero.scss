@@ -1,45 +1,61 @@
-.hero-container {
-  margin: auto;
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  max-width: 1240px;
-  //height: 100%;
-  z-index: 1;
-  height: $md-width;
-  top:0;
+.hero {
+  &-container {
+    position: relative;
+    height: 270px;
+    background-color: transparent;
+    z-index: 11;
+    min-height: 45px;
+    width: 100%;
+  }
+
+  &-inner {
+    //margin: auto;
+    position: relative;
+    bottom: 0;
+    right: 0;
+    z-index: 104;
+    height: $md-width;
+    top:0;
+    width: 100%;  display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0;
+    padding-top: 2rem;
+  }
+
+  &-small {
+    padding: 10px;
+    margin: 0 0 4rem 0;
+    text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
+
+    &-title {
+      font-size: 2.5rem;
+      text-align: center;
+      font-weight: 500;
+    }
+  }
 }
 
-
 .jumbotron-small {
-  //height: $md-width;
-  height: 100%;
-  //position: fixed;
-  //z-index: 102;
+  z-index: 100;
   width: 100%;
   background-image: url(/img/asian-chopsticks-cooking-697058.63a12b54.jpg);
   background-size: cover;
-  background-position: 100% 60%;
-  display: -webkit-box;
-  display: -ms-flexbox;
+  background-position: 50% 80%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
   margin-bottom: 0;
-
-  .hero {
-    margin: 2rem;
-    &-title {
-      font-size: 2.5rem;
-      text-align: center;
-    }
-  }
+  background-repeat: no-repeat;
+  height: 100%;
+  position: absolute;
+  top: 0;
 }
 
 .buttons {
-  position: absolute;
-  top: 2rem;
+  margin-top: 2rem;
   background-color: transparent;
   text-align: right;
   max-width: $con-width;
@@ -55,22 +71,33 @@
 
 @media only screen and (min-width: $bp-small){
 
-  .hero-container {
-    margin: auto;
-    position: relative;
-    bottom: 0;
-    right: 0;
-    max-width: 1240px;
-    //height: 100%;
-    z-index: 1;
-    height: $md-width;
-    top:0;
+  .hero {
+    &-container {
+      //margin: auto;
+      position: relative;
+      bottom: 0;
+      right: 0;
+      height: 300px;
+      top:0;
+      overflow: hidden;
+    }
+    &-inner {
+      height: 300px
+    }
+
+    &-small {
+      margin: 0;
+
+      &-title {
+        font-size: 3.5rem;
+        text-align: center;
+      }
+    }
   }
 
   .jumbotron-small {
-    height: 30rem;
-    position: relative;
     margin: 0;
+    height: 300px;
 
     .hero {
       margin: 0;
@@ -78,6 +105,10 @@
         font-size: 3.5rem;
       }
     }
+  }
+
+  .buttons {
+    margin-top: 0;
   }
 }
 

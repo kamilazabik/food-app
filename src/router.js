@@ -17,9 +17,7 @@ import UserData from './views/Account/UserData.vue'
 
 Vue.use(VueRouter)
 
-// export default new Router({
-//   mode: 'history',
-//   base: process.env.BASE_URL,
+
 const routes= [
     {
       path: '/',
@@ -36,8 +34,8 @@ const routes= [
         component: Restaurants,
         children: [
             {path: '/restaurants', component: ListRest, name: 'listRest'},
-            {path: '/restaurants/:link', component: OneRest, name: 'oneRest'},
-            {path: '/restaurants/:id', component: OneRest, name: 'oneRest'}
+            {path: '/restaurants/:link', component: OneRest, name: 'oneRest'}
+            // {path: '/restaurants/:id', component: OneRest, name: 'oneRest'}
         ]
     },
     {

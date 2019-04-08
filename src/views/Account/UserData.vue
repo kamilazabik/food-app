@@ -35,7 +35,5 @@
       created(){
           this.$store.dispatch(types.ACT_FETCH_USER)
       }
-
   }
-
 </script>

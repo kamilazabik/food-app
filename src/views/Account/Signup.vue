@@ -94,12 +94,9 @@
                   terms: this.terms,
                   orders: this.orders,
                   name: this.name
-              }
-              console.log(formData)
+              };
               this.$store.dispatch(types.ACT_SIGN_UP, formData)
           }
       }
   }
-
-
 </script>

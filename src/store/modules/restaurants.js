@@ -271,7 +271,6 @@ const getters = {
         return state.filters
     },
     [types.GET_PARAM]: state=> {
-        console.log(state.params)
         return state.params
     }
 };
@@ -280,7 +279,6 @@ const mutations = {
     [types.MUTATE_SELECT_FILTER](state,type) {
         state.filters= [];
         let checkedFiters = state.restaurantItems.filter(obj => obj.type === type);
-        console.log(checkedFiters);
         checkedFiters.forEach(element => {
             state.filters.push(element.type);
         });

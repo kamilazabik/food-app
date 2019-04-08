@@ -3,15 +3,12 @@
   width: 100%;
   position: fixed;
   background-color: $white;
-  z-index: 102;
+  z-index: 104;
   height: 100%;
   top: 50px;
   left: 0;
   display: none;
-
-  &-content {
-  }
-
+  
   &-btn {
     height: 40px;
     line-height: 37px;

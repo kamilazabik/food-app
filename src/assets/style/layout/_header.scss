@@ -1,10 +1,11 @@
 .header {
   width: 100%;
-  position: absolute;
+  //position: absolute;
   bottom:0;
   background: $blue;
   height: $sm-height;
   z-index: 103;
+  //margin-top: auto;
 
   .col-4 {
     padding: 0;
@@ -78,6 +79,7 @@
     z-index: 103;
     left: 0;
     right: 0;
+    margin-top: 0;
   }
 
   .icon-basket-1 {

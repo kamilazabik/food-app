@@ -3,7 +3,7 @@
       <div class="menu-list">
         <div v-for="(item, index) in resItem[id].menu" :key="index">
           <h2 class="menu-title" :id="index">{{index | capitalize}}</h2>
-          <div class="card rest-card" v-for="(it, index) in item" >
+          <div class="card rest-card" v-for="(it, index) in item" :key="index">
             <div class="card-body rest-body" >
               <div class="rest-desc">
                 <h5 class="card-title rest-card__title">{{ it.name }}</h5>
@@ -11,7 +11,6 @@
               </div>
               <div class="rest-button">
                 <a href="#" class="btn btn-primary" @click="addToBasket([it, resItem[id] ])">{{ it.price }} zł | +</a>
-                <!--<div class="item">{{itemid}}</div>-->
               </div>
             </div>
           </div>
@@ -25,12 +24,10 @@
 <script>
     import * as types from '../../store/types';
     import {mapGetters} from 'vuex'
-    import {mapActions} from 'vuex'
     import {mapMutations} from 'vuex'
     import Basket from '../../components/Basket.vue'
 
     export default {
-//        props: ["itemid"],
         data(){
             return{
                 height: 30,
@@ -86,14 +83,6 @@
             this.findId();
             this.getParam([this.params, this.id])
         },
-
-
     }
 
 </script>
-
-<style scoped lang="scss">
-
-
-
-</style>

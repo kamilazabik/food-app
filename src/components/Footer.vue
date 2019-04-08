@@ -2,7 +2,7 @@
     <div class="footer">
        <div class="footer-container container">
            <div class="row">
-               <div class="col-sm-4 footer-contact">
+               <div class="col-sm-5 col-md-4 footer-contact">
                    <div class="mb-3">
                        <h3>GET IN TOUCH WITH US</h3>
                        <p><span class="icon-map footer-icon mr-2"></span> Main Company Address</p>
@@ -11,7 +11,7 @@
                        <p><span class="icon-mail-alt footer-icon mr-2"></span> <a href="mailto:email-address@email.com">email-address@email.com</a></p>
                    </div>
                </div>
-               <div class="col-sm-5 footer-social">
+               <div class="col-sm-7 col-md-8 footer-social">
                    <h3>FIND US ON</h3>
                    <div class="footer-social-box">
                        <a href="#" class="footer-social-icon">

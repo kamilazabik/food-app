@@ -9,7 +9,6 @@ p {
   margin: 0;
 }
 
-
 .mgt-10 {
   margin-top: 1rem;
 }
@@ -29,31 +28,12 @@ p {
 }
 
 
-
-.container-hero {
-  max-width: 1240px;
+.fullscreen {
+  overflow: hidden;
+  position: fixed;
+  height: 100%;
   width: 100%;
-  padding-right: 15px;
-  padding-left: 15px;
-  margin-right: auto;
-  margin-left: auto;
-
-  @media only screen and (min-width: $bp-large){
-    font-size: 62.5%;
-  }
 }
-
-
-.container-rest{
-  @extend .container-hero;
-  padding-top: 250px;
-
-  @media only screen and (min-width: $bp-small){
-    padding-top: 0px;
-  }
-}
-
-
 
 .hidden-mid {
   position: absolute;
@@ -66,13 +46,10 @@ p {
   transform: translateX(150px);
 }
 
-
 .hidden-left {
   position: absolute;
   transform: translateX(-300px);
 }
-
-
 
 
 .mobile-hidden2 {
@@ -112,7 +89,5 @@ display: block;
   .mobile-full-width {
     width: auto;
   }
-
-
 }
 

@@ -31,7 +31,6 @@
           }),
       },
       created(){
-          console.log( localStorage.getItem('name'));
           this.fetchUser()
       },
   }

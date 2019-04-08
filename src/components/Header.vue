@@ -10,7 +10,7 @@
             <h3 class="header-nav__text mobile-hidden">Back</h3>
           </div>
         </div>
-        <div :class="{'hidden-mid': showSidebarHeader == false, 'full-width': (showNavHeader == false && showBasketHeader == false )}" class="desktop-hidden header-sidebar-col">
+        <div :class="{'hidden-mid': showSidebarHeader == false, 'full-width': (showNavHeader == false && showBasketHeader == false )}" class="desktop-hidden header-sidebar-col" v-if="comparePathSign()">
           <div class="header-sidebar" @click="openSidebarMenu">
             <span class="icon-menu"></span>
           </div>
@@ -81,7 +81,7 @@
           }),
 
           openBasket(){
-              this.changeBasketAct(200)
+              this.changeBasketAct()
           },
           openSidebarMenu(){
               this.openSidebar(this.offset);
@@ -106,6 +106,16 @@
                   return false
               }
           },
+
+          comparePathSign(){
+              if(this.$route.path !== this.pathSignin
+                  && this.$route.path !== this.pathSignup){
+                  return true
+              }else  {
+                  return false
+              }
+          },
+
           resetTotal(){
               if(this.basket.length > 0){
                 return this.totalCost
@@ -123,11 +133,6 @@
 
       mounted () {
               window.addEventListener('scroll', this.stickHeader);
-
       },
   }
 </script>
-
-<style scoped lang="scss">
-
-</style>

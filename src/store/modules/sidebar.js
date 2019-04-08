@@ -52,7 +52,7 @@ const actions = {
                 rootState.header.stickyHeader = false;
                 state.showNavHeader = true;
                 state.showBasketHeader = true;
-                rootState.header.height = 270;
+                rootState.header.height = 100;
             }
             state.fullScreen = false;
             state.openSidebar = false;

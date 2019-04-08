@@ -1,6 +1,6 @@
 <template>
   <div class="bg">
-    <app-hero-small :style="{height: this.height + 'rem', margin: 0 + 'px'}"></app-hero-small>
+    <app-hero-small ></app-hero-small>
     <div class="main-container container">
       <div class="row">
         <div class="sidebar-content">
@@ -23,11 +23,6 @@
     import Footer from '@/components/Footer.vue'
 
     export default {
-        data(){
-            return{
-                height: 30,
-            }
-        },
         computed: {
             ...mapGetters({
                 isAuthenticated: types.GET_IS_AUTHENTICATED
@@ -44,5 +39,4 @@
             appFooter: Footer
         },
     }
-
 </script>

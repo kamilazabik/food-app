@@ -1,13 +1,25 @@
+.jumbotron {
+  background-image: url(/img/asian-chopsticks-cooking-697058.63a12b54.jpg);
+  background-size: cover;
+  min-height: 70rem;
+  background-position: 100% 60%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 0;
+  padding-top: 5rem;
+}
+
 .hero {
-  //background-color: #ffffff;
   padding: 10px;
   margin: 0 0 6rem 0;
   text-shadow: 2px 2px 3px rgba(0, 0, 0, 0.6);
 
-
   &-title {
     font-size: 4rem;
     font-weight: 500;
+    text-align: center;
   }
 
   &-pretitle {
@@ -52,6 +64,5 @@
       color: $dark-blue;
     }
   }
-
 }
 

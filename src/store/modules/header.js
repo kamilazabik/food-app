@@ -2,9 +2,9 @@ import * as types from '../types';
 
 const state = {
     stickyHeader: false,
-    sticky: 270,
+    sticky: 220,
     offset: 0,
-    height: 270
+    height: 150
 };
 
 const mutations = {
@@ -14,33 +14,38 @@ const mutations = {
             max700 = window.matchMedia("(max-width: 700px)");
 
         if(max700.matches){
-            if (pageOffset < state.sticky && pageOffset !== 0 ) {
-                console.log(pageOffset)
-                console.log(window.scrollY)
-                state.offset = pageOffset;
-                state.stickyHeader = false;
-                state.height = 270 - pageOffset ;
-
-                if(hero.offsetHeight < 50 ){
-                    state.height = 50;
-                }
-            } else if(pageOffset >  220){
-                state.stickyHeader = true;
-            }
-
-        }else {
             if  (pageOffset > state.sticky) {
                 state.stickyHeader = true;
             } else if(pageOffset < state.sticky){
                 state.stickyHeader = false;
             }
+
+        }else {
+            hero.style.height = (150 - pageOffset/10)  + "%";
+            hero.style.top =  -(pageOffset/10)  + "%";
+
+            if  (pageOffset > state.sticky + 30) {
+                state.stickyHeader = true;
+            } else if(pageOffset < state.sticky + 30){
+                state.stickyHeader = false;
+            }
+
+        }
+    },
+
+    [types.MUTATE_SET_HERO_START](state){
+        let max700 = window.matchMedia("(max-width: 700px)");
+        if(max700.matches){
+            state.height = 100;
+        }else {
+            state.height = 150;
         }
     }
 };
 
 const actions = {
     [types.ACT_HERO_HEIGHT]({state} ){
-        state.height = 300;
+        state.height = 150;
         state.stickyHeader = false;
 
     },
@@ -48,10 +53,10 @@ const actions = {
         if (window.innerWidth > 700) {
             dispatch(types.ACT_HERO_HEIGHT);
         }else if(window.innerWidth <= 700 && rootState.basket.openBasket === true){
-            state.height = 270;
+            state.height = 100;
             dispatch(types.ACT_OPEN_BASKET, null, { root: true })
         }else {
-            state.height = 270
+            state.height = 100
         }
     }
 };

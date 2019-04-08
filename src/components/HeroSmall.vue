@@ -1,6 +1,6 @@
 <template>
-  <div class="hero-container" :style="{height: this.heroHeight + 'px', margin: 0 + 'px'}">
-    <div class=" jumbotron-fluid jumbotron-small" >
+  <div class="hero-container" >
+    <div class="hero-inner ">
       <div class="container buttons">
         <div class="row">
           <div class="col justify-content-end">
@@ -21,18 +21,21 @@
           </div>
         </div>
       </div>
-      <div class="hero">
-        <router-link to="/restaurants" tag="h1" class="display-4 hero-title">
+      <div class="hero-small">
+        <router-link to="/restaurants" tag="h1" class="display-4 hero-small-title">
           <a class="hero-link">Order Your Favourite Dishes Online!</a>
         </router-link>
       </div>
       <app-header></app-header>
+    </div>
+    <div class=" jumbotron-fluid jumbotron-small" :style="{height: this.heroHeight + '%', margin: 0 + '%'}">
     </div>
   </div>
 </template>
 
 <script>
     import {mapGetters} from 'vuex'
+    import {mapMutations} from 'vuex'
     import * as types from '../store/types';
     import Header from '../components/Header.vue'
 
@@ -53,38 +56,17 @@
         },
 
         methods: {
+            ... mapMutations({
+                setHeroHeight: types.MUTATE_SET_HERO_START
+            }),
+
             onLogout(){
                 this.$store.dispatch(types.ACT_LOGOUT)
             },
         },
+
+        created() {
+            this.setHeroHeight()
+        }
     }
 </script>
-
-<style lang="scss">
-  /*.jumbotron-small {*/
-    /*height: 30rem;*/
-    /*position: relative;*/
-  /*}*/
-  /*.buttons {*/
-    /*position: absolute;*/
-    /*top: 2rem;*/
-    /*background-color: transparent;*/
-    /*text-align: right;*/
-    /*max-width: 1240px;*/
-
-    /*.row {*/
-      /*background-color: transparent;*/
-    /*}*/
-  /*}*/
-
-  /*.btn-sign {*/
-    /*font-size: 1.6rem;*/
-    /*padding: 0.6rem 2rem;*/
-
-    /*&:first-child{*/
-      /*margin-right: 1rem;*/
-    /*}*/
-  /*}*/
-
-
-</style>

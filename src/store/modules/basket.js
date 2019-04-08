@@ -53,7 +53,6 @@ const mutations = {
             console.log(items);
             var individualItem = state.basket[items];
             state.partial += individualItem.quantity * individualItem.price;
-            console.log(individualItem.quantity)
         }
         return state.partial
     },
@@ -69,13 +68,9 @@ const actions = {
         }
         if(typeof auth.state.oneUser.orders !== 'undefined' ){
             auth.state.oneUser.orders.push(basket);
-            console.log(basket);
-            console.log(auth.state.oneUser.orders)
         }else {
             auth.state.oneUser.orders = [];
             auth.state.oneUser.orders.push(basket);
-            console.log(basket);
-            console.log(auth.state.oneUser.orders)
         }
         globalAxios.post('/orders.json' + '?auth=' + auth.state.idToken, basket)
             .then(res=> console.log(res))
@@ -83,19 +78,17 @@ const actions = {
 
         globalAxios.put('/users/'+ auth.state.idUserDb +'.json?auth=' + auth.state.idToken, auth.state.oneUser )
             .then(res => {
-                console.log(res);
-                console.log(res.data)
+                // console.log(res);
+                // console.log(res.data)
             })
             .catch(error => console.log(error))
-
     },
 
-    [types.ACT_OPEN_BASKET]({ state, dispatch, commit, getters, rootState }, payload){
+    [types.ACT_OPEN_BASKET]({ state, dispatch, commit, getters, rootState }){
         let max700 = window.matchMedia("(max-width: 700px)"),
             pageOffset = window.pageYOffset;
 
         rootState.sidebar.stickyHeader = false;
-
 
         if(!state.openBasket){
             state.openBasket = true;
@@ -108,21 +101,17 @@ const actions = {
                 rootState.sidebar.showNavHeader = false;
                 rootState.sidebar.showSidebarHeader = false;
                 rootState.sidebar.showBasketHeader = true;
-
             }
         }else {
             if(max700.matches){
-
                 rootState.header.stickyHeader = false;
                 rootState.sidebar.showNavHeader = true;
                 rootState.sidebar.showSidebarHeader = true;
-                rootState.header.height = 270;
+                rootState.header.height = 100;
             }
-
 
             rootState.sidebar.fullScreen = false;
             state.openBasket = false;
-            // document.documentElement.scrollTop = payload
         }
     }
 };

@@ -49,7 +49,8 @@ export const MUTATE_SHOW_ORDERS = 'account/MUTATE_SHOW_ORDERS';
 export const MUTATE_STICKY_SIDEBAR = 'sidebar/MUTATE_STICKY_SIDEBAR';
 export const MUTATE_MOBILE_SIDEBAR = 'sidebar/MUTATE_MOBILE_SIDEBAR';
 
-export const MUTATE_STICKY_HEADER = 'sidebar/MUTATE_STICKY_HEADER';
+export const MUTATE_STICKY_HEADER = 'header/MUTATE_STICKY_HEADER';
+export const MUTATE_SET_HERO_START = 'header/MUTATE_SET_HERO_START';
 
 
 //Actions

@@ -49,7 +49,6 @@
     export default {
         data() {
             return {
-//                height: 30,
                 basketText: 'Your basket is empty',
                 info: 'Please.login'
             }
@@ -91,7 +90,6 @@
 
             addNewOrder() {
                 this.$store.commit(types.MUTATE_ADD_ORDER, [this.basket, this.totalCost])
-                console.log(this.order);
                 this.$store.dispatch(types.ACT_BASKET_TO_DB, this.order);
                 this.$store.commit(types.MUTATE_RESET_TOTAL);
                 this.cleanBasket();
@@ -101,7 +99,6 @@
                 }else {
                     this.basketText = 'Please sign in first'
                 }
-
             }
         },
 

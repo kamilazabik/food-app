@@ -6,7 +6,6 @@
         <div class="row no-gutters restaurant">
           <div class="col-3">
             <div v-for = "rest in restItem" v-if="rest.name == item.basket[0].restName" :style="{backgroundImage: 'url('+require('../../assets/img/' + rest.img) + ')'}"  class="card-img restaurant-logo">
-                <!--<img :src="require('../../assets/img/' + rest.img)"  class="card-img restaurant-logo" alt="">-->
             </div>
           </div>
           <div class="col-9">
@@ -24,10 +23,10 @@
                     <div class="col-6">
                       <p>{{order.name}}</p>
                     </div>
-                    <div class="col-2">
+                    <div class="col-3">
                       <p>x {{order.quantity}}</p>
                     </div>
-                    <div class="col-4 text-right">
+                    <div class="col-3 text-right">
                       <p>{{order.price}} zł</p>
                     </div>
                   </div>
@@ -81,6 +80,4 @@
             this.$store.dispatch(types.ACT_FETCH_USER)
         }
     }
-
-
 </script>

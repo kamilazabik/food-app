@@ -54,8 +54,7 @@
                 const formData = {
                     email: this.email,
                     password: this.password,
-                }
-                console.log(formData)
+                };
                 this.$store.dispatch(types.ACT_LOGIN, {email: formData.email, password: formData.password})
 
             }

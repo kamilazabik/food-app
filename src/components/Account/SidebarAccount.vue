@@ -52,7 +52,6 @@
      mounted() {
          window.addEventListener('scroll', this.stickySidebar);
      }
-
  }
 
 </script>

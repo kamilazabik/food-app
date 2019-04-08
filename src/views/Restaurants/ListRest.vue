@@ -4,7 +4,6 @@
       <div class="card mb-4" v-for="(item, index) in filteredData" :key="index">
         <div class="row no-gutters restaurant-item">
           <div class="col-4 d-flex align-items-center restaurant-img" :style="{backgroundImage: 'url('+require('../../assets/img/' + item.img) + ')'}">
-            <!--<img :src="require('../../assets/img/' + item.img)"  class="card-img restaurant-logo" alt="">-->
           </div>
           <div class="col-8 d-flex align-items-center">
             <div class="card-body restaurant-body">
@@ -44,12 +43,6 @@
 
            }
        },
-       methods: {
-           getPic(index) {
-//               return require('../../assets/img/'+index)
-           },
-
-       },
        computed: {
            ...mapGetters({
                resItem: types.GET_REST_LIST,
@@ -61,26 +54,3 @@
        }
    }
 </script>
-
-<style lang="scss">
-
-  .col-4.d-flex.align-items-center{
-    /*background-image: url("../../assets/img/burger.jpg");*/
-    background-size: cover;
-    background-position: 50% 50%;
-  }
-  /*.bg {*/
-    /*&-orange {*/
-      /*background-color: orange;*/
-      /*overflow: hidden;*/
-    /*}*/
-
-    /*&-white {*/
-      /*background-color: white;*/
-    /*}*/
-
-  /*}*/
-
-
-
-</style>

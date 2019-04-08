@@ -23,20 +23,3 @@
       }
   }
 </script>
-
-
-
-<style lang="scss">
-  .jumbotron {
-    background-image: url("../assets/img/asian-chopsticks-cooking-697058.jpg");
-    background-size: cover;
-    min-height: 70rem;
-    background-position: 100% 60%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 0;
-  }
-
-</style>
