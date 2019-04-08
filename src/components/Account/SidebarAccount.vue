@@ -27,7 +27,7 @@
              this.stickSidebar()
          },
 
-         manageSidebar(e){
+         manageSidebar(){
              this.mobileSidebar()
          },
          showUserOrders(){

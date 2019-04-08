@@ -5,8 +5,8 @@
       <div class="card mb-3"  v-for="(item, index) in user.orders" :key="index">
         <div class="row no-gutters restaurant">
           <div class="col-3">
-            <div v-for = "rest in restItem" v-if="rest.name == item.basket[0].restName" :style="{backgroundImage: 'url('+require('../../assets/img/' + rest.img) + ')'}"  class="card-img restaurant-logo">
-            </div>
+              <div v-for = "rest in restItem" v-if="rest.name == item.basket[0].restName" :style="{backgroundImage: 'url('+require('../../assets/img/' + rest.img) + ')'}"  class="card-img restaurant-logo">
+              </div>
           </div>
           <div class="col-9">
             <div class="card-body restaurant-body">
@@ -19,7 +19,7 @@
                   <p>Details: </p>
                 </div>
                 <div class="col-sm-9">
-                  <div class="row" v-for="order in item.basket">
+                  <div class="row" v-for="(order, index) in item.basket" :key="index">
                     <div class="col-6">
                       <p>{{order.name}}</p>
                     </div>
@@ -74,10 +74,11 @@
 
             auth(){
                 return this.isAuthenticated
-            }
+            },
         },
         created(){
             this.$store.dispatch(types.ACT_FETCH_USER)
+            console.log(this.findImg)
         }
     }
 </script>

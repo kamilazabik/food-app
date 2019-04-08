@@ -43,7 +43,6 @@
 <script>
     import * as types from '../store/types';
     import {mapGetters} from 'vuex'
-    import {mapActions} from 'vuex'
     import {mapMutations} from 'vuex'
 
     export default {
@@ -114,12 +113,12 @@
 
             }),
             partial() {
-                this.$store.commit(types.MUTATE_PARTIAL)
+                return this.$store.commit(types.MUTATE_PARTIAL)
             },
 
             total() {
                 console.log(this.totalCost);
-                this.$store.commit(types.MUTATE_TOTAL, [this.partialCost, this.basket[0].delCost])
+                return this.$store.commit(types.MUTATE_TOTAL, [this.partialCost, this.basket[0].delCost])
             },
             auth(){
                 return this.isAuthenticated

@@ -30,7 +30,7 @@ const mutations = {
 };
 
 const actions = {
-    [types.ACT_OPEN_SIDEBAR]({state, rootState}, payload){
+    [types.ACT_OPEN_SIDEBAR]({state, rootState}){
         let max700 = window.matchMedia("(max-width: 700px)");
 
         state.stickyHeader = false;

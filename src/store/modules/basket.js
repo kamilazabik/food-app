@@ -53,6 +53,7 @@ const mutations = {
             console.log(items);
             var individualItem = state.basket[items];
             state.partial += individualItem.quantity * individualItem.price;
+
         }
         return state.partial
     },
@@ -78,13 +79,13 @@ const actions = {
 
         globalAxios.put('/users/'+ auth.state.idUserDb +'.json?auth=' + auth.state.idToken, auth.state.oneUser )
             .then(res => {
-                // console.log(res);
+                console.log(res);
                 // console.log(res.data)
             })
             .catch(error => console.log(error))
     },
 
-    [types.ACT_OPEN_BASKET]({ state, dispatch, commit, getters, rootState }){
+    [types.ACT_OPEN_BASKET]({ state, commit, rootState }){
         let max700 = window.matchMedia("(max-width: 700px)"),
             pageOffset = window.pageYOffset;
 

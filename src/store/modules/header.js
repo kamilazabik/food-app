@@ -8,7 +8,7 @@ const state = {
 };
 
 const mutations = {
-    [types.MUTATE_STICKY_HEADER](state, payload){
+    [types.MUTATE_STICKY_HEADER](state){
         let hero = document.getElementsByClassName('jumbotron-small')[0],
             pageOffset = window.pageYOffset,
             max700 = window.matchMedia("(max-width: 700px)");
