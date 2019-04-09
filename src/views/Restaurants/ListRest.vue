@@ -14,11 +14,11 @@
               </div>
               <div class="star-rating">
                 <div class="back-stars">
-                  <i class="icon-star-empty" aria-hidden="true"></i>
-                  <i class="icon-star-empty" aria-hidden="true"></i>
-                  <i class="icon-star-empty" aria-hidden="true"></i>
-                  <i class="icon-star-empty" aria-hidden="true"></i>
-                  <i class="icon-star-empty" aria-hidden="true"></i>
+                  <i class="icon-star" aria-hidden="true"></i>
+                  <i class="icon-star" aria-hidden="true"></i>
+                  <i class="icon-star" aria-hidden="true"></i>
+                  <i class="icon-star" aria-hidden="true"></i>
+                  <i class="icon-star" aria-hidden="true"></i>
                 <div class="front-stars" :style="{width: item.rating + '%'}">
                   <i class="icon-star" aria-hidden="true"></i>
                   <i class="icon-star" aria-hidden="true"></i>

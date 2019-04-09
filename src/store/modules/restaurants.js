@@ -14,7 +14,7 @@ const state = {
             'link': 'burgers',
             'range': 5,
             'img': 'burger.jpg',
-            'rating': 75,
+            'rating': 90,
             "types": ['burgers', 'fries', 'drinks' ],
             'options': [{
                 'deliverCost': 6,
@@ -117,7 +117,7 @@ const state = {
              "types": ['pizza', 'drinks'],
             'range': 4,
             'img': 'pizza.jpg',
-             'rating': 45,
+             'rating': 50,
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 45,
@@ -243,7 +243,7 @@ const state = {
             'link': 'thai-city',
             'range': 5,
             'img': 'thai.jpg',
-            'rating': 85,
+            'rating': 80,
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 5,
@@ -297,7 +297,6 @@ const mutations = {
         state.params = {};
         state.params.id = param[1];
         state.params.link = param[0].link;
-        // state.paramID = param.id;
         return state.params
     }
 };
@@ -321,10 +320,8 @@ const actions = {
             filteredDataByfilters= state.filteredData.filter(obj => state.filters.every(val => obj.type.indexOf(val) >= 0));
             state.filteredData = filteredDataByfilters;
         }
-
     }
 };
-
 
 export default {
     state,

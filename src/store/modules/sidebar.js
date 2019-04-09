@@ -2,7 +2,7 @@ import * as types from '../types';
 
 const state = {
     openSidebar: false,
-    mobile: false,
+    // mobile: false,
     showNavHeader: true,
     showBasketHeader: true,
     showSidebarHeader: true,
@@ -15,11 +15,7 @@ const state = {
 const mutations = {
     [types.MUTATE_STICKY_SIDEBAR](state){
         if(window.matchMedia("(min-width: 700px)").matches){
-            if (window.pageYOffset > state.sticky) {
-                state.stickySidebar = true
-            } else {
-                state.stickySidebar = false
-            }
+            window.pageYOffset > state.sticky ?  state.stickySidebar = true : state.stickySidebar = false;
         }
     },
     [types.MUTATE_MOBILE_SIDEBAR](state){
@@ -53,17 +49,12 @@ const actions = {
                 state.showNavHeader = true;
                 state.showBasketHeader = true;
                 rootState.header.height = 100;
-
-                console.log(state.showNavHeader)
-
             }
             state.fullScreen = false;
             state.openSidebar = false;
-            // document.documentElement.scrollTop = payload
-            console.log(state.showNavHeader)
         }
     },
-}
+};
 
 const getters = {
     [types.GET_SHOW_NAV_HEADER]: state => {

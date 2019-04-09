@@ -2,7 +2,7 @@
   <div >
     <div class="sidebar" :class="{'open': ifOpenSidebar == true, 'sticky': ifStickySidebar == true}" ref="sidebar" v-if="typeof params.id != 'undefined' && $route.path == '/restaurants/' + params.link">
       <div v-for="(item, index) in this.resItem[params.id].types" :key="index">
-        <a class="sidebar-btn" :href="'#' +item">{{item}}</a>
+        <a class="sidebar-btn" :href="'#' +item"  @click.prevent="scrollToIdOnClick($event)">{{item | capitalize}} </a>
       </div>
     </div>
   </div>
@@ -14,15 +14,6 @@
     import {mapMutations} from 'vuex'
 
   export default {
-
-      data() {
-          return {
-//              item1: 'burgers',
-//              item2: 'fries',
-//              item3: 'drinks',
-              sticky: 260,
-          }
-      },
       computed: {
           ...mapGetters({
               resItem: types.GET_REST_LIST,
@@ -43,14 +34,13 @@
 
           getScrollTopByHref(element) {
               const id = element.getAttribute('href');
-              console.log(id)
               return document.querySelector(id).offsetTop;
           },
 
           scrollTopPosition(to) {
-
-              // use this for new browser
+              //  for new browser
               window.scroll({
+
                 top: to,
                 behavior: 'smooth',
               });
@@ -60,14 +50,13 @@
           },
 
           scrollToIdOnClick(e) {
-              e.preventDefault();
+//              e.preventDefault();
               const to = this.getScrollTopByHref(e.currentTarget) - 80;
               this.scrollTopPosition(to)
           },
 
-          // use this function for old browsers
+          //function for old browsers
           smoothScroll(endX, endY, duration) {
-          console.log(window.scrollY )
               const startX = window.scrollX || window.pageXOffset;
               const startY = window.scrollY || window.pageYOffset;
               const distanceX = endX - startX;
@@ -91,20 +80,16 @@
                   window.scroll(newX, newY);
               }, 100 / 60);
           },
+
           manageSidebar(e){
               this.mobileSidebar()
           }
-
-    },
-     created() {
-         addEventListener('resize', this.manageSidebar)
-    },
+      },
       mounted() {
           window.addEventListener('scroll', this.stickySidebar);
-          const menuItems = document.querySelectorAll('.sidebar-btn[href^="#"]');
-          menuItems.forEach(item => {
-              item.addEventListener('click', this.scrollToIdOnClick);
-          });
+      },
+      created() {
+          addEventListener('resize', this.manageSidebar);
       }
   }
 </script>

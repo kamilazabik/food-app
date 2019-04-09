@@ -30,14 +30,12 @@
           </div>
         </div>
       </div>
-
     </div>
-
   </div>
 </template>
 
 <script>
-    import * as types from '../store/types';
+    import * as types from '@/store/types';
     import {mapGetters} from 'vuex'
     import {mapActions} from 'vuex'
     import {mapMutations} from 'vuex'

@@ -34,11 +34,7 @@ const mutations = {
 
     [types.MUTATE_SET_HERO_START](state){
         let max700 = window.matchMedia("(max-width: 700px)");
-        if(max700.matches){
-            state.height = 100;
-        }else {
-            state.height = 150;
-        }
+        max700.matches ? state.height = 100 : state.height = 150;
     }
 };
 
@@ -46,8 +42,8 @@ const actions = {
     [types.ACT_HERO_HEIGHT]({state} ){
         state.height = 150;
         state.stickyHeader = false;
-
     },
+
     [types.ACT_RESIZE_HERO]({state, dispatch,rootState}){
         if (window.innerWidth > 700) {
             dispatch(types.ACT_HERO_HEIGHT);
