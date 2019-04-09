@@ -53,7 +53,7 @@
 </template>
 
 <script>
-    import * as types from '../../store/types';
+    import * as types from '@/store/types';
     import { required, email, minLength, sameAs  } from 'vuelidate/lib/validators'
 
   export default {

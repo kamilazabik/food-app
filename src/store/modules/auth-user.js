@@ -1,6 +1,5 @@
 import axios from '../../axios-auth';
 import globalAxios from 'axios';
-// import { routes } from '../../router';
 import router from '../../router'
 import * as types from '../types';
 
@@ -59,7 +58,7 @@ const actions = {
                 dispatch(types.ACT_SET_LOGOUT_TIMER, res.data.expiresIn)
             })
             .catch(error => console.log(error));
-            router.replace('./account')
+            router.replace('/')
 
     },
 

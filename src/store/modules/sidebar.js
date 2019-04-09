@@ -30,7 +30,7 @@ const mutations = {
 };
 
 const actions = {
-    [types.ACT_OPEN_SIDEBAR]({state, rootState}){
+    [types.ACT_OPEN_SIDEBAR]({state, commit,rootState}){
         let max700 = window.matchMedia("(max-width: 700px)");
 
         state.stickyHeader = false;
@@ -53,9 +53,14 @@ const actions = {
                 state.showNavHeader = true;
                 state.showBasketHeader = true;
                 rootState.header.height = 100;
+
+                console.log(state.showNavHeader)
+
             }
             state.fullScreen = false;
             state.openSidebar = false;
+            // document.documentElement.scrollTop = payload
+            console.log(state.showNavHeader)
         }
     },
 }

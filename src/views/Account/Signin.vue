@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import * as types from '../../store/types';
+    import * as types from '@/store/types';
     import { required, email, minLength  } from 'vuelidate/lib/validators'
 
     export default {
@@ -56,7 +56,6 @@
                     password: this.password,
                 };
                 this.$store.dispatch(types.ACT_LOGIN, {email: formData.email, password: formData.password})
-
             }
         }
     }

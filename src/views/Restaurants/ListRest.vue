@@ -30,9 +30,9 @@
 </template>
 
 <script>
-  import * as types from '../../store/types';
+  import * as types from '@/store/types';
   import {mapGetters} from 'vuex'
-  import Basket from '../../components/Basket.vue'
+  import Basket from '@/components/Basket.vue'
 
    export default {
        data(){

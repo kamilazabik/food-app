@@ -26,7 +26,6 @@ const routes= [
         default: Home,
         'hero': Hero
       },
-
     },
     {
         path: '/restaurants',
@@ -35,7 +34,6 @@ const routes= [
         children: [
             {path: '/restaurants', component: ListRest, name: 'listRest'},
             {path: '/restaurants/:link', component: OneRest, name: 'oneRest'}
-            // {path: '/restaurants/:id', component: OneRest, name: 'oneRest'}
         ]
     },
     {
@@ -60,7 +58,7 @@ const routes= [
       // route level code-splitting
       // this generates a separate chunk (about.[hash].js) for this route
       // which is lazy-loaded when the route is visited.
-      // component: () => import(/* webpackChunkName: "about" */ './views/About.vue')
+      // component: () => import(/* webpackChunkName: "about" */ './views/.vue')
     // }
   ]
 // })

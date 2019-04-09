@@ -29,7 +29,6 @@ const mutations = {
             } else if(pageOffset < state.sticky + 30){
                 state.stickyHeader = false;
             }
-
         }
     },
 
@@ -52,10 +51,12 @@ const actions = {
     [types.ACT_RESIZE_HERO]({state, dispatch,rootState}){
         if (window.innerWidth > 700) {
             dispatch(types.ACT_HERO_HEIGHT);
-        }else if(window.innerWidth <= 700 && rootState.basket.openBasket === true){
+        }else if(window.innerWidth <= 700 && rootState.basket.openBasket){
             state.height = 100;
             dispatch(types.ACT_OPEN_BASKET, null, { root: true })
-        }else {
+        }else if (window.innerWidth <= 700 &&  rootState.sidebar.openSidebar){
+            dispatch(types.ACT_OPEN_SIDEBAR, null, { root: true })
+        }else{
             state.height = 100
         }
     }

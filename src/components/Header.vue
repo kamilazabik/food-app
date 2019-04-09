@@ -11,7 +11,7 @@
           </div>
         </div>
         <div :class="{'hidden-mid': showSidebarHeader == false, 'full-width': (showNavHeader == false && showBasketHeader == false )}" class="desktop-hidden header-sidebar-col" v-if="comparePathSign()">
-          <div class="header-sidebar" @click="openSidebarMenu">
+          <div class="header-sidebar" @click="openSidebarMenu" :class="{ 'white' : ifOpenSidebar == true}">
             <span class="icon-menu"></span>
           </div>
         </div>
@@ -56,6 +56,7 @@
       computed: {
           ...mapGetters({
               ifOpenBasket: types.GET_BASKET_STATUS,
+              ifOpenSidebar: types.GET_OPEN_SIDEBAR,
               basket: types.GET_BASKET,
               order: types.GET_ORDER,
               totalCost: types.GET_TOTAL,
