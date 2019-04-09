@@ -2,18 +2,31 @@
   <div class="restaurant-container ">
     <div class="restaurant-list">
       <div class="card mb-4" v-for="(item, index) in filteredData" :key="index">
+        <router-link :to="{name: 'oneRest', params: {link:  item.link, id: index }}" :id="index" tag="a" :itemid="item" class="restaurant-box">
         <div class="row no-gutters restaurant-item">
           <div class="col-4 d-flex align-items-center restaurant-img" :style="{backgroundImage: 'url('+require('../../assets/img/' + item.img) + ')'}">
           </div>
           <div class="col-8 d-flex align-items-center">
             <div class="card-body restaurant-body">
-              <router-link :to="{name: 'oneRest', params: {link:  item.link, id: index }}" :id="index" class="card-title" tag="h5" :itemid="item"><a class="restaurant-name">{{item.name}} </a></router-link>
+             <h3 class="card-title restaurant-name">{{item.name}} </h3>
               <div class="bg-orange">
-                <span class="restaurant-stars icon-star-empty"></span>
-                <span class="restaurant-stars icon-star-empty"></span>
-                <span class="restaurant-stars icon-star-empty"></span>
-                <span class="restaurant-stars icon-star-empty"></span>
-                <span class="restaurant-stars icon-star-empty"></span>
+
+              </div>
+              <div class="star-rating">
+                <div class="back-stars">
+                  <i class="icon-star-empty" aria-hidden="true"></i>
+                  <i class="icon-star-empty" aria-hidden="true"></i>
+                  <i class="icon-star-empty" aria-hidden="true"></i>
+                  <i class="icon-star-empty" aria-hidden="true"></i>
+                  <i class="icon-star-empty" aria-hidden="true"></i>
+                <div class="front-stars" :style="{width: item.rating + '%'}">
+                  <i class="icon-star" aria-hidden="true"></i>
+                  <i class="icon-star" aria-hidden="true"></i>
+                  <i class="icon-star" aria-hidden="true"></i>
+                  <i class="icon-star" aria-hidden="true"></i>
+                  <i class="icon-star" aria-hidden="true"></i>
+                </div>
+                </div>
               </div>
               <p class="card-text restaurant-type">{{item.type}} </p>
               <p class="card-text" v-for="(option, index) in item.options" :key="index">
@@ -23,6 +36,7 @@
             </div>
           </div>
         </div>
+        </router-link>
       </div>
     </div>
     <app-basket></app-basket>

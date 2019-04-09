@@ -1,5 +1,4 @@
 .restaurant {
-
   &-content {
     padding: 0;
   }
@@ -16,10 +15,19 @@
     width: 100%;
   }
 
+  &-box {
+    background-color: $white;
+    transition: all .3s ease;
+   &:hover {
+     background-color: #f7faf3;
+     box-shadow: 0 1px 1px #cfcac4;
+   }
+  }
+
   &-item {
     min-height: 118px;
     position: relative;
-    background-color: $white;
+    //background-color: $white;
   }
 
   &-body {
@@ -32,7 +40,7 @@
     font-weight: 600;
     text-align: left;
     color: #0a3847;
-    margin: 0 0 4px;
+    margin: 0 0 0.8rem;
     display: inline-block;
   }
 

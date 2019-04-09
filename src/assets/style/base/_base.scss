@@ -12,6 +12,11 @@
 html {
   font-size: 50%; // 1rem =10px, 10px/16px = 62.5%
 }
+a,
+a:hover {
+  color: #0a3847;
+  text-decoration: none;
+}
 
 .container-hero {
   max-width: 1240px;
@@ -30,6 +35,26 @@ html {
 .main-container {
   max-width: 100%;
 }
+
+.star-rating {
+  display: flex;
+  align-items: center;
+  font-size: 2em;
+}
+.back-stars {
+  display: flex;
+  color: #ff8000;
+  position: relative;
+
+}
+.front-stars {
+  display: flex;
+  color: #ff8000;
+  overflow: hidden;
+  position: absolute;
+  top: 0;
+}
+
 
 @media only screen and (min-width: $bp-small){
   .container-rest{

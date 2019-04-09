@@ -14,6 +14,7 @@ const state = {
             'link': 'burgers',
             'range': 5,
             'img': 'burger.jpg',
+            'rating': 75,
             "types": ['burgers', 'fries', 'drinks' ],
             'options': [{
                 'deliverCost': 6,
@@ -116,6 +117,7 @@ const state = {
              "types": ['pizza', 'drinks'],
             'range': 4,
             'img': 'pizza.jpg',
+             'rating': 45,
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 45,
@@ -174,6 +176,7 @@ const state = {
             'link': 'italian',
             'range': 4,
             'img': 'pasta.jpg',
+            'rating': 90,
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 60,
@@ -186,6 +189,7 @@ const state = {
             'link': 'american-burgers',
             'range': 5,
             'img': 'burger2.jpg',
+            'rating': 60,
             'options': [{
                 'deliverCost': 5,
                 'deliveryTime': 35,
@@ -197,6 +201,7 @@ const state = {
             'type': 'Chinese',
             'link': 'chinese-food',
             'range': 5,
+            'rating': 40,
             'img': 'chinese.jpg',
             'options': [{
                 'deliverCost': 6,
@@ -210,6 +215,7 @@ const state = {
             'link': 'you-me-sushi',
             'range': 5,
             'img': 'sushi.jpg',
+            'rating': 70,
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 5,
@@ -223,6 +229,7 @@ const state = {
             'link': 'mexico-city',
             'range': 5,
             'img': 'mexican.jpg',
+            'rating': 80,
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 5,
@@ -236,6 +243,7 @@ const state = {
             'link': 'thai-city',
             'range': 5,
             'img': 'thai.jpg',
+            'rating': 85,
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 5,
@@ -249,6 +257,7 @@ const state = {
             'link': 'pizza-east',
             'range': 5,
             'img': 'pizza2.jpg',
+            'rating': 70,
             'options': [{
                 'deliverCost': 6,
                 'deliveryTime': 5,

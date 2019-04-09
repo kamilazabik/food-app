@@ -1,11 +1,9 @@
 <template>
   <div class="sidebar"  :class="{'open': ifOpenSidebar == true, 'sticky': ifStickySidebar == true}" ref="sidebar" v-if="$route.path == '/restaurants'">
     <a class="sidebar-btn sidebar-btn--blue" @click="filter()" >All</a>
-    <a class="sidebar-btn" @click="filter('Italian')">Italian</a>
-    <a class="sidebar-btn" @click="filter('Polish')">Polish</a>
-    <a class="sidebar-btn" @click="filter('American')">American</a>
-    <a class="sidebar-btn" @click="filter('Chinese')" >Chinese</a>
-    <a class="sidebar-btn" @click="filter('Sushi')">Sushi</a>
+    <div v-for="(item, index) in filters" :key="index">
+      <a class="sidebar-btn" @click="filter(item)">{{item}}</a>
+    </div>
   </div>
 </template>
 
@@ -20,7 +18,7 @@
           return{
             filteredData:[],
             filters: [],
-            sticky: 260
+            sticky: 260,
           }
       },
 
@@ -53,10 +51,20 @@
 
           manageSidebar(e){
               this.mobileSidebar()
+          },
+          filterType(){
+              let filters= [];
+              this.restItems.forEach(function (item) {
+                  if(filters.indexOf(item.type) === -1){
+                      filters.push(item.type)
+                  }
+              });
+              this.filters = filters;
           }
       },
 
       created(){
+          this.filterType();
           addEventListener('resize', this.manageSidebar)
       },
 
@@ -69,5 +77,4 @@
           this.$store.dispatch(types.ACT_GET_FILTERED_DATA)
       }
   }
-
 </script>
