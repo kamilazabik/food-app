@@ -73,6 +73,8 @@
 
 @media only screen and (min-width: $bp-small){
   .footer{
+    position: relative;
+    z-index: 105;
     &-copyright {
       order: 1;
     }

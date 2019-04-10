@@ -1,7 +1,7 @@
 <template>
   <div class="menu-container">
       <div class="menu-list">
-        <div v-for="(item, index) in resItem[id].menu" :key="index">
+        <div v-for="(item, index) in resMenu[0].menu" :key="index">
           <h2 class="menu-title" :id="index">{{index | capitalize}}</h2>
           <div class="card rest-card" v-for="(it, index) in item" :key="index">
             <div class="card-body rest-body" >
@@ -22,7 +22,7 @@
 </template>
 
 <script>
-    import * as types from '@//store/types';
+    import * as types from '../../store/types';
     import {mapGetters} from 'vuex'
     import {mapMutations} from 'vuex'
     import Basket from '@/components/Basket.vue'
@@ -34,7 +34,8 @@
                 id: this.$route.params.id,
                 link: this.$route.params.link,
                 params: this.$route.params,
-                ids: []
+                ids: [],
+                resMenu: []
             }
         },
 
@@ -60,9 +61,17 @@
                 }
             },
 
+            findLink(link){
+                let checkedFiters = this.resItem.filter(obj => obj.link === link);
+                checkedFiters.forEach(element => {
+                    this.resMenu.push(element);
+                });
+                return this.resMenu;
+            },
+
             addToBasket(item,delCost) {
-                this.addItemToBasket(item, delCost)
-                this.$store.commit(types.MUTATE_PARTIAL)
+                this.addItemToBasket(item, delCost);
+                this.$store.commit(types.MUTATE_PARTIAL);
                 this.$store.commit(types.MUTATE_TOTAL, [this.partial, this.basket[0].delCost])
             },
 
@@ -81,7 +90,8 @@
         created () {
             window.addEventListener('scroll', this.stickHeader);
             this.findId();
-            this.getParam([this.params, this.id])
+            this.getParam([this.params, this.id]);
+            this.findLink(this.paramsStore.link);
         },
     }
 

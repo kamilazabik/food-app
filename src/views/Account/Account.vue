@@ -8,7 +8,7 @@
 <script>
   import {mapGetters} from 'vuex'
   import {mapActions} from 'vuex'
-  import * as types from '@/store/types';
+  import * as types from '../../store/types';
 
   export default {
       data(){

@@ -17,7 +17,7 @@
 
 <script>
     import {mapGetters} from 'vuex'
-    import * as types from '@/store/types';
+    import * as types from '../../store/types';
     import SidebarAccount from '@/components/Account/SidebarAccount.vue'
     import HeroSmall from '@/components/HeroSmall.vue'
     import Footer from '@/components/Footer.vue'

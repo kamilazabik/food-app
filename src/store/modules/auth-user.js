@@ -112,7 +112,7 @@ const actions = {
         localStorage.removeItem('userId');
         localStorage.removeItem('userEmail');
         localStorage.removeItem('name');
-        router.replace('./signin')
+        router.replace('../signin')
     },
 
     [types.ACT_STORE_USER]({state}, userData){

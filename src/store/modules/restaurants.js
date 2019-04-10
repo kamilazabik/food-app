@@ -7,6 +7,7 @@ const state = {
     paramID: '',
     paramLink: '',
     params: {},
+    savedLink: '',
     restaurantItems: [
         {
             'name': 'Burgers',
@@ -114,7 +115,7 @@ const state = {
             'name': 'Sky Pizza',
             'type': 'Italian',
             'link': 'sky-pizza',
-             "types": ['pizza', 'drinks'],
+             "types": ['pizza'],
             'range': 4,
             'img': 'pizza.jpg',
              'rating': 50,
@@ -181,7 +182,10 @@ const state = {
                 'deliverCost': 5,
                 'deliveryTime': 60,
                 'minCost': 30
-            }]
+            }],
+           'menu':{
+               'pasta': []
+            }
         },
         {
             'name': 'American Burgers',
@@ -194,7 +198,10 @@ const state = {
                 'deliverCost': 5,
                 'deliveryTime': 35,
                 'minCost': 50
-            }]
+            }],
+            'menu':{
+                'burgers': []
+            }
         },
          {
             'name': 'Chinese Food',
@@ -220,7 +227,10 @@ const state = {
                 'deliverCost': 6,
                 'deliveryTime': 5,
                 'minCost': 40
-            }]
+            }],
+            'menu':{
+                'sushi': []
+            }
 
         },
         {
@@ -234,7 +244,10 @@ const state = {
                 'deliverCost': 6,
                 'deliveryTime': 5,
                 'minCost': 40
-            }]
+            }],
+            'menu':{
+                'burrito': []
+            }
 
         },
         {
@@ -248,7 +261,10 @@ const state = {
                 'deliverCost': 6,
                 'deliveryTime': 5,
                 'minCost': 40
-            }]
+            }],
+            'menu':{
+                'soup': []
+            }
 
         },
         {
@@ -262,7 +278,10 @@ const state = {
                 'deliverCost': 6,
                 'deliveryTime': 5,
                 'minCost': 40
-            }]
+            }],
+            'menu':{
+                'pizza': []
+            }
 
         },
     ],

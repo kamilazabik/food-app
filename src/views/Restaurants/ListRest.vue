@@ -2,13 +2,13 @@
   <div class="restaurant-container ">
     <div class="restaurant-list">
       <div class="card mb-4" v-for="(item, index) in filteredData" :key="index">
-        <router-link :to="{name: 'oneRest', params: {link:  item.link, id: index }}" :id="index" tag="a" :itemid="item" class="restaurant-box">
+        <router-link :to="{name: 'oneRest', params: {link: item.link, id: index }}" :id="index" tag="a" :itemid="item" class="restaurant-box" @click="getParam([params, id])">
         <div class="row no-gutters restaurant-item">
           <div class="col-4 d-flex align-items-center restaurant-img" :style="{backgroundImage: 'url('+require('../../assets/img/' + item.img) + ')'}">
           </div>
           <div class="col-8 d-flex align-items-center">
             <div class="card-body restaurant-body">
-             <h3 class="card-title restaurant-name">{{item.name}} </h3>
+             <h3 class="card-title restaurant-name">{{item.name}}</h3>
               <div class="bg-orange">
 
               </div>
@@ -44,8 +44,9 @@
 </template>
 
 <script>
-  import * as types from '@/store/types';
+  import * as types from '../../store/types';
   import {mapGetters} from 'vuex'
+  import {mapMutations} from 'vuex'
   import Basket from '@/components/Basket.vue'
 
    export default {
@@ -57,14 +58,19 @@
 
            }
        },
+       methods: {
+           ... mapMutations({
+               param: types.MUTATE_PARAM
+           })
+       },
        computed: {
            ...mapGetters({
                resItem: types.GET_REST_LIST,
                filteredData: types.GET_FILTERED_REST
-           })
+           }),
        },
        components: {
            appBasket: Basket
-       }
+       },
    }
 </script>

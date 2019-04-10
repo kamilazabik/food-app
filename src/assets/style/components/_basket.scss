@@ -42,7 +42,6 @@
   &-body {
     padding: 0 15px 25px 15px;
     font-size: 2rem;
-    width: 100%;
   }
 
   &-row {
@@ -99,10 +98,15 @@
     top: auto;
     z-index: 1;
 
+    .card {
+      height: 100vh;
+    }
+
     &-body {
       width: $lg-width;
       font-size: 1.4rem;
       padding: 5px 15px;
+      background-color: $white;
     }
 
     &-quantity {

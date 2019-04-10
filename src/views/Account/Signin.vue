@@ -29,7 +29,7 @@
 </template>
 
 <script>
-    import * as types from '@/store/types';
+    import * as types from '../../store/types';
     import { required, email, minLength  } from 'vuelidate/lib/validators'
 
     export default {

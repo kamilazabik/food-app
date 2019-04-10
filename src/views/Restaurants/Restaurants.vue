@@ -20,7 +20,7 @@
 
 <script>
   import {mapGetters} from 'vuex'
-  import * as types from '@/store/types';
+  import * as types from '../../store/types';
   import HeroSmall from '@/components/HeroSmall.vue'
   import Header from '@/components/Header.vue'
   import Sidebar from '@/components/Sidebar.vue'

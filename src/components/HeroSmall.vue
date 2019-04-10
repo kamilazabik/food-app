@@ -37,7 +37,7 @@
     import {mapGetters} from 'vuex'
     import {mapMutations} from 'vuex'
     import * as types from '../store/types';
-    import Header from '../components/Header.vue'
+    import Header from '@/components/Header.vue'
 
     export default {
         components: {
